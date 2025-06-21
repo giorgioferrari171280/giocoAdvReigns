@@ -1,0 +1,35 @@
+# File e cartelle generati dall'ambiente di sviluppo
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+# File di sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dipendenze (se si usasse npm/yarn in futuro)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Cartelle di build/distribuzione (se si usasse un bundler o wrapper)
+dist/
+build/
+out/
+
+# Log files
+*.log
+
+# File di configurazione locali (se presenti)
+.env
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# File specifici di alcuni editor o tool
+.project
+.classpath
+.settings/
+nbproject/

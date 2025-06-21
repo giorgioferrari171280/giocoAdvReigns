@@ -1,0 +1,437 @@
+/* style.css */
+
+/* --- Reset CSS Basilare --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base per rem units */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font di fallback generico */
+    background-color: var(--color-background-main, #121212);
+    color: var(--color-text-primary, #e0e0e0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Per evitare scrollbar indesiderate dal contenitore principale */
+}
+
+img, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* --- Variabili CSS --- */
+:root {
+    /* Colori */
+    --color-primary: #4CAF50; /* Verde Reigns-like */
+    --color-primary-dark: #388E3C;
+    --color-primary-light: #C8E6C9;
+    --color-secondary: #FFC107; /* Giallo per accenti */
+    --color-accent: #795548;   /* Marrone per elementi UI tematici */
+    --color-background-main: #1e1e1e; /* Sfondo scuro principale */
+    --color-background-panel: #2c2c2c; /* Sfondo per pannelli UI */
+    --color-background-panel-light: #3a3a3a;
+    --color-text-primary: #f5f5f5;   /* Testo principale chiaro */
+    --color-text-secondary: #bdbdbd; /* Testo secondario più scuro */
+    --color-text-on-primary: #FFFFFF;
+    --color-border: #444444;
+    --color-error: #f44336;
+    --color-success: #4CAF50;
+    --color-warning: #FF9800;
+    --color-disabled: #616161;
+
+    /* Dimensioni del Gioco (concettuali, possono essere usate per proporzioni) */
+    --game-width-base: 1280px;
+    --game-height-base: 720px;
+    --game-aspect-ratio: calc(var(--game-width-base) / var(--game-height-base));
+
+    /* Font Sizes */
+    --font-size-small: 0.875rem;  /* 14px */
+    --font-size-normal: 1rem;     /* 16px */
+    --font-size-medium: 1.125rem; /* 18px */
+    --font-size-large: 1.5rem;    /* 24px */
+    --font-size-xlarge: 2rem;     /* 32px */
+    --font-size-xxlarge: 2.5rem;  /* 40px */
+
+    /* Spacing */
+    --spacing-unit: 8px;
+    --spacing-xs: var(--spacing-unit);    /* 8px */
+    --spacing-sm: calc(var(--spacing-unit) * 2);  /* 16px */
+    --spacing-md: calc(var(--spacing-unit) * 3);  /* 24px */
+    --spacing-lg: calc(var(--spacing-unit) * 4);  /* 32px */
+    --spacing-xl: calc(var(--spacing-unit) * 6);  /* 48px */
+
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+
+    /* Box Shadow */
+    --box-shadow-soft: 0 2px 5px rgba(0,0,0,0.2);
+    --box-shadow-strong: 0 4px 10px rgba(0,0,0,0.3);
+
+    /* Transitions */
+    --transition-speed-fast: 0.15s;
+    --transition-speed-normal: 0.3s;
+}
+
+/* --- Base Styles --- */
+/* Stili per elementi HTML di base se necessario oltre al reset */
+h1, h2, h3 {
+    color: var(--color-primary-light);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+h1 { font-size: var(--font-size-xlarge); }
+h2 { font-size: var(--font-size-large); }
+h3 { font-size: var(--font-size-medium); }
+
+p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Layout --- */
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: var(--game-width-base); /* Limita la larghezza massima */
+    max-height: var(--game-height-base); /* Limita l'altezza massima */
+
+    /* Mantenere aspect ratio - una tecnica comune */
+    /* aspect-ratio: var(--game-aspect-ratio); */ /* Supporto moderno */
+    /* Se aspect-ratio non è supportato ovunque, si usa un padding-bottom hack su un wrapper interno o JS */
+
+    background-color: var(--color-background-main);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--box-shadow-strong);
+    position: relative; /* Per posizionare elementi overlay */
+    overflow: hidden; /* Nasconde contenuto che esce dalle dimensioni fissate */
+    display: flex; /* Per centrare i contenuti se necessario, o gestire layout interno */
+    flex-direction: column;
+}
+
+/* Stili per le diverse schermate (divs principali) */
+/* Nascondi tutti gli schermi per default, JS li mostrerà */
+.initial-hidden {
+    display: none !important; /* Sovrascrive stili inline temporanei come quello dello splash */
+}
+
+/* Stili comuni per i pannelli UI (schermate) */
+.ui-panel {
+    width: 100%;
+    height: 100%;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente per default */
+    align-items: center; /* Centra orizzontalmente per default */
+    text-align: center;
+    overflow-y: auto; /* Scroll se il contenuto eccede */
+    background-color: var(--color-background-panel); /* Sfondo di default per i pannelli */
+}
+
+/* Overlay per menu di pausa, etc. */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Sfondo semi-trasparente */
+    z-index: 1000; /* Assicura che sia sopra gli altri contenuti */
+}
+
+
+/* --- Game Elements --- */
+
+/* Pulsanti di Azione e Menu */
+.action-button, .menu-button, .hud-button {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    min-width: 150px;
+    margin: var(--spacing-xs);
+    transition: background-color var(--transition-speed-fast) ease, transform var(--transition-speed-fast) ease;
+    box-shadow: var(--box-shadow-soft);
+}
+.action-button:hover, .menu-button:hover, .hud-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+.action-button:active, .menu-button:active, .hud-button:active {
+    transform: translateY(0px);
+    background-color: var(--color-primary);
+}
+.action-button:disabled, .menu-button:disabled, .hud-button:disabled {
+    background-color: var(--color-disabled);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Elementi narrativi */
+#narrative-text-container {
+    background-color: var(--color-background-panel-light); /* Sfondo leggermente diverso per il testo */
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin: var(--spacing-sm) 0;
+    min-height: 100px; /* Altezza minima per il testo */
+    max-height: 30vh; /* Limita l'altezza per non occupare troppo spazio */
+    overflow-y: auto;
+    text-align: left;
+}
+#story-text {
+    font-size: var(--font-size-medium);
+    color: var(--color-text-primary);
+}
+
+/* Immagine della scena */
+#scene-image-container {
+    width: 100%;
+    /* height: 50vh;  Esempio, l'altezza sarà gestita dal layout generale di gameplay-screen */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Sfondo nero se l'immagine non copre tutto */
+}
+#scene-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Copre il contenitore mantenendo l'aspect ratio, potrebbe tagliare */
+    /* object-fit: contain; /* Mostra tutta l'immagine, potrebbe lasciare spazi vuoti */
+}
+
+/* Controlli specifici (select, range input) */
+select, input[type="text"], input[type="range"] {
+    padding: var(--spacing-xs);
+    margin: var(--spacing-xs);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-background-panel-light);
+    color: var(--color-text-primary);
+}
+input[type="range"] {
+    accent-color: var(--color-primary); /* Colora lo slider */
+}
+
+/* Barra di caricamento */
+#splash-screen { /* Già definito in HTML per FOUC, qui si possono aggiungere dettagli */
+    /* background-image: url('assets/images/ui/splash_background.jpg'); */ /* Esempio */
+    background-size: cover;
+    background-position: center;
+}
+#loading-bar-container { /* Stile base già in HTML */
+    border: 2px solid var(--color-primary);
+}
+#loading-bar { /* Stile base già in HTML */
+    background-color: var(--color-primary);
+}
+.loading-text { /* Stile base già in HTML */
+    color: var(--color-text-secondary);
+}
+
+/* Layout specifico per la schermata di gioco */
+#gameplay-screen {
+    display: grid; /* Usa grid per un layout più controllato */
+    grid-template-rows: auto 1fr auto auto; /* Immagine, Testo, Azioni, HUD */
+    /* Altezza per ogni riga può essere definita qui o implicitamente dal contenuto */
+    height: 100%; /* Assicura che occupi tutto il game-container */
+    padding: 0; /* Rimuove padding se si vuole che gli elementi tocchino i bordi */
+}
+#scene-image-container { grid-row: 1 / 2; }
+#narrative-text-container { grid-row: 2 / 3; margin: var(--spacing-sm); } /* Aggiunge margini interni */
+#action-buttons-container {
+    grid-row: 3 / 4;
+    display: flex;
+    flex-wrap: wrap; /* Permette ai pulsanti di andare a capo */
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-sm);
+}
+#game-hud {
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-background-panel-light);
+    border-top: 1px solid var(--color-border);
+}
+#player-money-display { font-weight: bold; }
+.hud-button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    min-width: 100px;
+    background-color: var(--color-accent);
+}
+.hud-button:hover { background-color: var(--color-secondary); color: var(--color-background-main); }
+
+
+/* Stili per slot di salvataggio */
+#save-slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 80%;
+    max-width: 500px;
+}
+.save-slot {
+    background-color: var(--color-background-panel-light);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.save-slot.empty-slot {
+    color: var(--color-text-secondary);
+    justify-content: center;
+}
+.save-slot-info { text-align: left; }
+.save-slot-actions button { margin-left: var(--spacing-xs); }
+
+
+/* --- Animations (Placeholder) --- */
+/* Esempio: fade-in per le schermate */
+.fade-in {
+    animation: fadeInAnimation var(--transition-speed-normal) ease-in forwards;
+}
+@keyframes fadeInAnimation {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Media Queries (Responsive Design) --- */
+@media (max-width: 768px) { /* Esempio per schermi più piccoli */
+    html {
+        font-size: 14px; /* Riduci la dimensione base del font */
+    }
+    :root {
+        --spacing-unit: 6px; /* Riduci le unità di spaziatura */
+        --font-size-large: 1.25rem;
+        --font-size-xlarge: 1.75rem;
+    }
+    .ui-panel {
+        padding: var(--spacing-sm);
+    }
+    .action-button, .menu-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        min-width: 120px;
+    }
+    #gameplay-screen {
+        /* Potrebbe essere necessario aggiustare il grid layout per schermi piccoli */
+        /* es. far occupare più spazio al testo o ai pulsanti */
+    }
+    #narrative-text-container {
+        min-height: 80px;
+        max-height: 25vh;
+    }
+}
+
+@media (max-height: 600px) { /* Esempio per schermi con poca altezza */
+    #narrative-text-container {
+        max-height: 20vh;
+    }
+    #action-buttons-container {
+        flex-direction: row; /* Assicura che i pulsanti siano in riga se possibile */
+        overflow-x: auto; /* Scroll orizzontale se non ci stanno */
+    }
+}
+
+/* Stili per elementi specifici delle schermate (Hero Stats, Inventory, etc.) */
+.stats-panel, #inventory-items-list, #hall-of-fame-entries {
+    width: 100%;
+    max-width: 600px; /* Limita la larghezza per leggibilità */
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--color-background-panel-light);
+    border-radius: var(--border-radius-sm);
+}
+.stats-panel div, #inventory-items-list div, #hall-of-fame-entries div {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.stats-panel div:last-child, #inventory-items-list div:last-child, #hall-of-fame-entries div:last-child {
+    border-bottom: none;
+}
+
+#inventory-item-details {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+}
+#inventory-item-image {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 0 auto var(--spacing-sm);
+    border: 1px solid var(--color-border);
+}
+
+/* Cutscene Viewer */
+#cutscene-viewer {
+    background-color: #000; /* Sfondo nero per le cutscene */
+}
+#cutscene-image-element, #cutscene-video-element {
+    width: 100%;
+    height: auto;
+    max-height: 70vh; /* Limita l'altezza dell'immagine/video */
+    object-fit: contain;
+}
+#cutscene-text-element {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: rgba(0,0,0,0.6); /* Sfondo semi-trasparente per il testo */
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-medium);
+}
+
+/* Stili per i placeholder di immagine/video */
+img[src=""], video[src=""] { /* Nasconde se src è vuoto */
+    display:none;
+}
+img[alt*="Placeholder"], img[src*="placeholder_"] { /* Stile per immagini placeholder */
+    filter: grayscale(50%) opacity(70%);
+    border: 1px dashed var(--color-border);
+}
+```

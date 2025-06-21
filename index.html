@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome del Gioco - Avventura Narrativa</title> <!-- Placeholder Title -->
+
+    <!-- Collegamento al file CSS principale -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Preload fonts se necessario (esempio) -->
+    <!-- <link rel="preload" href="assets/fonts/gamefont-regular.woff2" as="font" type="font/woff2" crossorigin> -->
+
+    <!-- Stili specifici per elementi critici prima del caricamento di style.css (opzionale, es. per loader) -->
+    <style>
+        /* Stili base per il loader o splash screen per evitare FOUC */
+        body { margin: 0; background-color: #1a1a1a; color: #f0f0f0; font-family: sans-serif; }
+        .initial-hidden { display: none; }
+        #splash-screen {
+            display: flex; /* Visibile all'inizio se non gestito da JS subito */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #222; /* Sfondo splash */
+            text-align: center;
+        }
+        #splash-screen img { max-width: 80%; max-height: 60%; margin-bottom: 20px; }
+        #loading-bar-container { width: 60%; background-color: #555; height: 30px; border-radius: 5px; overflow: hidden; }
+        #loading-bar { width: 0%; height: 100%; background-color: #4CAF50; transition: width 0.5s ease-out; }
+        .loading-text { margin-top: 10px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+
+    <!-- Contenitore principale del gioco -->
+    <div id="game-container">
+
+        <!-- Header del gioco (opzionale, potrebbe contenere titolo o info persistenti) -->
+        <header id="game-header" class="initial-hidden">
+            <!-- Esempio: <h1 id="game-title-display">Nome del Gioco</h1> -->
+            <!-- Potrebbe contenere anche l'accesso rapido a opzioni o inventario se non nel main game area -->
+        </header>
+
+        <!-- Schermata di Pre-Opzioni (mostrata all'avvio) -->
+        <div id="pre-options-screen" class="ui-panel initial-hidden">
+            <h2 id="pre-options-title">Initial Setup</h2>
+            <div>
+                <label for="language-select" id="language-select-label">Language:</label>
+                <select id="language-select">
+                    <!-- Popolato da JavaScript -->
+                </select>
+            </div>
+            <div>
+                <button id="audio-toggle-button">Audio ON/OFF</button>
+                <label for="volume-slider" id="volume-slider-label">Volume:</label>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+            </div>
+            <button id="play-game-button" class="action-button">Play</button>
+        </div>
+
+        <!-- Splash Screen (mostrato dopo le pre-opzioni, durante il caricamento iniziale) -->
+        <div id="splash-screen" class="ui-panel"> <!-- Non initial-hidden per vederlo subito -->
+            <img src="assets/images/ui/placeholder_splash_logo.png" alt="Game Logo Placeholder" id="splash-image"> <!-- Placeholder Image -->
+            <div id="loading-bar-container">
+                <div id="loading-bar"></div>
+            </div>
+            <p id="splash-loading-text" class="loading-text">Loading...</p>
+        </div>
+
+        <!-- Main Menu Screen -->
+        <div id="main-menu-screen" class="ui-panel initial-hidden">
+            <h1 id="main-menu-title">Game Title</h1> <!-- Aggiornato da JS -->
+            <button id="new-game-button" class="action-button menu-button">New Game</button>
+            <button id="load-game-button" class="action-button menu-button">Load Game</button>
+            <button id="hall-of-fame-button" class="action-button menu-button">Hall of Fame</button>
+            <button id="options-button" class="action-button menu-button">Options</button>
+            <button id="credits-button" class="action-button menu-button">Credits</button>
+            <button id="exit-game-button" class="action-button menu-button">Exit Game</button>
+        </div>
+
+        <!-- Main Game Area (dove si svolge il gioco effettivo) -->
+        <main id="gameplay-screen" class="initial-hidden">
+            <!-- Contenitore per l'immagine della scena -->
+            <div id="scene-image-container">
+                <img src="assets/images/locations/placeholder_location_01.jpg" alt="Current Scene" id="scene-image"> <!-- Immagine di placeholder -->
+            </div>
+
+            <!-- Contenitore per il testo narrativo -->
+            <div id="narrative-text-container" class="ui-panel">
+                <p id="story-text">Testo narrativo della scena iniziale...</p> <!-- Testo di placeholder -->
+            </div>
+
+            <!-- Contenitore per i pulsanti di azione/scelta -->
+            <div id="action-buttons-container" class="ui-panel">
+                <!-- Pulsanti generati da JavaScript -->
+                <!-- Esempio: <button class="action-button" data-choice-id="1">Scelta 1</button> -->
+            </div>
+
+            <!-- UI di gioco aggiuntiva (denaro, statistiche, pulsanti inventario/eroe/opzioni) -->
+            <div id="game-hud" class="ui-panel">
+                <div id="player-money-display">Coins: 0</div>
+                <div id="gameplay-buttons-group">
+                    <button id="inventory-button-ingame" class="hud-button">Inventario</button>
+                    <button id="hero-stats-button-ingame" class="hud-button">Eroe</button>
+                    <button id="options-button-ingame" class="hud-button">Opzioni</button>
+                </div>
+            </div>
+             <!-- Contenitori per le statistiche visibili (da popolare con JS) -->
+            <div id="player-stats-display-container" class="stats-panel initial-hidden">
+                <h3>Player Stats</h3>
+                <!-- Stats popolate da JS, es: <div>Karma: 0</div> -->
+            </div>
+            <div id="world-stats-display-container" class="stats-panel initial-hidden">
+                <h3>World Stats</h3>
+                <!-- Stats popolate da JS, es: <div>Alarm Level: Low</div> -->
+            </div>
+        </main>
+
+        <!-- Schermata Opzioni (accessibile dal menu principale o dal gioco) -->
+        <div id="options-screen" class="ui-panel initial-hidden">
+            <h2 id="options-screen-title">Game Options</h2>
+            <!-- Contenuto simile a pre-options-screen, riutilizzato o popolato da JS -->
+            <div id="options-language-select-container">
+                <label for="options-language-select" id="options-language-select-label">Language:</label>
+                <select id="options-language-select">
+                    <!-- Popolato da JavaScript -->
+                </select>
+            </div>
+            <div id="options-audio-controls-container">
+                <button id="options-audio-toggle-button">Audio ON/OFF</button>
+                <label for="options-volume-slider" id="options-volume-slider-label">Volume:</label>
+                <input type="range" id="options-volume-slider" min="0" max="1" step="0.01">
+            </div>
+            <button id="options-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Schermata Crediti -->
+        <div id="credits-screen" class="ui-panel initial-hidden">
+            <h2 id="credits-screen-title">Credits</h2>
+            <div id="credits-content">
+                <p>Sviluppato da: [Il Tuo Nome/Studio]</p>
+                <p>Storia di: [Nome Scrittore]</p>
+                <p>Grafica: [Nome Artista]</p>
+                <p>Musica: [Nome Compositore]</p>
+                <!-- Altri crediti... -->
+            </div>
+            <button id="credits-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Schermata Hall of Fame -->
+        <div id="hall-of-fame-screen" class="ui-panel initial-hidden">
+            <h2 id="hall-of-fame-title">Hall of Fame</h2>
+            <div id="hall-of-fame-entries">
+                <!-- Voci popolate da JavaScript -->
+                <!-- Esempio: <div><span>1. EroeLeggendario</span><span>15 Achievements</span></div> -->
+            </div>
+            <button id="hall-of-fame-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Schermata Salvataggio/Caricamento Partita -->
+        <div id="save-load-screen" class="ui-panel initial-hidden">
+            <h2 id="save-load-title">Save/Load Game</h2>
+            <div id="save-slots-container">
+                <!-- Slot popolati da JavaScript -->
+                <!-- Esempio: <div class="save-slot">Slot 1: Nome Salvataggio - Data <button>Load</button> <button>Delete</button></div> -->
+            </div>
+            <input type="text" id="save-name-input" placeholder="Enter save name..." class="initial-hidden">
+            <button id="perform-save-button" class="action-button initial-hidden">Save</button>
+            <button id="save-load-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Visualizzatore Cutscene -->
+        <div id="cutscene-viewer" class="ui-panel initial-hidden">
+            <img src="" alt="Cutscene Image" id="cutscene-image-element" style="display:none;">
+            <video src="" id="cutscene-video-element" style="display:none;" autoplay muted loop></video> <!-- Esempio: autoplay, muted, loop per video di sfondo -->
+            <p id="cutscene-text-element"></p>
+            <button id="cutscene-next-button" class="action-button">Next</button>
+        </div>
+
+        <!-- Schermata Inventario -->
+        <div id="inventory-screen" class="ui-panel initial-hidden">
+            <h2 id="inventory-title">Inventory</h2>
+            <div id="inventory-items-list">
+                <!-- Oggetti popolati da JavaScript -->
+            </div>
+            <div id="inventory-item-details" class="initial-hidden">
+                <img src="" alt="Item Image" id="inventory-item-image">
+                <h3 id="inventory-item-name"></h3>
+                <p id="inventory-item-description"></p>
+            </div>
+            <button id="inventory-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Schermata Statistiche Eroe -->
+        <div id="hero-stats-screen" class="ui-panel initial-hidden">
+            <h2 id="hero-stats-title">Hero Stats</h2>
+            <div id="hero-player-stats-sliders">
+                <!-- Slider per statistiche giocatore popolati da JS -->
+                <!-- Esempio: <div>Karma: <progress value="50" max="100"></progress></div> -->
+            </div>
+            <div id="hero-world-stats-sliders">
+                <!-- Slider per statistiche mondo popolati da JS -->
+            </div>
+            <button id="hero-stats-back-button" class="action-button">Back</button>
+        </div>
+
+        <!-- Menu di Pausa (sovrapposizione durante il gioco) -->
+        <div id="pause-menu-screen" class="ui-panel initial-hidden overlay">
+            <h2 id="pause-menu-title">Paused</h2>
+            <!-- Opzioni simili a #options-screen -->
+            <div id="pause-language-select-container">
+                 <label for="pause-language-select" id="pause-language-select-label">Language:</label>
+                 <select id="pause-language-select"></select>
+            </div>
+            <div id="pause-audio-controls-container">
+                <button id="pause-audio-toggle-button">Audio ON/OFF</button>
+                <label for="pause-volume-slider" id="pause-volume-slider-label">Volume:</label>
+                <input type="range" id="pause-volume-slider" min="0" max="1" step="0.01">
+            </div>
+            <button id="pause-resume-button" class="action-button">Resume Game</button>
+            <button id="pause-back-to-main-menu-button" class="action-button">Back to Main Menu</button>
+        </div>
+
+
+        <!-- Footer del gioco (opzionale, per copyright o link) -->
+        <footer id="game-footer" class="initial-hidden">
+            <p>&copy; <span id="current-year"></span> Nome del Gioco. Tutti i diritti riservati.</p>
+            <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+        </footer>
+
+    </div> <!-- Fine #game-container -->
+
+    <!-- Script Principali del Gioco -->
+    <!-- Librerie di terze parti (se presenti) andrebbero qui -->
+    <!-- File di configurazione e dati -->
+    <script src="config/gameConfig.js"></script>
+    <script src="config/locales.js"></script>
+    <script src="data/achievements.js"></script>
+    <script src="data/chapters.js"></script>
+    <script src="data/cutscenes.js"></script>
+    <script src="data/endings.js"></script>
+    <script src="data/items.js"></script>
+    <script src="data/players.js"></script> <!-- Struttura, i dati sono in localStorage -->
+    <script src="data/scenes.js"></script>
+    <script src="data/sideQuests.js"></script>
+
+    <!-- Utilità -->
+    <script src="utils/helpers.js"></script>
+    <script src="utils/audioManager.js"></script>
+    <script src="utils/storageManager.js"></script>
+    <script src="utils/localizationManager.js"></script>
+    <script src="utils/uiManager.js"></script>
+    <script src="utils/narrativeEngine.js"></script>
+
+    <!-- Script principale del gioco -->
+    <script src="script.js"></script>
+
+</body>
+</html>
