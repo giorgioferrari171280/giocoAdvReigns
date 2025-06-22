@@ -1,0 +1,59 @@
+{
+  "save_slots": {
+    "count": 25,
+    "timeout_seconds": 60
+  },
+  "initial_metrics": {
+    "character": {
+      "alignment": 0,
+      "fear": 0,
+      "compassion": 0,
+      "ambition": 0,
+      "rebellion": 0
+    },
+    "world": {
+      "state_control": 0,
+      "social_tension": 0,
+      "regime_stability": 0,
+      "soviet_influence": 0,
+      "western_influence": 0
+    }
+  },
+  "player_economy": {
+    "max_money": 999999,
+    "initial_money": 10
+  },
+  "audio_settings": {
+    "music_volume_default_percentage": 20,
+    "sfx_volume_default_percentage": 50,
+    "supported_formats": ["ogg", "mp3", "wav"],
+    "default_format": "mp3",
+    "base_path": "./assets/audio/",
+    "music_crossfade_ms": 1000
+  },
+  "system_settings": {
+    "autosave_on_scene_change": true,
+    "memory_cache_limit_mb": 50,
+    "scene_preloading_count": 3,
+    "transition_timeout_ms": 500
+  },
+  "developer_settings": {
+    "debug_mode_enabled": false,
+    "detailed_logging_enabled": false,
+    "validation_bypass_enabled": false,
+    "developer_tools_visible": false,
+    "testing_mode_enabled": false
+  },
+  "localization": {
+    "default_language": "en",
+    "supported_languages": ["en", "it", "fr", "de", "es", "pt", "zh-CN", "ja", "ru", "ar", "he"],
+    "fallback_language": "en"
+  },
+  "gameplay_parameters": {
+    "character_metrics_names": ["alignment", "fear", "compassion", "ambition", "rebellion"],
+    "world_metrics_names": ["state_control", "social_tension", "regime_stability", "soviet_influence", "western_influence"],
+    "metric_increment_on_choice": 1,
+    "metric_max_value": 100,
+    "possible_endings_count": 25
+  }
+}
