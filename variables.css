@@ -1,0 +1,72 @@
+/* Sistema di Design Token per l'Ambientazione DDR (1970-1985) */
+
+:root {
+  /* Sistema Cromatico dell'Era DDR */
+  --colore-rosso-socialista-primario: #C41E3A;
+  --colore-rosso-socialista-secondario: #8B0000;
+
+  --colore-grigio-industriale-scuro: #1A1A1A;
+  --colore-grigio-industriale-medio: #2F2F2F;
+  --colore-grigio-industriale-chiaro: #4A4A4A;
+
+  --colore-blu-sorveglianza-scuro: #1E3A5F;
+  --colore-blu-sorveglianza-chiaro: #2C5282;
+
+  --colore-verde-militare-scuro: #2D3B1F;
+  --colore-verde-militare-chiaro: #4A5D23;
+
+  --colore-beige-burocratico-scuro: #C4B59A;
+  --colore-beige-burocratico-chiaro: #D4C5A3;
+
+  /* Tipografia del Realismo Socialista */
+  --font-titoli-principali: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif; /* Esempio di font pesante */
+  --font-macchina-da-scrivere: "Courier New", Courier, monospace;
+  --font-narrativa: "Georgia", Times, "Times New Roman", serif;
+
+  --dimensione-font-piccolo: 0.8rem;
+  --dimensione-font-base: 1rem;
+  --dimensione-font-medio: 1.25rem;
+  --dimensione-font-grande: 1.5rem;
+  --dimensione-font-titolo-3: 1.75rem;
+  --dimensione-font-titolo-2: 2rem;
+  --dimensione-font-titolo-1: 2.5rem;
+
+  /* Spaziatura e Layout Funzionalista */
+  --spaziatura-xs: 0.25rem; /* 4px */
+  --spaziatura-s: 0.5rem;   /* 8px */
+  --spaziatura-m: 1rem;     /* 16px */
+  --spaziatura-l: 1.5rem;   /* 24px */
+  --spaziatura-xl: 2rem;    /* 32px */
+  --spaziatura-xxl: 3rem;   /* 48px */
+  --spaziatura-xxxl: 4rem;  /* 64px */
+
+  /* Animazioni e Transizioni dell'Era della Guerra Fredda */
+  --transizione-lenta: all 0.8s ease-in-out;
+  --transizione-deliberata: all 0.5s ease;
+  --animazione-meccanica-timing: cubic-bezier(0.5, 0, 0.5, 1); /* Esempio di timing meccanico */
+  --durata-dissolvenza: 0.6s;
+
+  /* Sistema di Elevazione e Stratificazione Sociale */
+  /* Ombre minimali per estetica funzionalista brutalista */
+  --elevazione-cittadino: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  --elevazione-funzionario: 0 2px 4px 0 rgba(0, 0, 0, 0.15), 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  --elevazione-controllo-statale: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+
+  /* Elementi di Interface Ispirati all'Epoca */
+  --border-radius-retto: 0;
+  --border-radius-sottile: 2px; /* Per elementi più "umani" */
+
+  --opacita-nascosto: 0.3;  /* Per suggerire osservazione nascosta */
+  --opacita-semi-trasparente: 0.6;
+  --opacita-piena: 1;
+
+  /* Variabili Tematiche Specifiche */
+  --colore-dossier-segreto: var(--colore-beige-burocratico-scuro);
+  --colore-bordo-dossier-segreto: var(--colore-grigio-industriale-medio);
+  --colore-confine-orientale: var(--colore-grigio-industriale-scuro);
+  --colore-accento-confine: var(--colore-rosso-socialista-primario);
+  --colore-propaganda-tv-sfondo: var(--colore-blu-sorveglianza-scuro);
+  --colore-propaganda-tv-testo: var(--colore-beige-burocratico-chiaro);
+  --colore-telefono-controllato-corpo: var(--colore-grigio-industriale-medio);
+  --colore-telefono-controllato-dettagli: var(--colore-grigio-industriale-scuro);
+}
