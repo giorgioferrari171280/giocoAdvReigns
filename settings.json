@@ -1,0 +1,28 @@
+{
+  "audioPreferences": {
+    "backgroundMusicVolume": 80, // Controls the volume of background music (0-100)
+    "soundEffectsVolume": 90,    // Controls the volume of sound effects (0-100)
+    "masterAudioEnabled": true,  // Globally enables or disables all audio
+    "audioQuality": "high"     // Preferred audio quality ("low", "medium", "high")
+  },
+  "interfaceConfigurations": {
+    "selectedLanguage": "en_US", // Preferred language for localization (e.g., "en_US", "it_IT")
+    "visualTheme": "default",    // Selected visual theme if multiple themes are supported
+    "textSize": "medium",        // Text size for accessibility ("small", "medium", "large")
+    "animationSpeed": "normal",  // Controls the speed of animations ("slow", "normal", "fast")
+    "particleEffectsEnabled": true // Enables or disables particle effects for visual complexity management
+  },
+  "accessibilitySettings": {
+    "highContrastMode": false,     // Enables high contrast mode for visually impaired users
+    "motionReduction": false,      // Reduces motion to prevent vestibular disorders
+    "screenReaderEnabled": false,  // Enables screen reader support for assistive technologies
+    "enhancedKeyboardNavigation": true, // Enhances keyboard navigation for users who cannot use a mouse
+    "targetSizeCustomization": "default" // Customizes target sizes for touch optimization ("small", "default", "large")
+  },
+  "notificationManagement": {
+    "achievementNotificationsEnabled": true, // Enables notifications for achievements
+    "saveRemindersEnabled": true,          // Enables reminders to save progress
+    "gameplayHintsEnabled": true,          // Enables gameplay hints for new players
+    "errorFeedbackEnabled": true           // Enables feedback for technical issues
+  }
+}
