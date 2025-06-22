@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opzioni - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/options.css">
+</head>
+<body>
+    <div class="page-container options-container">
+        <header>
+            <h1 data-i18n="options_title">Opzioni</h1>
+        </header>
+        <main>
+            <div class="tabs">
+                <button class="tab-link active" data-tab="audio-video-tab" data-i18n="tab_audio_video">Audio/Video</button>
+                <button class="tab-link" data-tab="gameplay-tab" data-i18n="tab_gameplay">Gameplay</button>
+                <button class="tab-link" data-tab="language-tab" data-i18n="tab_language">Lingua</button>
+                <button class="tab-link" data-tab="accessibility-tab" data-i18n="tab_accessibility">Accessibilità</button>
+            </div>
+
+            <div id="audio-video-tab" class="tab-content active">
+                <h2 data-i18n="audio_settings_title">Impostazioni Audio</h2>
+                <div>
+                    <label for="master-volume" data-i18n="master_volume_label">Volume Generale:</label>
+                    <input type="range" id="master-volume" name="master-volume" min="0" max="100" value="80">
+                    <span id="master-volume-value">80%</span>
+                </div>
+                <div>
+                    <label for="music-volume" data-i18n="music_volume_label">Volume Musica:</label>
+                    <input type="range" id="music-volume" name="music-volume" min="0" max="100" value="70">
+                    <span id="music-volume-value">70%</span>
+                </div>
+                <div>
+                    <label for="sfx-volume" data-i18n="sfx_volume_label">Volume Effetti:</label>
+                    <input type="range" id="sfx-volume" name="sfx-volume" min="0" max="100" value="90">
+                    <span id="sfx-volume-value">90%</span>
+                </div>
+                <h2 data-i18n="video_settings_title">Impostazioni Video</h2>
+                <div>
+                    <label for="brightness" data-i18n="brightness_label">Luminosità:</label>
+                    <input type="range" id="brightness" name="brightness" min="50" max="150" value="100">
+                    <span id="brightness-value">100%</span>
+                </div>
+                <!-- Altre opzioni video come risoluzione (se applicabile), qualità grafica, ecc. -->
+            </div>
+
+            <div id="gameplay-tab" class="tab-content">
+                <h2 data-i18n="gameplay_settings_label">Impostazioni di Gameplay</h2>
+                <div>
+                    <label for="text-speed-main" data-i18n="text_speed_label">Velocità Testo:</label>
+                    <select id="text-speed-main" name="text-speed-main">
+                        <option value="slow" data-i18n="speed_slow">Lenta</option>
+                        <option value="normal" selected data-i18n="speed_normal">Normale</option>
+                        <option value="fast" data-i18n="speed_fast">Veloce</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="checkbox" id="skip-read-text-main" name="skip-read-text-main">
+                    <label for="skip-read-text-main" data-i18n="skip_read_text_label">Salta testo già letto durante la rigiocabilità</label>
+                </div>
+                 <div>
+                    <input type="checkbox" id="enable-autosave" name="enable-autosave" checked>
+                    <label for="enable-autosave" data-i18n="enable_autosave_label">Abilita Salvataggio Automatico</label>
+                </div>
+            </div>
+
+            <div id="language-tab" class="tab-content">
+                <h2 data-i18n="language_select_label">Selezione Lingua</h2>
+                <select id="language-selector-main">
+                    <option value="it" data-i18n="lang_italian">Italiano</option>
+                    <option value="en" data-i18n="lang_english">English</option>
+                    <option value="fr" data-i18n="lang_french">Français</option>
+                    <option value="de" data-i18n="lang_german">Deutsch</option>
+                    <option value="es" data-i18n="lang_spanish">Español</option>
+                    <!-- Altre lingue popolate da JS -->
+                </select>
+                <p class="note" data-i18n="language_change_note">Nota: alcune modifiche alla lingua potrebbero richiedere il riavvio del gioco.</p>
+            </div>
+
+            <div id="accessibility-tab" class="tab-content">
+                <h2 data-i18n="accessibility_settings">Impostazioni di Accessibilità</h2>
+                <div>
+                    <input type="checkbox" id="text-to-speech-main" name="text-to-speech-main">
+                    <label for="text-to-speech-main" data-i18n="enable_tts">Abilita Text-to-Speech (Lettura Testo)</label>
+                </div>
+                <div>
+                    <label for="font-size-main" data-i18n="font_size">Dimensione Testo:</label>
+                    <select id="font-size-main" name="font-size-main">
+                        <option value="small" data-i18n="font_small">Piccolo</option>
+                        <option value="medium" selected data-i18n="font_medium">Medio</option>
+                        <option value="large" data-i18n="font_large">Grande</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="checkbox" id="high-contrast-main" name="high-contrast-main">
+                    <label for="high-contrast-main" data-i18n="enable_high_contrast">Modalità Alto Contrasto</label>
+                </div>
+                 <div>
+                    <input type="checkbox" id="reduce-motion" name="reduce-motion">
+                    <label for="reduce-motion" data-i18n="reduce_motion_label">Riduci Animazioni</label>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <button id="save-options-btn" class="button primary-button" data-i18n="save_settings_button">Salva Impostazioni</button>
+            <button id="reset-options-btn" class="button warning-button" data-i18n="reset_to_default_button">Ripristina Predefinite</button>
+            <button id="back-to-menu-options-btn" class="button secondary-button" data-i18n="back_to_main_menu">Torna al Menu</button>
+        </footer>
+    </div>
+    <!-- Script per questa pagina sarà gestito da OptionsController.js -->
+</body>
+</html>

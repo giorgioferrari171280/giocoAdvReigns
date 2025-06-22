@@ -1,0 +1,72 @@
+/* ============== STYLES FOR INDEX.HTML (Initial Loading) ============== */
+
+/*
+    Questi stili sono specifici per la pagina index.html,
+    principalmente per la schermata di caricamento iniziale
+    prima che il JavaScript prenda il controllo e carichi le altre pagine/componenti.
+    Molti stili per il loading spinner potrebbero essere in components/loading-spinner.css,
+    ma qui possiamo definire il layout della schermata di caricamento iniziale.
+*/
+
+/* Stili per il contenitore di caricamento iniziale in index.html */
+#initial-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Occupa l'intera altezza della viewport */
+    width: 100%;
+    position: fixed; /* Fisso per coprire tutto anche se c'è altro contenuto (improbabile all'inizio) */
+    top: 0;
+    left: 0;
+    background-color: var(--background-color, #1a1a1a); /* Usa lo sfondo del tema */
+    z-index: var(--z-index-modal, 2000); /* Sopra tutto il resto inizialmente */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--transition-speed-slow, 0.5s) ease, visibility 0s linear 0s;
+}
+
+#initial-loading.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed-slow, 0.5s) ease, visibility 0s linear var(--transition-speed-slow, 0.5s);
+}
+
+#initial-loading .loading-spinner {
+    /* Le dimensioni e l'aspetto dello spinner sono definiti in loading-spinner.css */
+    /* Qui potremmo aggiungere margini specifici se necessario */
+    margin-bottom: var(--spacing-large, 1.5rem);
+}
+
+#initial-loading p {
+    font-size: var(--font-size-medium, 1.125rem);
+    color: var(--text-muted-color, #8a95a5);
+    text-align: center;
+}
+
+/*
+    Se index.html dovesse contenere più di una semplice schermata di caricamento
+    (ad esempio, se non fosse una Single Page Application pura e avesse un suo layout),
+    allora qui andrebbero aggiunti altri stili.
+    Ma per una SPA tipica, index.html è solo il guscio.
+*/
+
+/* Esempio: se ci fosse un logo sopra lo spinner */
+/*
+#initial-loading .initial-logo {
+    max-width: 200px;
+    margin-bottom: var(--spacing-xlarge, 2rem);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+*/
+
+/*
+    Nota: gli stili per il `noscript` tag sono già in `global.css`
+    per garantire che siano applicati immediatamente.
+*/

@@ -1,0 +1,184 @@
+/* ============== RTL (Right-to-Left) SUPPORT STYLES ============== */
+
+/*
+    Questo file contiene stili specifici per supportare lingue
+    scritte da destra a sinistra (RTL), come l'arabo o l'ebraico.
+    Questi stili vengono applicati quando il tag <html> o <body>
+    ha l'attributo `dir="rtl"`.
+*/
+
+[dir="rtl"] {
+    /* === Inversione di base per proprietà logiche === */
+    /* Molte proprietà moderne come margin-inline-start, padding-inline-end,
+       text-align: start/end, etc., gestiscono automaticamente l'RTL.
+       Queste regole sono per proprietà fisiche che necessitano di inversione. */
+
+    /* Esempio: se si usa margin-left/right invece di margin-inline-start/end */
+    /* .some-element-with-left-margin { margin-right: auto; margin-left: var(--margin-value); } */
+    /* [dir="rtl"] .some-element-with-left-margin { margin-left: auto; margin-right: var(--margin-value); } */
+}
+
+/* Inversione di float (se usati, anche se Flexbox/Grid sono preferibili) */
+[dir="rtl"] .float-left { float: right !important; }
+[dir="rtl"] .float-right { float: left !important; }
+
+/* Inversione di text-align (se si usa left/right invece di start/end) */
+[dir="rtl"] .text-left { text-align: right !important; }
+[dir="rtl"] .text-right { text-align: left !important; }
+
+/* Inversione di padding e margin specifici (se non si usano proprietà logiche) */
+/* Esempio generico, da adattare se si usano classi di utilità con left/right */
+[dir="rtl"] .ml-1 { margin-right: var(--spacing-small, 0.5rem) !important; margin-left: 0 !important; }
+[dir="rtl"] .mr-1 { margin-left: var(--spacing-small, 0.5rem) !important; margin-right: 0 !important; }
+[dir="rtl"] .pl-1 { padding-right: var(--spacing-small, 0.5rem) !important; padding-left: 0 !important; }
+[dir="rtl"] .pr-1 { padding-left: var(--spacing-small, 0.5rem) !important; padding-right: 0 !important; }
+/* ... e così via per altre utility di spaziatura se non sono logiche */
+
+
+/* Bordi specifici (se si usano border-left/right invece di border-inline-start/end) */
+/* [dir="rtl"] .border-left { border-right: 1px solid var(--border-color-soft); border-left: 0; } */
+/* [dir="rtl"] .border-right { border-left: 1px solid var(--border-color-soft); border-right: 0; } */
+
+
+/* Direzione delle liste */
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+    /* padding-left: 0; */ /* Rimuovi padding sinistro di default */
+    /* padding-right: var(--spacing-large, 1.5rem); */ /* Aggiungi padding destro per i bullet/numeri */
+    /* Le proprietà logiche `padding-inline-start` dovrebbero gestire questo automaticamente. */
+}
+
+/* Icone che indicano direzione (es. frecce) */
+[dir="rtl"] .icon-arrow-left { transform: scaleX(-1); /* Inverte l'icona orizzontalmente */ }
+[dir="rtl"] .icon-arrow-right { transform: scaleX(-1); }
+/* È meglio usare icone separate per LTR/RTL o icone simmetriche se possibile. */
+/* Oppure usare ::before con content che cambia in base a dir. */
+
+
+/* Input di testo e textarea */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea {
+    direction: rtl; /* Assicura che il testo inserito sia RTL */
+    text-align: right; /* Allinea il testo a destra */
+}
+[dir="rtl"] select {
+    direction: rtl;
+    /* L'allineamento del testo in select può essere problematico da forzare cross-browser */
+}
+
+
+/* Checkbox e Radio button (la label dovrebbe essere prima dell'input in RTL) */
+/* L'ordine HTML dovrebbe essere: <label>Testo</label> <input type="checkbox">
+   Poi CSS per posizionare correttamente. Con Flexbox si può usare `flex-direction: row-reverse`.
+*/
+[dir="rtl"] div:has(input[type="checkbox"]),
+[dir="rtl"] div:has(input[type="radio"]) {
+    /* Se la struttura HTML è <input> <label> */
+    /* flex-direction: row-reverse; */
+}
+/* [dir="rtl"] input[type="checkbox"],
+[dir="rtl"] input[type="radio"] {
+    margin-left: var(--spacing-xsmall, 0.25rem);
+    margin-right: 0;
+} */
+
+
+/* Componenti specifici che potrebbero necessitare di aggiustamenti RTL */
+
+/* Esempio: Tabs */
+[dir="rtl"] .tabs {
+    /* Se i tab sono float:left, dovranno essere float:right */
+    /* Se sono flex, flex-direction: row-reverse potrebbe essere necessario
+       a meno che l'ordine nel DOM non sia già corretto per RTL. */
+}
+[dir="rtl"] .tab-link {
+    /* Eventuali modifiche ai bordi o padding */
+}
+
+
+/* Esempio: Modali */
+[dir="rtl"] .modal-header {
+    /* flex-direction: row-reverse; // Se il titolo è a sinistra e il close a destra in LTR */
+}
+[dir="rtl"] .close-button {
+    /* Potrebbe necessitare di essere posizionato a sinistra */
+    /* left: var(--spacing-medium, 1rem);
+    right: auto; */
+}
+[dir="rtl"] .modal-footer {
+    /* text-align: left; // Se i bottoni sono allineati a destra in LTR */
+    /* flex-direction: row-reverse; // Se si usa flex per i bottoni */
+}
+
+
+/* Esempio: Slider (input type="range") */
+/* Gli slider sono notoriamente difficili da stilizzare per RTL in modo cross-browser.
+   Potrebbe essere necessario usare librerie JS o trick CSS complessi.
+   Di base, `direction: rtl;` sull'input può aiutare. */
+[dir="rtl"] input[type="range"] {
+    direction: rtl;
+}
+
+
+/* Esempio: Notifiche */
+[dir="rtl"] #notifications-area {
+    right: auto;
+    left: 20px; /* Posiziona le notifiche a sinistra */
+}
+[dir="rtl"] .notification {
+    /* L'animazione slideInAndFadeOut potrebbe necessitare di una versione RTL */
+    /* animation-name: slideInAndFadeOutRTL; */
+    /* transform: translateX(-100%); // Inizio animazione da sinistra */
+}
+/*
+@keyframes slideInAndFadeOutRTL {
+    0% { opacity: 0; transform: translateX(-100%); }
+    10% { opacity: 1; transform: translateX(0); }
+    90% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-100%); }
+}
+*/
+
+
+/* Specifico per il gioco */
+
+/* Scelte nella schermata di gioco */
+[dir="rtl"] .choice-button {
+    text-align: right !important; /* Assicura che il testo della scelta sia a destra */
+}
+
+/* Informazioni sulla location nell'header di gioco */
+[dir="rtl"] #location-info {
+    /* Eventuali aggiustamenti se l'ordine degli elementi interni cambia */
+}
+
+/* Header di gioco e bottoni menu */
+[dir="rtl"] #game-header {
+    /* flex-direction: row-reverse; // Se l'ordine deve essere invertito */
+}
+
+/* Griglie (es. inventario, achievements) */
+/* Grid layout di solito si adatta bene, ma `grid-auto-flow: dense;` potrebbe
+   comportarsi diversamente. La direzione del testo negli item è più importante. */
+[dir="rtl"] .inventory-item .item-name,
+[dir="rtl"] .achievement-name,
+[dir="rtl"] .achievement-description {
+    text-align: right; /* O text-align: start, che dovrebbe funzionare */
+}
+
+/*
+    Testare approfonditamente con contenuti reali in lingue RTL è cruciale.
+    L'uso di proprietà logiche CSS (margin-inline-start, padding-inline-end, text-align: start, etc.)
+    in global.css e altri file riduce significativamente la quantità di override necessari qui.
+    Questo file dovrebbe contenere solo gli override per le proprietà fisiche
+    o per comportamenti specifici che non sono coperti dalle proprietà logiche.
+*/
+
+/* Carattere specifico per RTL se necessario (ma di solito il browser gestisce bene i font di fallback) */
+/*
+[dir="rtl"] body {
+    font-family: 'Noto Sans Arabic', var(--font-family-primary); // Esempio
+}
+*/

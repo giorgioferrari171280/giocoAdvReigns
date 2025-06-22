@@ -1,0 +1,225 @@
+/* ============== STYLES FOR OPTIONS.HTML (Main & In-Game) ============== */
+
+/*
+    Stili per la pagina delle opzioni principale e per la modale delle opzioni in gioco.
+    Molti stili possono essere condivisi.
+*/
+
+.options-container, /* Per la pagina options.html */
+.options-panel .modal-content /* Per la modale game-options.html */ {
+    padding: var(--spacing-medium, 1rem);
+}
+
+.options-container header h1,
+.options-panel .modal-header h2 { /* Titolo "Opzioni" o "Opzioni di Gioco" */
+    color: var(--secondary-color, #e67e22); /* Colore distintivo per i titoli delle opzioni */
+    margin-bottom: var(--spacing-large, 1.5rem);
+    text-align: center;
+}
+.options-panel .modal-header h2 {
+    margin-bottom: 0; /* Già gestito dal padding del modal-header */
+}
+
+
+/* Stili per le sezioni delle opzioni (Audio, Gameplay, Lingua, ecc.) */
+.options-container section,
+.options-panel section {
+    margin-bottom: var(--spacing-xlarge, 2rem);
+    padding: var(--spacing-medium, 1rem);
+    background-color: var(--surface-color, #24282e);
+    border-radius: var(--border-radius-medium, 5px);
+    border: 1px solid var(--border-color-soft, #3a3f46);
+}
+.options-panel section { /* Nelle modali, meno padding e margine */
+    margin-bottom: var(--spacing-large, 1.5rem);
+    padding: var(--spacing-small, 0.75rem);
+}
+
+
+.options-container section h2, /* Titoli delle tab nella pagina principale */
+.options-panel section h3 /* Titoli delle sezioni nella modale in-game */ {
+    font-size: var(--font-size-h3, 1.75rem);
+    color: var(--heading-color, #ffffff);
+    margin-top: 0;
+    margin-bottom: var(--spacing-medium, 1rem);
+    padding-bottom: var(--spacing-xsmall, 0.25rem);
+    border-bottom: 1px solid var(--border-color-strong, #50565e);
+}
+.options-panel section h3 {
+    font-size: var(--font-size-large, 1.25rem); /* Titoli più piccoli nella modale */
+}
+
+/* Stili per i singoli controlli delle opzioni */
+.options-container div,
+.options-panel div {
+    margin-bottom: var(--spacing-medium, 1rem); /* Spazio tra ogni opzione */
+    display: flex;
+    flex-direction: column; /* Label sopra, controllo sotto su mobile */
+    align-items: flex-start;
+}
+
+.options-container div:last-child,
+.options-panel div:last-child {
+    margin-bottom: 0;
+}
+
+.options-container label,
+.options-panel label {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-color, #e0e6f0);
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+    font-weight: var(--font-weight-normal);
+}
+
+.options-container input[type="range"],
+.options-panel input[type="range"] {
+    width: 100%; /* Slider a larghezza piena */
+    max-width: 300px; /* Limita larghezza slider */
+    margin-top: var(--spacing-xsmall, 0.25rem);
+}
+
+.options-container select,
+.options-panel select {
+    width: 100%;
+    max-width: 300px; /* Limita larghezza select */
+}
+
+/* Per visualizzare il valore accanto agli slider */
+.options-container span[id$="-value"],
+.options-panel span[id$="-value-ingame"] {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-left: var(--spacing-small, 0.5rem); /* Spazio se è sulla stessa riga dello slider */
+    /* Su mobile potrebbe andare sotto */
+}
+
+.options-container input[type="checkbox"] + label,
+.options-panel input[type="checkbox"] + label {
+    display: inline-block; /* Per allineare checkbox e label */
+    margin-bottom: 0;
+    font-weight: var(--font-weight-normal);
+    cursor: pointer;
+}
+.options-container div:has(input[type="checkbox"]), /* Contenitore di una checkbox */
+.options-panel div:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xsmall);
+}
+
+
+/* Note specifiche, come quella per il cambio lingua */
+.options-container .note {
+    margin-top: var(--spacing-small, 0.5rem);
+    font-size: var(--font-size-small, 0.875rem);
+}
+
+/* Footer della pagina/modale opzioni */
+.options-container footer,
+.options-panel .modal-footer {
+    display: flex;
+    flex-wrap: wrap; /* I bottoni possono andare a capo su schermi piccoli */
+    justify-content: center; /* Centra i bottoni */
+    gap: var(--spacing-medium, 1rem);
+    margin-top: var(--spacing-large, 1.5rem);
+    padding-top: var(--spacing-medium, 1rem);
+    border-top: 1px solid var(--border-color-soft, #3a3f46);
+}
+.options-panel .modal-footer {
+    justify-content: flex-end; /* Allinea a destra nella modale */
+}
+
+
+.options-container footer .button,
+.options-panel .modal-footer .button {
+    min-width: 150px; /* Larghezza minima per i bottoni */
+}
+
+
+/* Specifico per la pagina principale delle Opzioni (options.html) con le tab */
+.options-container .tabs { /* Già stilizzato in global.css, qui eventuali override */
+    margin-bottom: var(--spacing-large, 1.5rem);
+}
+
+.options-container .tab-content h2 { /* Titolo interno alla tab */
+    font-size: var(--font-size-h4, 1.5rem); /* Più piccolo del titolo principale della pagina */
+    color: var(--primary-color-light, #7aaafb);
+    margin-bottom: var(--spacing-medium, 1rem);
+    padding-bottom: var(--spacing-xsmall, 0.25rem);
+    border-bottom: none; /* No doppio bordo se la sezione ha già il suo */
+}
+
+
+/* Specifico per la modale Opzioni di Gioco (game-options.html) */
+#ingame-actions {
+    margin-top: var(--spacing-large, 1.5rem);
+}
+#ingame-actions .button {
+    width: 100%; /* Bottoni a larghezza piena */
+    margin-bottom: var(--spacing-small, 0.5rem);
+}
+#ingame-actions .button:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Responsive per layout delle opzioni */
+@media (min-width: 600px) {
+    .options-container div:not(:has(input[type="checkbox"])), /* Non per le checkbox */
+    .options-panel div:not(:has(input[type="checkbox"])) {
+        flex-direction: row; /* Label e controllo sulla stessa riga */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .options-container label,
+    .options-panel label {
+        flex-basis: 40%; /* Label occupa una parte dello spazio */
+        margin-bottom: 0; /* Niente margine sotto se è sulla stessa riga */
+    }
+    .options-container input[type="checkbox"] + label, /* Label della checkbox */
+    .options-panel input[type="checkbox"] + label {
+        flex-basis: auto; /* La label della checkbox non ha una base fissa */
+    }
+
+
+    .options-container input[type="range"],
+    .options-panel input[type="range"],
+    .options-container select,
+    .options-panel select {
+        flex-basis: 55%; /* Controllo occupa il resto dello spazio */
+        width: auto; /* Non più 100% */
+    }
+
+    .options-container span[id$="-value"],
+    .options-panel span[id$="-value-ingame"] {
+        flex-basis: 15%; /* Spazio per il valore dello slider */
+        text-align: right;
+        margin-left: 0;
+    }
+    /* Caso in cui label + controllo + valore sono tutti sulla stessa riga */
+    .options-container div:has(input[type="range"]):has(span[id$="-value"]) label,
+    .options-panel div:has(input[type="range"]):has(span[id$="-value-ingame"]) label {
+        flex-basis: 30%;
+    }
+    .options-container div:has(input[type="range"]):has(span[id$="-value"]) input[type="range"],
+    .options-panel div:has(input[type="range"]):has(span[id$="-value-ingame"]) input[type="range"] {
+        flex-basis: 50%;
+    }
+
+
+    #ingame-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Due colonne per i bottoni in-game */
+        gap: var(--spacing-medium, 1rem);
+    }
+    #ingame-actions .button {
+        width: auto; /* Non più larghezza piena */
+        margin-bottom: 0;
+    }
+    /* Bottone "Esci al Menu" potrebbe occupare tutta la larghezza in fondo */
+    #exit-to-main-menu-btn {
+        grid-column: 1 / -1; /* Occupa tutte le colonne */
+        margin-top: var(--spacing-small, 0.5rem); /* Spazio se va sotto */
+    }
+}

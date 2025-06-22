@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Fame - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/halloffame.css">
+</head>
+<body>
+    <div class="page-container halloffame-container">
+        <header>
+            <h1 data-i18n="hall_of_fame_title">Hall of Fame</h1>
+        </header>
+        <main>
+            <section id="high-scores">
+                <h2 data-i18n="high_scores_subtitle">Punteggi Migliori</h2>
+                <ol id="high-scores-list">
+                    <!-- I punteggi verranno popolati dinamicamente da HallOfFameController.js -->
+                    <!-- Esempio di punteggio:
+                    <li>
+                        <span class="player-name-hof">[Nome Giocatore]</span> - <span class="score-hof">[Punteggio]</span> (<span class="date-hof">[Data]</span>)
+                    </li>
+                     -->
+                     <li data-i18n="no_scores_yet_placeholder">(Nessun punteggio registrato ancora)</li>
+                </ol>
+            </section>
+
+            <section id="notable-achievements-summary">
+                <h2 data-i18n="notable_achievements_subtitle">Traguardi Notevoli</h2>
+                <p>
+                    <span data-i18n="total_achievements_unlocked">Achievements Sbloccati:</span>
+                    <span id="unlocked-achievements-count">0</span> / <span id="total-achievements-count">0</span>
+                </p>
+                <p>
+                    <span data-i18n="completion_percentage">Percentuale di Completamento:</span>
+                    <span id="completion-percentage-value">0%</span>
+                </p>
+                <a href="#" id="view-all-achievements-link" class="button" data-i18n="view_all_achievements_button">Vedi Tutti gli Achievements</a>
+            </section>
+
+            <section id="game-statistics-summary">
+                <h2 data-i18n="game_stats_summary_title">Statistiche di Gioco Globali</h2>
+                <ul>
+                    <li><span data-i18n="playtime_label">Tempo di Gioco Totale:</span> <span id="total-playtime">0 ore</span></li>
+                    <li><span data-i18n="games_completed_label">Partite Completate:</span> <span id="total-completions">0</span></li>
+                    <!-- Altre statistiche globali interessanti -->
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <button id="back-to-menu-hof-btn" class="button secondary-button" data-i18n="back_to_main_menu">Torna al Menu</button>
+        </footer>
+    </div>
+    <!-- Script per questa pagina sarà gestito da HallOfFameController.js -->
+</body>
+</html>

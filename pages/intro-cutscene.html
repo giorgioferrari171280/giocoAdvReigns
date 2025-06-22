@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduzione - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/cutscene.css">
+    <link rel="stylesheet" href="../css/components/animations.css">
+</head>
+<body>
+    <div class="page-container cutscene-container intro-cutscene">
+        <div id="cutscene-content">
+            <!-- Il contenuto della cutscene (immagini, testo, animazioni) sarà gestito da CutscenePlayer.js -->
+            <img src="../assets/images/scenes/placeholder-intro.png" alt="Scena introduttiva" id="cutscene-image" class="cutscene-image">
+            <p id="cutscene-text" class="cutscene-text" data-i18n="intro_text_placeholder">Lunga, lunga fa, in una galassia lontana lontana...</p>
+        </div>
+        <div id="cutscene-controls">
+            <button id="skip-cutscene-btn" class="button secondary-button" data-i18n="skip_cutscene">Salta Intro</button>
+            <button id="next-cutscene-frame-btn" class="button primary-button" data-i18n="continue_button">Continua</button> <!-- Potrebbe essere nascosto se la cutscene avanza automaticamente -->
+        </div>
+    </div>
+    <!-- Script per questa cutscene sarà gestito da CutscenePlayer.js e AnimationController.js -->
+</body>
+</html>

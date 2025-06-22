@@ -3,97 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Design System DDR</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Import fonts from Google Fonts (PT Serif, Merriweather, IBM Plex Sans, Roboto) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Merriweather:wght@400;700&family=PT+Serif:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Gioco di Avventura Interattiva</title>
+    <meta name="description" content="Un'emozionante avventura testuale interattiva dove le tue scelte plasmano la storia.">
+
+    <!-- Stili Globali e Variabili -->
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/base/global.css">
+    <link rel="stylesheet" href="css/base/theme.css">
+
+    <!-- Stili per Responsività e Accessibilità -->
+    <link rel="stylesheet" href="css/base/responsive.css">
+    <link rel="stylesheet" href="css/base/accessibility.css">
+
+    <!-- Stili specifici della pagina (se index avesse stili unici, altrimenti per la pagina caricata dinamicamente) -->
+    <link rel="stylesheet" href="css/pages/index.css">
+
+    <!-- Stili per Componenti Comuni -->
+    <link rel="stylesheet" href="css/components/loading-spinner.css">
+    <link rel="stylesheet" href="css/components/animations.css">
+
+    <!-- Favicon (esempio, da sostituire con i tuoi) -->
+    <link rel="icon" href="assets/images/ui/system/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/images/ui/system/apple-touch-icon.png">
+
+    <!-- (Opzionale) Precaricamento Font per i18n -->
+    <!-- <link rel="stylesheet" href="css/i18n/font-loading.css"> -->
+
 </head>
-<body class="textured-background"> <!-- Aggiunta classe per texture di sfondo (esempio) -->
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 20px; font-family: sans-serif; background-color: #ffdddd; border: 1px solid #ff0000;">
+            <h1>JavaScript è Richiesto</h1>
+            <p>Questo gioco richiede JavaScript per funzionare. Per favore, abilita JavaScript nel tuo browser e ricarica la pagina.</p>
+        </div>
+    </noscript>
 
-    <div class="container">
-        <header class="panel" style="text-align: center;">
-            <h1>Repubblica Democratica Tedesca - Design System</h1>
-            <p>Un'esplorazione visiva dell'estetica della Germania Est (1950-1987)</p>
-        </header>
+    <div id="game-container">
+        <!-- Il contenuto del gioco (pagine, menu, ecc.) verrà caricato qui da JavaScript -->
+        <!-- Inizialmente, potrebbe mostrare uno splash screen o un caricatore -->
+        <div id="initial-loading" class="loading-screen active">
+            <div class="loading-spinner"></div>
+            <p data-i18n="loading_game">Caricamento del gioco...</p>
+        </div>
+    </div>
 
-        <nav class="panel frame">
-            <h2>Menu di Navigazione</h2>
-            <ul class="button-group" style="list-style: none; padding-left: 0;">
-                <li><button>Capitolo 1</button></li>
-                <li><button class="status-indicator-active">Capitolo 2 (Attivo)</button></li>
-                <li><button disabled>Capitolo 3 (Bloccato)</button></li>
-                <li><button class="accent">Azione Critica</button></li>
-            </ul>
-        </nav>
+    <footer>
+        <!-- (Opzionale) Informazioni sul copyright o link utili -->
+        <!-- <p>&copy; <span id="current-year"></span> Nome Sviluppatore/Team. Tutti i diritti riservati.</p> -->
+    </footer>
 
-        <main class="game-interface">
-            <section class="game-main-content panel">
-                <h2>Sezione Principale del Contenuto</h2>
-                <p>Questo è un paragrafo di testo che utilizza la font sans-serif per il corpo. Serve a dimostrare la leggibilità e lo stile generale del testo narrativo. Le linee guida tipografiche mirano a una chiarezza formale e sobria.</p>
-                <p>La pianificazione industriale e l'architettura socialista influenzano la palette cromatica, dominata da toni freddi e desaturati come il <strong>Grigio Berlino</strong> e il <strong>Verde Stasi</strong>.</p>
+    <!-- Script Principale del Gioco (Bundle generato da Webpack) -->
+    <script src="dist/bundle.js" defer></script>
 
-                <div class="visual-hierarchy-element">
-                    <p>Questo elemento utilizza il Verde Stasi per creare gerarchia visiva, con un bordo laterale Rosso Segnale.</p>
-                </div>
-
-                <hr class="separator">
-
-                <h3>Sottosezione con Input</h3>
-                <form action="#">
-                    <p><label for="username">Nome Utente:</label></p>
-                    <p><input type="text" id="username" name="username" placeholder="Inserisci il tuo nome utente..."></p>
-                    <p><label for="password">Password Segreta:</label></p>
-                    <p><input type="password" id="password" name="password" value="secretpassword"></p>
-                    <p><button type="submit">Invia Modulo</button></p>
-                </form>
-            </section>
-
-            <aside class="game-sidebar panel frame">
-                <h3>Pannello Laterale Ausiliario</h3>
-                <p class="didascalia-element">Informazioni secondarie, didascalie o elementi contestuali possono trovare spazio qui. La dimensione del font è leggermente ridotta.</p>
-                <div class="alert alert-info">
-                    <strong>Notifica:</strong> Questo è un messaggio informativo.
-                </div>
-                <div class="alert alert-critical">
-                    <strong>Allarme:</strong> Attenzione! Evento critico rilevato.
-                </div>
-                <p>Un altro esempio di testo per riempire lo spazio e testare la responsività.</p>
-            </aside>
-        </main>
-
-        <section class="panel">
-            <h2>Interazioni e Animazioni</h2>
-            <p>Passa il mouse sui pulsanti per vedere l'effetto hover. Clicca per l'effetto active. Il focus è indicato da un outline Rosso Segnale.</p>
-
-            <h3>Barra di Caricamento</h3>
-            <div class="loading-bar-container">
-                <div class="loading-bar-progress" style="animation-duration: 3s;"></div>
-            </div>
-            <p class="didascalia-element" style="margin-top: var(--spacing-xs);">Esempio di barra di caricamento.</p>
-
-            <h3>Achievement/Icone Collezionabili</h3>
-            <p>
-                <span class="achievement-icon pulse" style="font-size: 2rem; display: inline-block; margin: var(--spacing-s);">★</span>
-                <span class="collectible-icon-reveal" style="font-size: 2rem; display: inline-block; margin: var(--spacing-s); border: 1px solid var(--colore-neutro-grigio-chiaro-muro); padding: var(--spacing-xs);">❖</span>
-                Icone animate (esempio).
-            </p>
-        </section>
-
-        <section class="panel subtle-gradient-panel">
-             <h2>Pannello con Gradiente Sottile</h2>
-             <p>Questo pannello ha un leggerissimo gradiente applicato sopra il suo colore di sfondo base.</p>
-        </section>
-
-        <footer class="panel" style="text-align: center; margin-top: var(--spacing-xl);">
-            <p class="didascalia-element" style="color: var(--colore-neutro-grigio-chiaro-muro);">Design System Prototipo - © 2023 Jules Agent. Tutti i diritti riservati (o meno, a seconda del contesto politico).</p>
-        </footer>
-
-    </div> <!-- /.container -->
-
-    <!-- Esempio di transizione di schermata (simulato con JS o al caricamento) -->
-    <!-- <div class="screen-transition-fade-in" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--colore-primario-grigio-berlino); z-index:100;"></div> -->
-
+    <!-- Script aggiuntivo per l'anno corrente nel footer (se presente) -->
+    <script>
+        // const currentYearSpan = document.getElementById('current-year');
+        // if (currentYearSpan) {
+        //     currentYearSpan.textContent = new Date().getFullYear();
+        // }
+    </script>
 </body>
 </html>

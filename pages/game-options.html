@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opzioni di Gioco - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/options.css"> <!-- Condivide stili con options.html principale -->
+    <!-- Potrebbe essere una modale, quindi gli stili potrebbero essere parte di game.css o avere un overlay dedicato -->
+</head>
+<body>
+    <div class="modal-overlay hidden" id="game-options-modal-overlay">
+        <div class="modal-content options-panel" role="dialog" aria-labelledby="game-options-title" aria-modal="true">
+            <header class="modal-header">
+                <h2 id="game-options-title" data-i18n="game_options_title">Opzioni di Gioco</h2>
+                <button id="close-game-options-btn" class="button close-button" data-i18n-aria-label="close_game_options_aria_label">&times;</button>
+            </header>
+            <main class="modal-body">
+                <section id="gameplay-settings">
+                    <h3 data-i18n="gameplay_settings_label">Gameplay</h3>
+                    <div>
+                        <label for="text-speed" data-i18n="text_speed_label">Velocità Testo:</label>
+                        <select id="text-speed" name="text-speed">
+                            <option value="slow" data-i18n="speed_slow">Lenta</option>
+                            <option value="normal" selected data-i18n="speed_normal">Normale</option>
+                            <option value="fast" data-i18n="speed_fast">Veloce</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="skip-read-text" name="skip-read-text">
+                        <label for="skip-read-text" data-i18n="skip_read_text_label">Salta testo già letto</label>
+                    </div>
+                </section>
+
+                <section id="audio-video-settings-ingame">
+                    <h3 data-i18n="audio_video_settings_label">Audio/Video</h3>
+                    <div>
+                        <label for="master-volume-ingame" data-i18n="master_volume_label">Volume Generale:</label>
+                        <input type="range" id="master-volume-ingame" name="master-volume-ingame" min="0" max="100" value="80">
+                        <span id="master-volume-value-ingame">80%</span>
+                    </div>
+                    <div>
+                        <label for="music-volume-ingame" data-i18n="music_volume_label">Volume Musica:</label>
+                        <input type="range" id="music-volume-ingame" name="music-volume-ingame" min="0" max="100" value="70">
+                        <span id="music-volume-value-ingame">70%</span>
+                    </div>
+                    <div>
+                        <label for="sfx-volume-ingame" data-i18n="sfx_volume_label">Volume Effetti:</label>
+                        <input type="range" id="sfx-volume-ingame" name="sfx-volume-ingame" min="0" max="100" value="90">
+                        <span id="sfx-volume-value-ingame">90%</span>
+                    </div>
+                </section>
+
+                <section id="ingame-actions">
+                     <h3 data-i18n="game_actions_label">Azioni di Gioco</h3>
+                    <button id="save-game-ingame-btn" class="button" data-i18n="save_game_button">Salva Partita</button>
+                    <button id="load-game-ingame-btn" class="button" data-i18n="load_game_button">Carica Partita</button>
+                    <button id="exit-to-main-menu-btn" class="button secondary-button" data-i18n="exit_to_main_menu_button">Esci al Menu Principale</button>
+                </section>
+            </main>
+            <footer class="modal-footer">
+                <button id="apply-game-options-btn" class="button primary-button" data-i18n="apply_button">Applica</button>
+                <button id="resume-game-btn" class="button secondary-button" data-i18n="resume_game_button">Riprendi Gioco</button>
+            </footer>
+        </div>
+    </div>
+    <!-- La logica di questo pannello sarà gestita da OptionsController.js e GameController/UIManager.js -->
+</body>
+</html>

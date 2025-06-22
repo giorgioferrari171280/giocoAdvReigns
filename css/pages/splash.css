@@ -1,0 +1,100 @@
+/* ============== STYLES FOR SPLASH.HTML ============== */
+
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Occupa l'intera altezza della viewport */
+    width: 100%;
+    text-align: center;
+    background-color: var(--background-color, #1a1a1a); /* Colore di sfondo della splash */
+    color: var(--text-color, #e0e6f0);
+    padding: var(--spacing-medium, 1rem);
+    position: fixed; /* Per coprire tutto */
+    top: 0;
+    left: 0;
+    z-index: var(--z-index-modal, 1000); /* O un valore alto per essere sopra altri elementi iniziali */
+    cursor: pointer; /* Indica che si può cliccare per continuare */
+}
+
+#game-logo {
+    max-width: 250px; /* Dimensione del logo principale */
+    height: auto;
+    margin-bottom: var(--spacing-large, 1.5rem);
+    /* Animazione definita in animations.css, es. .fade-in */
+}
+
+#game-title {
+    font-size: var(--font-size-h1, 2.5rem); /* Titolo del gioco grande */
+    color: var(--heading-color, #ffffff);
+    margin-bottom: var(--spacing-small, 0.5rem);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Ombra per il titolo */
+    /* Animazione definita in animations.css, es. .fade-in-delay-1 */
+}
+
+#splash-message {
+    font-size: var(--font-size-medium, 1.125rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-top: var(--spacing-large, 1.5rem); /* Spazio sopra il messaggio */
+    /* Animazione definita in animations.css, es. .fade-in-delay-2 */
+    animation: blink-caret 1.5s infinite; /* Effetto "cursore che lampeggia" */
+}
+
+/* Animazione per il messaggio "Premi un tasto..." */
+@keyframes blink-caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading-spinner-container {
+    margin-top: var(--spacing-xlarge, 2rem);
+    height: 30px; /* Spazio per un eventuale piccolo spinner */
+    /* Animazione definita in animations.css, es. .fade-in-delay-3 */
+}
+
+.loading-spinner.small {
+    width: 25px;
+    height: 25px;
+    border-width: 3px; /* Bordo più sottile per spinner piccolo */
+}
+
+/* Responsive per la splash screen */
+@media (min-width: 768px) { /* Tablet e oltre */
+    #game-logo {
+        max-width: 350px;
+    }
+
+    #game-title {
+        font-size: calc(var(--font-size-h1, 2.5rem) * 1.2); /* Titolo ancora più grande */
+    }
+
+    #splash-message {
+        font-size: var(--font-size-large, 1.25rem);
+    }
+}
+
+/*
+    Le animazioni di fade-in sono gestite da `animations.css`
+    e applicate tramite classi nell'HTML (es. `class="fade-in"`).
+    Se ci sono animazioni specifiche solo per la splash screen,
+    possono essere definite qui.
+*/
+
+/* Esempio di un'animazione solo per la splash screen */
+/*
+.splash-specific-animation {
+    animation: splashZoom 1s ease-out forwards;
+}
+
+@keyframes splashZoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+*/

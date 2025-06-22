@@ -1,0 +1,85 @@
+{
+    "characters": [
+        {
+            "id": "mysterious_figure",
+            "nameKey": "char_mysterious_figure_name",
+            "descriptionKey": "char_mysterious_figure_desc",
+            "image": "assets/images/characters/mysterious_figure.png",
+            "dialogue": {
+                "greeting": "dialogue_mysterious_figure_greeting",
+                "farewell": "dialogue_mysterious_figure_farewell",
+                "options": [
+                    {
+                        "id": "ask_about_path",
+                        "textKey": "dialogue_choice_ask_path",
+                        "responseKey": "dialogue_response_path_info",
+                        "effects": [
+                            { "type": "SET_FLAG", "flag": "asked_about_path", "value": true }
+                        ]
+                    },
+                    {
+                        "id": "ask_about_danger",
+                        "textKey": "dialogue_choice_ask_danger",
+                        "responseKey": "dialogue_response_danger_warning",
+                        "conditions": [
+                            { "type": "FLAG_IS_SET", "flag": "sign_examined" }
+                        ]
+                    }
+                ]
+            },
+            "baseStats": {
+            }
+        },
+        {
+            "id": "old_hermit",
+            "nameKey": "char_old_hermit_name",
+            "descriptionKey": "char_old_hermit_desc",
+            "image": "assets/images/characters/old_hermit.png",
+            "dialogue": {
+                "greeting": "dialogue_hermit_greeting",
+                "options": [
+                    {
+                        "id": "hermit_trade",
+                        "textKey": "dialogue_choice_hermit_trade",
+                        "responseKey": "dialogue_response_hermit_wares",
+                        "action": "OPEN_TRADE_WINDOW",
+                        "tradeInventory": [
+                            { "itemId": "healing_potion_strong", "cost": 50, "stock": 3 },
+                            { "itemId": "map_fragment_2", "cost": 100, "stock": 1 }
+                        ]
+                    },
+                    {
+                        "id": "hermit_ask_wisdom",
+                        "textKey": "dialogue_choice_hermit_wisdom",
+                        "responseKey": "dialogue_response_hermit_riddle",
+                        "effects": [
+                            { "type": "SET_FLAG", "flag": "heard_hermit_riddle", "value": true }
+                        ]
+                    }
+                ]
+            },
+            "baseStats": {
+                "intelligence": 15,
+                "charisma": 8
+            }
+        },
+        {
+            "id": "player_character",
+            "nameKey": "char_player_name_default",
+            "descriptionKey": "char_player_desc_default",
+            "image": "assets/images/characters/player-avatar-placeholder.png",
+            "baseStats": {
+                "health": 100,
+                "mana": 50,
+                "stamina": 75,
+                "strength": 10,
+                "dexterity": 10,
+                "intelligence": 10,
+                "charisma": 10,
+                "luck": 5,
+                "level": 1,
+                "xp": 0
+            }
+        }
+    ]
+}

@@ -1,0 +1,288 @@
+/* ============== STYLES FOR MENU.HTML ============== */
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Lascia spazio per header/footer globali se presenti */
+    text-align: center;
+    padding-top: var(--spacing-large, 1.5rem);
+    padding-bottom: var(--spacing-large, 1.5rem);
+}
+
+.menu-container header {
+    margin-bottom: var(--spacing-xlarge, 2rem);
+}
+
+#menu-logo {
+    max-width: 150px; /* Dimensione per il logo nel menu */
+    margin: 0 auto var(--spacing-medium, 1rem); /* Centra e aggiunge spazio sotto */
+}
+
+.menu-container h1 { /* Titolo "Menu Principale" */
+    font-size: var(--font-size-h1, 2.5rem);
+    color: var(--heading-color, #ffffff);
+    margin-bottom: var(--spacing-large, 1.5rem); /* Più spazio dopo il titolo */
+}
+
+#main-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 350px; /* Larghezza massima per i bottoni del menu */
+}
+
+#main-navigation ul li {
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+
+#main-navigation ul li:last-child {
+    margin-bottom: 0;
+}
+
+.menu-button {
+    width: 100%; /* Bottoni a larghezza piena */
+    padding: var(--spacing-medium, 1rem) var(--spacing-large, 1.5rem);
+    font-size: var(--font-size-large, 1.25rem); /* Testo più grande per i bottoni del menu */
+    background-color: var(--button-secondary-bg, var(--surface-color));
+    color: var(--button-secondary-text, var(--text-color));
+    border: 1px solid var(--border-color-strong, #50565e);
+    transition: background-color var(--transition-speed-fast, 0.2s) ease,
+                transform var(--transition-speed-fast, 0.1s) ease,
+                box-shadow var(--transition-speed-fast, 0.2s) ease;
+}
+
+.menu-button:hover,
+.menu-button:focus {
+    background-color: var(--button-secondary-hover-bg, #34383e);
+    border-color: var(--primary-color, #4a90e2); /* Evidenzia il bordo con il colore primario */
+    color: var(--primary-color, #4a90e2); /* Cambia colore del testo per enfasi */
+    transform: translateY(-2px); /* Leggero sollevamento */
+    box-shadow: var(--shadow-medium, 0 4px 8px rgba(0,0,0,0.5));
+}
+
+.menu-button:active {
+    transform: translateY(0px); /* Ritorna alla posizione originale al click */
+    box-shadow: var(--shadow-small, 0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Stile specifico per il bottone di uscita, se si vuole differenziarlo */
+#exit-game-btn {
+    /* background-color: var(--error-color, #e74c3c);
+    color: #ffffff;
+    border-color: var(--error-color-bg, #c0392b); */
+}
+/* #exit-game-btn:hover,
+#exit-game-btn:focus {
+    background-color: var(--error-color-bg, #c0392b);
+    border-color: var(--error-color, #e74c3c);
+    color: #ffffff;
+} */
+
+
+.menu-container footer {
+    margin-top: var(--spacing-xlarge, 2rem);
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+}
+
+#game-version .version-number {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--accent-color, #f1c40f); /* Evidenzia il numero di versione */
+}
+
+
+/* === Stili per la pagina dei Salvataggi (saves.html) === */
+/* Potrebbe condividere molti stili con menu.css, ma con alcune specificità */
+
+.saves-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* min-height: 80vh; */ /* Non serve se è una modale o pagina a sé */
+    padding: var(--spacing-medium, 1rem);
+}
+
+.saves-container header h1 {
+    margin-bottom: var(--spacing-large, 1.5rem);
+}
+
+#save-slots-container {
+    width: 100%;
+    max-width: 600px; /* Più largo per gli slot di salvataggio */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium, 1rem);
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+
+.save-slot {
+    background-color: var(--surface-color, #24282e);
+    padding: var(--spacing-medium, 1rem);
+    border-radius: var(--border-radius-medium, 5px);
+    border: 1px solid var(--border-color-soft, #3a3f46);
+    display: flex;
+    flex-direction: column; /* Su mobile */
+    justify-content: space-between;
+    align-items: flex-start; /* Su mobile */
+    transition: border-color var(--transition-speed-fast, 0.2s) ease,
+                box-shadow var(--transition-speed-fast, 0.2s) ease;
+}
+
+.save-slot:hover {
+    border-color: var(--primary-color, #4a90e2);
+    box-shadow: var(--shadow-small, 0 2px 4px rgba(0,0,0,0.3));
+}
+
+.save-slot .slot-name {
+    font-size: var(--font-size-large, 1.25rem);
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--heading-color, #ffffff);
+    margin-bottom: var(--spacing-xsmall, 0.5rem);
+}
+
+.save-slot .slot-timestamp {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+
+.save-slot .slot-actions {
+    display: flex;
+    gap: var(--spacing-small, 0.5rem);
+    width: 100%; /* Su mobile i bottoni occupano più spazio */
+}
+
+.save-slot .slot-actions .button {
+    flex-grow: 1; /* I bottoni si espandono per riempire lo spazio */
+    font-size: var(--font-size-base, 1rem); /* Bottoni leggermente più piccoli di quelli del menu */
+    padding: var(--spacing-xsmall, 0.5rem) var(--spacing-small, 0.75rem);
+}
+
+.save-slot .slot-actions .save-action {
+    background-color: var(--success-color-bg, #27ae60);
+    border-color: var(--success-color, #2ecc71);
+    color: #fff;
+}
+.save-slot .slot-actions .save-action:hover:not(:disabled) {
+    background-color: var(--success-color, #2ecc71);
+}
+
+.save-slot .slot-actions .load-action {
+    background-color: var(--info-color-bg, #2980b9);
+    border-color: var(--info-color, #3498db);
+    color: #fff;
+}
+.save-slot .slot-actions .load-action:hover:not(:disabled) {
+    background-color: var(--info-color, #3498db);
+}
+
+.save-slot .slot-actions .delete-action {
+    background-color: var(--error-color-bg, #c0392b);
+    border-color: var(--error-color, #e74c3c);
+    color: #fff;
+}
+.save-slot .slot-actions .delete-action:hover:not(:disabled) {
+    background-color: var(--error-color, #e74c3c);
+}
+
+
+.saves-container footer {
+    margin-top: var(--spacing-large, 1.5rem);
+    width: 100%;
+    max-width: 600px;
+    text-align: center; /* Centra il bottone di ritorno */
+}
+
+#overwrite-warning {
+    color: var(--warning-color, #f39c12);
+    font-weight: normal;
+    font-size: var(--font-size-small);
+    text-align: center;
+    max-width: 600px;
+    margin-top: var(--spacing-medium, 1rem);
+}
+
+
+/* Responsive per la pagina dei salvataggi */
+@media (min-width: 600px) { /* Schermi un po' più grandi */
+    .save-slot {
+        flex-direction: row;
+        align-items: center;
+    }
+    .save-slot .slot-name {
+        flex-grow: 1; /* Nome occupa più spazio */
+        margin-bottom: 0;
+    }
+    .save-slot .slot-timestamp {
+        margin-bottom: 0;
+        margin-left: var(--spacing-medium, 1rem); /* Spazio tra nome e timestamp */
+        margin-right: var(--spacing-medium, 1rem); /* Spazio tra timestamp e azioni */
+        min-width: 140px; /* Per allineare i bottoni */
+        text-align: right;
+    }
+    .save-slot .slot-actions {
+        width: auto; /* Non più a larghezza piena */
+        flex-shrink: 0; /* Impedisce ai bottoni di restringersi troppo */
+    }
+}
+
+/* === Stili per la pagina Crediti (credits.html) === */
+.credits-container {
+    text-align: center;
+    padding-top: var(--spacing-large, 1.5rem);
+    padding-bottom: var(--spacing-large, 1.5rem);
+    max-width: 800px; /* Limita larghezza per leggibilità */
+    margin: 0 auto;
+}
+
+.credits-container header h1 {
+    margin-bottom: var(--spacing-xlarge, 2rem);
+}
+
+.credits-container section {
+    margin-bottom: var(--spacing-xlarge, 2rem);
+}
+
+.credits-container h2 {
+    font-size: var(--font-size-h3, 1.75rem);
+    color: var(--primary-color, #4a90e2); /* Colora i titoli di sezione */
+    margin-bottom: var(--spacing-medium, 1rem);
+    border-bottom: 1px solid var(--border-color-soft, #3a3f46);
+    padding-bottom: var(--spacing-xsmall, 0.5rem);
+}
+
+.credits-list {
+    list-style: none;
+    padding: 0;
+    text-align: left; /* Allinea il testo delle liste a sinistra per leggibilità */
+    max-width: 500px; /* Limita la larghezza delle liste */
+    margin: 0 auto; /* Centra le liste */
+}
+
+.credits-list li {
+    margin-bottom: var(--spacing-medium, 1rem); /* Più spazio tra gli elementi dei crediti */
+    font-size: var(--font-size-base, 1rem);
+}
+
+.credits-role {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0); /* Colore del ruolo */
+    display: block;
+    margin-bottom: var(--spacing-xxsmall, 0.25rem);
+}
+
+/* Nome della persona/asset */
+.credits-list li span:not(.credits-role) {
+    color: var(--text-muted-color, #8a95a5);
+}
+
+.credits-container footer {
+    margin-top: var(--spacing-xlarge, 2rem);
+}
+
+#current-year-credits {
+    /* Eventuali stili specifici se necessario */
+}

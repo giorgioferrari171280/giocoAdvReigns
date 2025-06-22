@@ -1,0 +1,141 @@
+/* ============== THEME STYLES ============== */
+
+/*
+    Questo file può essere utilizzato per definire temi alternativi
+    (es. tema chiaro, tema ad alto contrasto specifico, temi stagionali).
+    Per ora, ci concentreremo sul tema scuro di default definito in variables.css
+    e global.css.
+
+    Se si volessero implementare temi multipli, si potrebbe fare così:
+*/
+
+/* Esempio: Tema Chiaro (Light Theme) */
+/*
+body.light-theme {
+    --background-color: #f4f7f9;
+    --background-color-light: #ffffff;
+    --surface-color: #ffffff;
+    --text-color: #2c3e50;
+    --text-muted-color: #7f8c8d;
+    --heading-color: #1a2533;
+
+    --primary-color: #3498db;
+    --primary-color-dark: #2980b9;
+    --secondary-color: #e67e22;
+    --secondary-color-dark: #d35400;
+
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--primary-color-dark);
+    --border-color-soft: #e1e5e8;
+    --border-color-strong: #c8ced3;
+
+    --button-primary-bg: var(--primary-color);
+    --button-primary-text: #ffffff;
+    --button-primary-hover-bg: var(--primary-color-dark);
+    --button-secondary-bg: #e9ecef;
+    --button-secondary-text: var(--text-color);
+    --button-secondary-hover-bg: #d3d9df;
+    --button-disabled-bg: #e9ecef;
+    --button-disabled-text: #b0b8bf;
+
+    --input-bg-color: #ffffff;
+    --input-text-color: var(--text-color);
+    --input-border-color: #ced4da;
+    --input-focus-border-color: var(--primary-color);
+    --input-focus-shadow-color: rgba(52, 152, 219, 0.25);
+
+    --modal-overlay-bg: rgba(44, 62, 80, 0.7);
+    --modal-content-bg: #ffffff;
+    --modal-border-color: var(--border-color-soft);
+    --footer-bg-color: #e9ecef;
+    --footer-text-color: var(--text-muted-color);
+    --notification-bg: #ffffff;
+    --notification-text-color: var(--text-color);
+
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+*/
+
+/* Esempio: Tema Alto Contrasto (High Contrast Theme) */
+/*
+   Un tema ad alto contrasto dedicato potrebbe essere più specifico
+   di quello attivabile tramite accessibility.css (che potrebbe usare `filter`).
+*/
+/*
+body.high-contrast-theme {
+    --background-color: #000000;
+    --background-color-light: #111111;
+    --surface-color: #0a0a0a;
+    --text-color: #ffffff;
+    --text-muted-color: #dddddd;
+    --heading-color: #ffff00; // Giallo brillante per i titoli
+
+    --primary-color: #00ffff; // Ciano per elementi primari
+    --primary-color-dark: #00dddd;
+    --secondary-color: #ff00ff; // Magenta per accenti
+
+    --link-color: var(--primary-color);
+    --link-hover-color: #ffffff;
+    --border-color-soft: #555555;
+    --border-color-strong: #999999;
+
+    --button-primary-bg: var(--primary-color);
+    --button-primary-text: #000000;
+    --button-primary-hover-bg: #ffffff;
+    --button-secondary-bg: #333333;
+    --button-secondary-text: #ffffff;
+    --button-secondary-hover-bg: #555555;
+
+    --input-bg-color: #000000;
+    --input-text-color: #ffffff;
+    --input-border-color: #ffffff;
+    --input-focus-border-color: var(--primary-color);
+
+    // ... e così via per tutte le altre variabili rilevanti
+}
+*/
+
+/*
+    Per attivare un tema, si aggiungerebbe una classe al tag <body>,
+    ad esempio tramite JavaScript:
+    document.body.classList.add('light-theme');
+    document.body.classList.remove('light-theme');
+*/
+
+/*
+    Al momento, questo file è un placeholder per future espansioni tematiche.
+    Il tema di default è quello scuro definito in variables.css e applicato
+    tramite global.css.
+*/
+
+/*
+    Potrebbero esserci anche stili che modificano leggermente l'aspetto
+    in base a determinate condizioni o preferenze utente, senza
+    cambiare l'intero set di variabili.
+*/
+
+/* Esempio: Stili per un tema "Pergamena" per specifiche sezioni del gioco */
+/*
+.parchment-look {
+    background-color: var(--parchment-bg, #f5e8c8);
+    color: var(--parchment-text, #4a3b2a);
+    font-family: var(--font-family-secondary, serif); // Un font più calligrafico
+    border: 1px solid #d2b48c; // Marroncino per il bordo
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    padding: var(--spacing-large, 1.5rem);
+}
+
+.parchment-look h1, .parchment-look h2, .parchment-look h3 {
+    color: var(--parchment-text, #4a3b2a);
+    font-family: 'MedievalSharp', cursive; // Un font a tema se importato
+}
+
+.parchment-look a {
+    color: #8b4513; // Marrone sella per i link
+}
+.parchment-look a:hover {
+    color: #a0522d; // Terra di Siena
+}
+*/
+
+/* Fine del file theme.css */

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caricamento... - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/components/loading-spinner.css">
+    <!-- <link rel="stylesheet" href="../css/pages/loading.css"> se servono stili specifici -->
+    <style>
+        .loading-page-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-color, #222); /* Usa variabile CSS se definita */
+            color: var(--text-color, #fff); /* Usa variabile CSS se definita */
+        }
+        .loading-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: var(--accent-color, #ccc); /* Usa variabile CSS se definita */
+        }
+        .loading-progress-bar-container {
+            width: 80%;
+            max-width: 400px;
+            height: 20px;
+            background-color: var(--ui-background-color, #555);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        .loading-progress-bar {
+            width: 0%; /* Sarà aggiornato da JS */
+            height: 100%;
+            background-color: var(--primary-color, #4CAF50);
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container loading-page-container">
+        <div class="loading-spinner large"></div>
+        <p id="loading-message-text" class="loading-message" data-i18n="loading_assets_message">Caricamento risorse...</p>
+        <div class="loading-progress-bar-container">
+            <div id="loading-progress-bar-fill" class="loading-progress-bar"></div>
+        </div>
+        <p id="loading-tip" class="loading-message" style="font-size: 0.9em; margin-top: 30px;" data-i18n="loading_tip_placeholder">Consiglio: Esplora ogni angolo per scoprire segreti!</p>
+    </div>
+    <!-- La logica di questa pagina (aggiornamento barra, messaggi) sarà gestita da JS, probabilmente UIManager o DataLoader -->
+    <script>
+        // Esempio di come potrebbe essere controllato (la logica reale sarà in moduli JS)
+        // const progressBar = document.getElementById('loading-progress-bar-fill');
+        // const loadingMessage = document.getElementById('loading-message-text');
+        // let progress = 0;
+        // const interval = setInterval(() => {
+        //     progress += 10;
+        //     if (progressBar) progressBar.style.width = progress + '%';
+        //     if (loadingMessage && progress < 100) {
+        //         loadingMessage.textContent = `Caricamento... ${progress}%`;
+        //     } else if (loadingMessage) {
+        //         loadingMessage.textContent = 'Quasi pronto!';
+        //     }
+        //     if (progress >= 100) {
+        //         clearInterval(interval);
+        //         // Qui avverrebbe la transizione alla pagina successiva
+        //         // console.log('Caricamento completato, reindirizzamento...');
+        //     }
+        // }, 200);
+    </script>
+</body>
+</html>

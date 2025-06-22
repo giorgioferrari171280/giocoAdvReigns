@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finale - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/cutscene.css"> <!-- Condivide stili con cutscene.css -->
+    <link rel="stylesheet" href="../css/pages/final-cutscene.css"> <!-- Stili specifici per il finale -->
+    <link rel="stylesheet" href="../css/components/animations.css">
+</head>
+<body>
+    <div class="page-container cutscene-container final-cutscene">
+        <div id="final-cutscene-content">
+            <!-- Il contenuto della cutscene finale (immagini, testo, animazioni) sarà gestito da CutscenePlayer.js -->
+            <img src="../assets/images/scenes/placeholder-final.png" alt="Scena finale" id="final-cutscene-image" class="cutscene-image">
+            <h2 id="ending-title" data-i18n-placeholder="ending_title_placeholder">Titolo del Finale</h2>
+            <p id="final-cutscene-text" class="cutscene-text" data-i18n="final_text_placeholder">E così, l'avventura giunse al termine...</p>
+            <!-- Potrebbero esserci elementi addizionali come un riepilogo delle scelte chiave -->
+        </div>
+        <div id="final-cutscene-controls">
+            <button id="view-credits-btn" class="button primary-button" data-i18n="view_credits_button">Vedi Crediti</button>
+            <button id="return-to-main-menu-final-btn" class="button secondary-button" data-i18n="return_to_main_menu_button">Torna al Menu Principale</button>
+        </div>
+    </div>
+    <!-- Script per questa cutscene sarà gestito da CutscenePlayer.js e AnimationController.js -->
+</body>
+</html>

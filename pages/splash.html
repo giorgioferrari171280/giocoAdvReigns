@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvenuto - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/splash.css">
+    <link rel="stylesheet" href="../css/components/animations.css">
+</head>
+<body>
+    <div class="page-container splash-screen">
+        <img src="../assets/images/ui/system/game-logo.png" alt="Logo del Gioco" id="game-logo" class="fade-in">
+        <h1 id="game-title" class="fade-in-delay-1" data-i18n="game_title_placeholder">Titolo del Gioco</h1>
+        <p id="splash-message" class="fade-in-delay-2" data-i18n="press_any_key_or_click">Premi un tasto o clicca per continuare</p>
+        <div class="loading-spinner-container fade-in-delay-3">
+            <!-- Opzionale: piccolo spinner se c'è un caricamento residuo -->
+            <!-- <div class="loading-spinner small"></div> -->
+        </div>
+    </div>
+    <!-- Questo script è specifico per la logica di questa pagina, potrebbe essere gestito da un controller dedicato -->
+    <script>
+        // document.body.addEventListener('click', () => {
+        //     console.log('Splash screen clicked, proceed to menu or pre-options.');
+        //     // window.location.href = 'menu.html'; // Esempio, la navigazione sarà gestita da UIManager
+        // });
+        // document.addEventListener('keydown', () => {
+        //     console.log('Splash screen key pressed, proceed to menu or pre-options.');
+        //     // window.location.href = 'menu.html'; // Esempio
+        // });
+    </script>
+</body>
+</html>

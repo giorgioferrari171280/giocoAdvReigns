@@ -1,0 +1,85 @@
+{
+    "achievements": [
+        {
+            "id": "ach_first_step",
+            "nameKey": "ach_first_step_name",
+            "descriptionKey": "ach_first_step_desc",
+            "icon": "assets/images/ui/achievements/first_step.png",
+            "rarity": "common",
+            "order": 10,
+            "trigger": {
+                "type": "scene_visited",
+                "conditions": { "sceneId": "scene_001" }
+            }
+        },
+        {
+            "id": "ach_herb_collector",
+            "nameKey": "ach_herb_collector_name",
+            "descriptionKey": "ach_herb_collector_desc",
+            "icon": "assets/images/ui/achievements/herb_collector.png",
+            "type": "progress",
+            "targetProgress": 5,
+            "rarity": "uncommon",
+            "order": 20,
+            "trigger": {
+                "type": "item_acquired",
+                "conditions": { "itemId": "healing_herb" },
+                "progressIncrement": 1
+            }
+        },
+        {
+            "id": "ach_map_enthusiast",
+            "nameKey": "ach_map_enthusiast_name",
+            "descriptionKey": "ach_map_enthusiast_desc",
+            "icon": "assets/images/ui/achievements/map_enthusiast.png",
+            "type": "progress",
+            "targetProgress": 2,
+            "rarity": "rare",
+            "order": 30,
+            "trigger": {
+                "type": "item_acquired",
+                "conditions": { "itemId": "map_fragment_1" }
+            }
+        },
+        {
+            "id": "ach_mountain_climber",
+            "nameKey": "ach_mountain_climber_name",
+            "descriptionKey": "ach_mountain_climber_desc",
+            "icon": "assets/images/ui/achievements/mountain_climber.png",
+            "rarity": "epic",
+            "order": 100,
+            "trigger": {
+                "type": "scene_visited",
+                "conditions": { "sceneId": "scene_004_peak" }
+            }
+        },
+        {
+            "id": "ach_loremaster",
+            "nameKey": "ach_loremaster_name",
+            "descriptionKey": "ach_loremaster_desc",
+            "icon": "assets/images/ui/achievements/lore_master.png",
+            "hiddenUntilUnlocked": true,
+            "rarity": "legendary",
+            "order": 200,
+            "trigger": {
+                "type": "FLAG_IS_SET",
+                "gameStateConditions": [
+                    { "type": "FLAG_IS_SET", "flag": "lore_tome_read", "value": true },
+                    { "type": "FLAG_IS_SET", "flag": "heard_hermit_riddle", "value": true }
+                ]
+            }
+        },
+        {
+            "id": "ach_stick_wielder",
+            "nameKey": "ach_stick_wielder_name",
+            "descriptionKey": "ach_stick_wielder_desc",
+            "icon": "assets/images/ui/achievements/stick_wielder.png",
+            "rarity": "common",
+            "order": 15,
+            "trigger": {
+                "type": "item_used",
+                "conditions": { "itemId": "stick" }
+            }
+        }
+    ]
+}

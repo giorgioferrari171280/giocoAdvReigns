@@ -1,0 +1,189 @@
+/* ============== CSS VARIABLES (DESIGN TOKENS) ============== */
+
+:root {
+    /* === Colori === */
+    /* Palette Primaria (Toni scuri per un tema avventura/mistero) */
+    --background-color: #1a1e24; /* Sfondo principale molto scuro, leggermente bluastro */
+    --background-color-light: #2a2e34; /* Sfondo per elementi leggermente più chiari (es. modali) */
+    --surface-color: #24282e; /* Superfici come card, pannelli interni */
+    --text-color: #e0e6f0; /* Testo principale, bianco sporco/grigio chiaro */
+    --text-muted-color: #8a95a5; /* Testo secondario, meno importante */
+    --heading-color: #ffffff; /* Colore per i titoli */
+
+    /* Colori di Accento */
+    --primary-color: #4a90e2; /* Blu vibrante per azioni primarie, link */
+    --primary-color-dark: #357abd; /* Variazione più scura per hover/active */
+    --primary-color-light: #7aa descoberta; /* Variazione più chiara */
+    --secondary-color: #e67e22; /* Arancione/Ambra per accenti secondari o avvisi caldi */
+    --secondary-color-dark: #d35400;
+    --accent-color: #f1c40f; /* Giallo per evidenziazioni o elementi speciali */
+
+    /* Colori Semantici */
+    --success-color: #2ecc71;
+    --success-color-bg: #27ae60;
+    --warning-color: #f39c12;
+    --warning-color-bg: #e67e22;
+    --error-color: #e74c3c;
+    --error-color-bg: #c0392b;
+    --info-color: #3498db;
+    --info-color-bg: #2980b9;
+
+    /* Colori per UI Specifici */
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--primary-color-dark);
+    --border-color-soft: #3a3f46; /* Bordi sottili, divisori */
+    --border-color-strong: #50565e; /* Bordi più marcati */
+    --button-primary-bg: var(--primary-color);
+    --button-primary-text: #ffffff;
+    --button-primary-hover-bg: var(--primary-color-dark);
+    --button-secondary-bg: var(--surface-color);
+    --button-secondary-text: var(--text-color);
+    --button-secondary-hover-bg: #34383e; /* Leggermente più scuro di surface */
+    --button-disabled-bg: #454a51;
+    --button-disabled-text: #787f8a;
+    --input-bg-color: #2f333a;
+    --input-text-color: var(--text-color);
+    --input-border-color: var(--border-color-strong);
+    --input-focus-border-color: var(--primary-color);
+    --input-focus-shadow-color: rgba(74, 144, 226, 0.25);
+    --modal-overlay-bg: rgba(10, 12, 15, 0.85);
+    --modal-content-bg: var(--background-color-light);
+    --modal-border-color: var(--border-color-soft);
+    --footer-bg-color: #121519;
+    --footer-text-color: var(--text-muted-color);
+    --notification-bg: var(--surface-color);
+    --notification-text-color: var(--text-color);
+
+    /* === Tipografia === */
+    /* Font Families */
+    --font-family-primary: 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* UI, testo corpo */
+    --font-family-secondary: 'Lora', 'Georgia', serif; /* Titoli, elementi narrativi */
+    --font-family-monospace: 'Courier New', Courier, monospace; /* Codice, elementi testuali specifici */
+
+    /* Font Sizes (Scala Tipografica) */
+    --font-size-root: 16px; /* Base per unità rem */
+    --font-size-small: 0.875rem;  /* 14px */
+    --font-size-base: 1rem;      /* 16px (default) */
+    --font-size-medium: 1.125rem; /* 18px */
+    --font-size-large: 1.25rem;  /* 20px */
+    --font-size-h4: 1.5rem;    /* 24px */
+    --font-size-h3: 1.75rem;   /* 28px */
+    --font-size-h2: 2rem;      /* 32px */
+    --font-size-h1: 2.5rem;    /* 40px */
+    --font-size-button: var(--font-size-base);
+    --font-size-input: var(--font-size-base);
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500; /* Per enfasi moderata */
+    --font-weight-bold: 700;
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.6;
+    --line-height-loose: 1.8;
+
+    /* === Spaziatura === */
+    /* Scala di spaziatura (per margin, padding, gap) */
+    --spacing-xxsmall: 0.25rem; /* 4px */
+    --spacing-xsmall: 0.5rem;  /* 8px */
+    --spacing-small: 0.75rem;  /* 12px */
+    --spacing-medium: 1rem;    /* 16px */
+    --spacing-large: 1.5rem;   /* 24px */
+    --spacing-xlarge: 2rem;    /* 32px */
+    --spacing-xxlarge: 3rem;   /* 48px */
+
+    /* Padding specifici per UI */
+    --button-padding-y: var(--spacing-small);
+    --button-padding-x: var(--spacing-large);
+    --input-padding-y: var(--spacing-xsmall);
+    --input-padding-x: var(--spacing-small);
+    --container-padding: var(--spacing-medium);
+
+    /* === Bordi e Ombre === */
+    /* Border Radius */
+    --border-radius-small: 3px;
+    --border-radius-medium: 5px;
+    --border-radius-large: 8px;
+    --border-radius-pill: 50px; /* Per bottoni a forma di pillola */
+    --border-radius-circle: 50%; /* Per elementi circolari */
+
+    /* Box Shadows */
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Colore base per le ombre, più scuro per tema dark */
+    --shadow-small: 0 2px 4px var(--shadow-color);
+    --shadow-medium: 0 4px 8px var(--shadow-color);
+    --shadow-large: 0 8px 16px var(--shadow-color);
+    --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.2);
+
+    /* === Transizioni e Animazioni === */
+    --transition-speed-fast: 0.15s;
+    --transition-speed-normal: 0.3s;
+    --transition-speed-slow: 0.5s;
+    --timing-function-ease: ease;
+    --timing-function-ease-in-out: ease-in-out;
+
+    /* === Layout === */
+    --max-width-container: 1200px; /* Larghezza massima per il contenuto principale */
+    --max-width-narrow: 800px;  /* Per sezioni di testo o modali più strette */
+    --modal-max-width: 700px;
+    --sidebar-width: 280px; /* Se si usa una sidebar */
+
+    /* === Z-indexes === */
+    /* Scala per gestire la sovrapposizione degli elementi */
+    --z-index-dropdown: 100;
+    --z-index-sticky: 200;   /* Elementi fissi durante lo scroll */
+    --z-index-modal-backdrop: 990;
+    --z-index-modal: 1000;
+    --z-index-tooltip: 1100;
+    --z-index-notifications: 1200;
+    --z-index-debug: 9999;
+
+    /* === Icone === */
+    --icon-size-small: 16px;
+    --icon-size-medium: 24px;
+    --icon-size-large: 32px;
+    --icon-button-color: var(--text-muted-color);
+    --icon-button-hover-bg: rgba(224, 230, 240, 0.1); /* Sfondo leggero per hover su bottoni icona */
+    --icon-button-hover-color: var(--primary-color);
+
+    /* === Specifiche del Tema Avventura (Esempio) === */
+    /* Questi potrebbero essere usati per elementi specifici del gioco */
+    --parchment-bg: #f5e8c8; /* Sfondo pergamena */
+    --parchment-text: #4a3b2a; /* Testo su pergamena */
+    --map-line-color: #a0855b; /* Linee su una mappa antica */
+    --scroll-texture-url: url('../assets/images/ui/textures/scroll-bg.png'); /* Esempio */
+
+    /* Altri colori specifici per il gioco */
+    --health-bar-color: #c0392b; /* Rosso per la barra della salute */
+    --mana-bar-color: #2980b9; /* Blu per la barra del mana/energia */
+    --xp-bar-color: #f1c40f; /* Giallo/oro per la barra dell'esperienza */
+}
+
+/*
+   Esempio di come potrebbero essere usate le variabili:
+   .my-element {
+       background-color: var(--surface-color);
+       color: var(--text-color);
+       padding: var(--spacing-medium);
+       font-family: var(--font-family-primary);
+       border-radius: var(--border-radius-medium);
+       box-shadow: var(--shadow-small);
+   }
+
+   .my-button {
+       background-color: var(--button-primary-bg);
+       color: var(--button-primary-text);
+       padding: var(--button-padding-y) var(--button-padding-x);
+   }
+   .my-button:hover {
+       background-color: var(--button-primary-hover-bg);
+   }
+*/
+
+/*
+   Nota: Questo file definisce solo le variabili.
+   Il loro utilizzo effettivo avviene in global.css e negli altri file CSS specifici.
+   È buona pratica mantenere questo file pulito e ben organizzato per facilitare
+   la gestione del tema e del design system del progetto.
+*/

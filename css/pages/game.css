@@ -1,0 +1,260 @@
+/* ============== STYLES FOR GAME.HTML ============== */
+
+.game-screen-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Occupa l'intera altezza della viewport */
+    max-height: 100vh;
+    overflow: hidden; /* Previene lo scroll della pagina principale del gioco */
+    background-color: var(--background-color, #1a1a1a); /* Sfondo della schermata di gioco */
+}
+
+/* === Header di Gioco === */
+#game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-small, 0.5rem) var(--spacing-medium, 1rem);
+    background-color: var(--surface-color, #24282e); /* Sfondo per l'header */
+    border-bottom: 1px solid var(--border-color-soft, #3a3f46);
+    flex-shrink: 0; /* Non si restringe */
+}
+
+#location-info {
+    font-size: var(--font-size-medium, 1.125rem);
+    color: var(--text-muted-color, #8a95a5);
+}
+
+#current-location-name {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--accent-color, #f1c40f); /* Evidenzia il nome della location */
+}
+
+#game-menu-buttons {
+    display: flex;
+    gap: var(--spacing-small, 0.5rem);
+}
+
+#game-menu-buttons .button.icon-button {
+    padding: var(--spacing-xsmall, 0.5rem);
+    background-color: transparent;
+    border: 1px solid transparent; /* Per allineamento, ma invisibile */
+    color: var(--text-muted-color, #8a95a5);
+}
+
+#game-menu-buttons .button.icon-button:hover,
+#game-menu-buttons .button.icon-button:focus {
+    background-color: var(--background-color-light, #2a2e34);
+    color: var(--primary-color, #4a90e2);
+    border-color: var(--primary-color, #4a90e2);
+}
+
+#game-menu-buttons .button.icon-button img,
+#game-menu-buttons .button.icon-button svg {
+    width: var(--icon-size-medium, 24px);
+    height: var(--icon-size-medium, 24px);
+    /* Il colore dell'SVG può essere controllato con `fill: currentColor;` se l'SVG è inline o se è un font icon */
+}
+#game-menu-buttons .button.icon-button span { /* Testo accanto/sotto l'icona */
+    font-size: var(--font-size-xsmall, 0.75rem); /* Molto piccolo */
+    display: block; /* Per andare sotto l'icona se flex-direction è column */
+    margin-top: 2px;
+    /* Su mobile, questo testo potrebbe essere nascosto (vedi responsive.css) */
+}
+
+
+/* === Contenuto Principale del Gioco === */
+#game-main-content {
+    flex-grow: 1; /* Occupa lo spazio rimanente */
+    display: flex;
+    flex-direction: column; /* Layout base: visuale sopra, testo sotto, scelte ancora sotto */
+    overflow-y: auto; /* Scroll solo per questa sezione se il contenuto è troppo */
+    padding: var(--spacing-medium, 1rem);
+    gap: var(--spacing-medium, 1rem); /* Spazio tra le sezioni principali */
+}
+
+/* --- Visualizzazione della Scena --- */
+#scene-visuals {
+    flex-shrink: 0; /* Non si restringe troppo facilmente */
+    position: relative; /* Per posizionare elementi sopra, come i personaggi */
+    background-color: var(--surface-color, #1c1f23); /* Sfondo per l'area immagine */
+    border-radius: var(--border-radius-medium, 5px);
+    overflow: hidden; /* Per angoli arrotondati sull'immagine */
+    min-height: 200px; /* Altezza minima per l'area visiva */
+}
+
+#scene-image {
+    width: 100%;
+    height: 100%; /* L'altezza sarà definita dal contenitore o dall'aspetto dell'immagine */
+    max-height: 50vh; /* Limita l'altezza massima dell'immagine della scena */
+    object-fit: cover; /* Copre l'area mantenendo le proporzioni, potrebbe tagliare */
+    /* object-fit: contain; // Mostra tutta l'immagine, potrebbe lasciare spazi vuoti */
+    display: block;
+    border-radius: var(--border-radius-medium, 5px); /* Se l'immagine è l'unico contenuto */
+    transition: opacity var(--transition-speed-normal, 0.3s) ease-in-out; /* Per cambi di scena */
+}
+
+#character-display {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Stili per l'immagine del personaggio se sovrapposta alla scena */
+}
+#character-display img {
+    max-height: 40vh; /* Limita altezza personaggio */
+    /* filter: drop-shadow(2px 4px 6px black); // Esempio di ombra */
+}
+
+
+/* --- Testo della Scena --- */
+#scene-text-container {
+    background-color: rgba(0,0,0,0.3); /* Sfondo semi-trasparente per il testo sopra l'immagine, se sovrapposto */
+    /* padding: var(--spacing-medium, 1rem); */ /* Se sovrapposto */
+    /* color: #fff; */ /* Se sovrapposto */
+    border-radius: var(--border-radius-medium, 5px);
+    flex-grow: 1; /* Permette al testo di occupare spazio disponibile */
+    overflow-y: auto; /* Scroll per testo lungo */
+    max-height: 30vh; /* Limita l'altezza del box di testo */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--surface-color);
+}
+#scene-text-container::-webkit-scrollbar {
+    width: 8px;
+}
+#scene-text-container::-webkit-scrollbar-track {
+    background: var(--surface-color);
+    border-radius: 4px;
+}
+#scene-text-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    border: 2px solid var(--surface-color);
+}
+
+
+#scene-description {
+    font-size: var(--font-size-base, 1rem); /* Dimensione base per il testo narrativo */
+    line-height: var(--line-height-normal, 1.6);
+    color: var(--text-color, #e0e6f0);
+    white-space: pre-line; /* Rispetta i newline nel testo, ma collassa spazi multipli */
+}
+#scene-description p:last-child { /* Rimuove margine dall'ultimo paragrafo nel contenitore */
+    margin-bottom: 0;
+}
+
+/* Effetto "macchina da scrivere" per il testo (se implementato con JS) */
+.typing-effect::after {
+    content: '|';
+    animation: blink-caret 0.7s infinite;
+    font-weight: var(--font-weight-light);
+}
+/* @keyframes blink-caret definito in splash.css o global.css */
+
+
+/* --- Contenitore delle Scelte --- */
+#choices-container {
+    flex-shrink: 0; /* Non si restringe */
+    padding-top: var(--spacing-small, 0.5rem); /* Spazio sopra le scelte */
+    display: flex;
+    flex-direction: column; /* Scelte impilate verticalmente */
+    gap: var(--spacing-small, 0.5rem);
+}
+
+.choice-button {
+    width: 100%; /* Larghezza piena per i bottoni di scelta */
+    padding: var(--spacing-small, 0.75rem) var(--spacing-medium, 1rem);
+    font-size: var(--font-size-base, 1rem);
+    text-align: left; /* Allinea il testo della scelta a sinistra */
+    background-color: var(--button-secondary-bg, var(--surface-color));
+    color: var(--button-secondary-text, var(--text-color));
+    border: 1px solid var(--border-color-soft, #3a3f46);
+    justify-content: flex-start; /* Per allineare contenuto interno se è flex */
+}
+
+.choice-button:hover,
+.choice-button:focus {
+    background-color: var(--button-secondary-hover-bg, #34383e);
+    border-color: var(--primary-color, #4a90e2);
+    color: var(--primary-color, #4a90e2);
+    box-shadow: 0 0 8px var(--primary-color-light, rgba(74, 144, 226, 0.3));
+}
+
+.choice-button.disabled, /* Se una scelta è disabilitata per condizioni non soddisfatte */
+.choice-button:disabled {
+    background-color: var(--button-disabled-bg, #454a51);
+    color: var(--button-disabled-text, #787f8a);
+    border-color: var(--border-color-soft, #3a3f46);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.choice-button.disabled:hover {
+    color: var(--button-disabled-text, #787f8a); /* Mantiene il colore disabilitato anche in hover */
+}
+
+
+/* === Footer di Gioco (Area Notifiche) === */
+#game-footer {
+    flex-shrink: 0;
+    /* L'area notifiche è posizionata fixed da global.css, quindi il footer qui può essere vuoto o per altri elementi */
+    /* padding: var(--spacing-xsmall, 0.25rem); */
+    /* min-height: 30px; // Spazio per eventuali controlli persistenti nel footer */
+}
+
+/* === Stili per le Modali all'interno del gioco (Inventario, Statistiche, Opzioni) === */
+/*
+    Le modali usano .modal-overlay e .modal-content da global.css.
+    Qui si possono aggiungere stili specifici per il contenuto delle modali di gioco.
+    Ad esempio, per .inventory-panel, .stats-panel, .options-panel (se sono modali).
+    Se invece sono pagine separate caricate in #game-container, avranno i loro CSS dedicati.
+    Assumendo che siano modali per ora:
+*/
+
+/* Esempio generico per pannelli modali nel gioco */
+.game-modal-panel .modal-content { /* Se si usa una classe wrapper per le modali di gioco */
+    max-width: 90%; /* Su mobile */
+}
+
+@media (min-width: 768px) {
+    .game-modal-panel .modal-content {
+        max-width: 600px; /* O una dimensione specifica per ogni modale */
+    }
+
+    /* Layout più complesso per la pagina di gioco su desktop */
+    #game-main-content {
+        flex-direction: row; /* Visuale a sinistra, testo/scelte a destra */
+        max-height: calc(100vh - 60px - 5px); /* Altezza header - altezza footer (se c'è) */
+    }
+
+    #scene-visuals {
+        flex: 1 1 50%; /* Occupa metà spazio, può crescere/restringersi */
+        max-height: none; /* Rimuove il limite vh se affiancato */
+        min-height: 300px;
+    }
+    #scene-image{
+        max-height: calc(100vh - 60px - 5px - 2rem); /* altezza header - altezza footer - padding */
+    }
+
+    .game-text-choices-wrapper { /* Wrapper per testo e scelte */
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 60px - 5px - 2rem); /* altezza header - altezza footer - padding */
+    }
+
+    #scene-text-container {
+        flex-grow: 1; /* Il testo occupa lo spazio disponibile prima delle scelte */
+        /* max-height: 60%; // Esempio, se si vuole limitare l'altezza del testo */
+    }
+
+    #choices-container {
+        flex-shrink: 0; /* Le scelte non si restringono */
+        max-height: 40%; /* Limita l'altezza dell'area scelte */
+        overflow-y: auto; /* Scroll per le scelte se sono troppe */
+    }
+}
+
+/* Stili specifici per i pannelli (inventario, statistiche, opzioni in-game)
+   saranno nei loro rispettivi file CSS (inventory.css, stats.css, options.css)
+   se sono complessi, o qui se sono semplici.
+*/
