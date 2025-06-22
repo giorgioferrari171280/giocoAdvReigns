@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Gioco - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/game.css">
+    <link rel="stylesheet" href="../css/components/animations.css">
+</head>
+<body>
+    <div class="page-container game-screen-container">
+        <header id="game-header">
+            <div id="location-info">
+                <span data-i18n="current_location_label">Luogo:</span>
+                <span id="current-location-name" data-i18n-placeholder="unknown_location">Sconosciuto</span>
+            </div>
+            <div id="game-menu-buttons">
+                <button id="open-inventory-btn" class="button icon-button" aria-label="Apri Inventario" data-i18n-aria-label="open_inventory_button_aria">
+                    <img src="../assets/images/ui/icons/inventory-icon.svg" alt="Inventario">
+                    <span data-i18n="inventory_button_label">Inventario</span>
+                </button>
+                <button id="open-stats-btn" class="button icon-button" aria-label="Apri Statistiche" data-i18n-aria-label="open_stats_button_aria">
+                    <img src="../assets/images/ui/icons/stats-icon.svg" alt="Statistiche">
+                    <span data-i18n="stats_button_label">Statistiche</span>
+                </button>
+                <button id="open-game-options-btn" class="button icon-button" aria-label="Opzioni di Gioco" data-i18n-aria-label="open_game_options_button_aria">
+                    <img src="../assets/images/ui/icons/options-icon.svg" alt="Opzioni">
+                    <span data-i18n="options_button_label">Opzioni</span>
+                </button>
+            </div>
+        </header>
+
+        <main id="game-main-content">
+            <div id="scene-visuals">
+                <img src="../assets/images/scenes/placeholder-scene.png" alt="Visualizzazione della scena corrente" id="scene-image">
+                <div id="character-display">
+                    <!-- <img src="../assets/images/characters/placeholder-char.png" alt="Personaggio" id="character-image"> -->
+                </div>
+            </div>
+            <div id="scene-text-container" role="log" aria-live="polite">
+                <p id="scene-description">Descrizione della scena corrente...</p>
+            </div>
+            <div id="choices-container">
+                <!-- Le scelte verranno popolate dinamicamente da GameController.js / SceneManager.js -->
+                <!-- Esempio di scelta:
+                <button class="choice-button" data-choice-id="1">Opzione 1</button>
+                -->
+            </div>
+        </main>
+
+        <footer id="game-footer">
+            <div id="notifications-area" aria-live="assertive">
+                <!-- Notifiche di gioco (es. oggetto raccolto) verranno mostrate qui -->
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modali che verranno mostrati sopra questa pagina -->
+    <!-- Includi qui i template HTML per inventario, statistiche, opzioni di gioco se sono modali -->
+    <!-- Oppure verranno caricati/iniettati da UIManager.js -->
+
+</body>
+</html>

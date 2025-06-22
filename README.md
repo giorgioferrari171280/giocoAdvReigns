@@ -1,154 +1,132 @@
-## File README.md principale
+# Gioco di Avventura Interattiva
 
-Questo file documenta la struttura del progetto, le istruzioni di setup, le convenzioni di sviluppo e le linee guida per l'aggiunta di nuovi contenuti per il videogioco di avventura testuale in stile Reigns.
+Benvenuti nel repository del Gioco di Avventura Interattiva! Questo progetto è un'esperienza testuale (o grafica minimale) basata su scelte che guida il giocatore attraverso una storia coinvolgente.
 
-**Nome del Gioco:** (Placeholder - Da definire)
-**Tecnologia:** HTML5, CSS3, JavaScript Vanilla
+## Tabella dei Contenuti
 
-### Struttura del Progetto
+- [Introduzione](#introduzione)
+- [Caratteristiche](#caratteristiche)
+- [Prerequisiti](#prerequisiti)
+- [Installazione](#installazione)
+- [Come Giocare](#come-giocare)
+- [Struttura del Progetto](#struttura-del-progetto)
+- [Contribuire](#contribuire)
+- [Roadmap Futura](#roadmap-futura)
+- [Licenza](#licenza)
 
-```
-.
-├── assets/
-│   ├── audio/
-│   │   ├── music/
-│   │   │   └── README.md
-│   │   └── sfx/
-│   │       └── README.md
-│   ├── fonts/
-│   │   └── README.md
-│   ├── images/
-│   │   ├── characters/
-│   │   │   └── README.md
-│   │   ├── cutscenes/
-│   │   │   └── README.md
-│   │   ├── items/
-│   │   │   └── README.md
-│   │   ├── locations/
-│   │   │   └── README.md
-│   │   └── ui/
-│   │       └── README.md
-│   └── videos/
-│       └── README.md
-├── config/
-│   ├── gameConfig.js     # Configurazione globale del gioco (dimensioni, difficoltà, costanti)
-│   └── locales.js        # Testi localizzati per UI e dialoghi
-├── data/
-│   ├── achievements.js   # Definizione degli achievement
-│   ├── chapters.js       # Definizione dei capitoli della storia
-│   ├── cutscenes.js      # Definizione delle cutscene (sequenze di immagini/testo)
-│   ├── endings.js        # Definizione dei finali possibili
-│   ├── items.js          # Descrizione degli oggetti collezionabili/utilizzabili
-│   ├── players.js        # Struttura dati per la Hall of Fame (gestita da localStorage)
-│   ├── scenes.js         # Specifiche di ogni schermata/scena statica del gioco
-│   └── sideQuests.js     # Definizione delle missioni secondarie
-├── utils/
-│   ├── audioManager.js   # Gestione audio (musica, SFX)
-│   ├── helpers.js        # Funzioni di utilità generiche (DOM, random, formatting)
-│   ├── localizationManager.js # Logica per caricamento e switch lingua
-│   ├── narrativeEngine.js # Gestione progressione storia, flag, ramificazioni
-│   ├── storageManager.js # Interazione con localStorage per salvataggi e preferenze
-│   └── uiManager.js      # Gestione dinamica elementi UI
-├── .gitignore            # File e cartelle da ignorare per Git
-├── CONTRIBUTING.md       # Linee guida per contributori
-├── index.html            # Entry point dell'applicazione
-├── LICENSE               # Licenza del software
-├── README.md             # Questo file
-├── script.js             # Logica principale del gioco, game loop, gestione stati
-└── style.css             # Stili CSS principali del gioco
-```
+## Introduzione
 
-### Setup Ambiente di Sviluppo Locale
+Questo gioco è progettato per offrire un'esperienza narrativa ramificata in cui le decisioni del giocatore influenzano l'esito della storia. È costruito utilizzando tecnologie web standard (HTML, CSS, JavaScript) per la massima accessibilità e portabilità.
 
-1.  **Clonare il repository:**
+## Caratteristiche
+
+*   **Narrativa Coinvolgente:** Una storia ricca con personaggi, ambientazioni e colpi di scena.
+*   **Scelte Significative:** Le decisioni del giocatore hanno un impatto reale sulla trama e sul finale.
+*   **Salvataggi Multipli:** Possibilità di salvare e caricare i progressi in diversi slot.
+*   **Interfaccia Utente Intuitiva:** Facile da navigare e da capire.
+*   **Localizzazione:** Supporto per multiple lingue.
+*   **Achievements:** Obiettivi da sbloccare per azioni specifiche nel gioco.
+*   **Design Responsivo:** Giocabile su desktop e dispositivi mobili.
+
+## Prerequisiti
+
+Per eseguire questo progetto localmente per lo sviluppo, avrai bisogno di:
+
+*   [Node.js](https://nodejs.org/) (che include npm)
+*   Un browser web moderno
+
+## Installazione
+
+1.  **Clona il repository:**
     ```bash
-    git clone <url_del_repository>
-    cd <nome_cartella_progetto>
+    git clone https://github.com/tuo-username/interactive-adventure-game.git
+    cd interactive-adventure-game
     ```
-2.  **Aprire `index.html`:**
-    Non è richiesto un server di sviluppo complesso per la versione base. Semplicemente apri il file `index.html` con un qualsiasi browser web moderno (Google Chrome, Firefox, Edge, Safari).
-    *   Su Windows: Doppio click su `index.html` o "Apri con..."
-    *   Su macOS: Doppio click su `index.html` o trascinalo sull'icona del browser.
-    *   Su Linux: `xdg-open index.html` o doppio click dal file manager.
 
-3.  **Strumenti di Sviluppo del Browser:**
-    Utilizza gli strumenti di sviluppo integrati nel browser (solitamente accessibili con `F12` o `Cmd+Opt+I` / `Ctrl+Shift+I`) per ispezionare elementi, debuggare JavaScript (Console, Debugger) e analizzare problemi di rete o performance.
+2.  **Installa le dipendenze di sviluppo:**
+    ```bash
+    npm install
+    ```
 
-### Convenzioni di Sviluppo
+3.  **Avvia il server di sviluppo:**
+    ```bash
+    npm start
+    ```
+    Questo aprirà automaticamente il gioco nel tuo browser predefinito, solitamente su `http://localhost:9000`.
 
-*   **Nomi File e Cartelle:** `kebab-case` (es. `game-config.js`, `player-stats.js`).
-*   **Variabili e Funzioni JavaScript:** `camelCase` (es. `playerInventory`, `updatePlayerStats()`).
-*   **Classi CSS:** `kebab-case` (es. `.game-container`, `.action-button`).
-*   **Commenti:** Commentare il codice in modo chiaro, specialmente per logiche complesse o strutture dati. Usare JSDoc per documentare funzioni, parametri e valori di ritorno in JavaScript.
-*   **Localizzazione:** Tutti i testi visibili all'utente devono essere gestiti tramite `config/locales.js` e `utils/localizationManager.js`. Non inserire stringhe di testo direttamente nell'HTML o nel JavaScript se devono essere tradotte.
-*   **Moduli JavaScript (Concettuali):** Anche se si usa JavaScript vanilla senza un bundler, organizzare il codice in file distinti per responsabilità (come nella cartella `utils/`) e caricarli in `index.html` nell'ordine corretto di dipendenza. Gli oggetti globali (es. `UIManager`, `AudioManager`) fungono da namespace.
-*   **Dati di Gioco:** I dati che definiscono il contenuto del gioco (scene, oggetti, capitoli) sono separati in file JSON-like (oggetti/array JavaScript) nella cartella `data/`. Questo facilita la modifica e l'espansione del contenuto senza toccare la logica principale.
-*   **CSS:** Utilizzare variabili CSS (`:root { --main-color: #fff; }`) per temi e dimensioni facilmente modificabili. Strutturare `style.css` in sezioni logiche.
+## Come Giocare
 
-### Linee Guida per l'Aggiunta di Nuovi Contenuti
+Una volta avviato il gioco:
 
-#### Aggiungere una Nuova Scena:
+1.  Verrai accolto dalla schermata iniziale/splash screen.
+2.  Dal menu principale, puoi iniziare una nuova partita, caricare una partita salvata o modificare le opzioni.
+3.  Durante il gioco, ti verranno presentate delle scene narrative e delle scelte. Clicca sulla scelta che preferisci per proseguire.
+4.  Esplora, interagisci con i personaggi e scopri i segreti del mondo di gioco!
 
-1.  **Definire la Scena:**
-    *   Apri `data/scenes.js`.
-    *   Aggiungi un nuovo oggetto al `gameScenes` con un ID univoco (es. `"scene_market_enter"`).
-    *   Specifica `backgroundImage` (crea l'immagine in `assets/images/locations/`), `narrativeTextKey`, e le `choices`.
-    *   Per ogni `narrativeTextKey` e `choiceTextKey`, aggiungi le traduzioni corrispondenti in tutte le lingue in `config/locales.js`.
-2.  **Collegare la Scena:**
-    *   Assicurati che una scelta in una scena esistente abbia come `targetSceneId` l'ID della tua nuova scena.
-    *   Oppure, se è la prima scena di un nuovo capitolo, aggiungi il suo ID all'array `sceneIds` del capitolo in `data/chapters.js`.
-3.  **Effetti e Condizioni (Opzionale):**
-    *   Aggiungi `effects` alle scelte o `onEnterEffects`/`onExitEffects` alla scena per modificare lo stato del gioco, statistiche, inventario o flag.
-    *   Aggiungi `conditions` alle scelte se devono apparire solo in determinate circostanze.
+## Struttura del Progetto
 
-#### Aggiungere un Nuovo Oggetto (Item):
+Il progetto è organizzato come segue:
 
-1.  **Definire l'Oggetto:**
-    *   Apri `data/items.js`.
-    *   Aggiungi un nuovo oggetto a `gameItems` con un ID univoco (es. `"ancient_scroll"`).
-    *   Specifica `nameKey`, `descriptionKey`, `icon` (crea l'icona in `assets/images/items/`).
-    *   Aggiungi le traduzioni per `nameKey` e `descriptionKey` in `config/locales.js`.
-2.  **Integrare l'Oggetto:**
-    *   Puoi far ottenere l'oggetto al giocatore tramite un effetto di una scelta in una scena (es. `{ type: "item_add", itemId: "ancient_scroll" }`).
-    *   Puoi usare la presenza dell'oggetto come condizione per una scelta (`{ type: "item_check", itemId: "ancient_scroll", present: true }`).
+*   `index.html`: Il punto di ingresso principale dell'applicazione.
+*   `package.json`: Definisce gli script npm e le dipendenze di sviluppo.
+*   `webpack.config.js`: Configurazione per Webpack, il bundler di moduli.
+*   `.gitignore`: Specifica i file e le cartelle ignorati da Git.
+*   `deploy.sh`: Script di esempio per automatizzare il processo di deployment.
+*   `README.md`: Questo file.
+*   `API.md`: Documentazione tecnica per gli sviluppatori.
+*   `CHANGELOG.md`: Registro delle modifiche apportate al progetto.
+*   `assets/`: Contiene tutte le risorse multimediali (immagini, audio).
+    *   `audio/`: File audio (musica, effetti sonori).
+    *   `images/`: Immagini per scene, UI, oggetti.
+*   `css/`: Contiene i fogli di stile CSS.
+    *   `base/`: Stili fondamentali, variabili, temi.
+    *   `components/`: Stili per componenti UI riutilizzabili.
+    *   `i18n/`: Stili specifici per l'internazionalizzazione.
+    *   `media/`: Stili per media specifici (es. stampa).
+    *   `pages/`: Stili specifici per ogni pagina/schermata.
+    *   `utilities/`: Classi di utilità e debug.
+*   `data/`: Contiene i dati del gioco (scene, oggetti, configurazioni).
+    *   `config/`: File di configurazione del gioco e preferenze utente.
+    *   `game/`: Dati principali del gioco (scene, oggetti, personaggi, achievements).
+*   `js/`: Contiene il codice JavaScript.
+    *   `core/`: Logica centrale del gioco (motore, gestore scene, stato).
+    *   `systems/`: Sistemi specifici (salvataggio, localizzazione, audio, UI).
+    *   `controllers/`: Gestori per le diverse schermate/interfacce.
+    *   `narrative/`: Componenti per la gestione della narrazione e delle cutscene.
+    *   `utils/`: Funzioni di utilità (caricamento dati, validazione).
+    *   `build/`: Utilità per il processo di build.
+*   `locales/`: File di traduzione per l'internazionalizzazione (i18n).
+*   `pages/`: Contiene i file HTML per le diverse schermate del gioco.
 
-#### Aggiungere una Nuova Lingua:
+Per una descrizione più dettagliata dei moduli e delle API, consulta `API.md`.
 
-1.  **Creare la Sezione Lingua:**
-    *   Apri `config/locales.js`.
-    *   Aggiungi una nuova chiave di primo livello con il codice ISO 639-1 della lingua (es. `"pl"` per il Polacco).
-    *   Copia la struttura di una lingua esistente (es. `en`) e traduci tutte le stringhe.
-2.  **Aggiornare il Selettore Lingua:**
-    *   `LocalizationManager.getAvailableLanguages()` dovrebbe essere aggiornato se si usa una mappatura statica dei nomi delle lingue.
-    *   La UI che mostra il selettore di lingua (in `showPreOptionsScreen` e `showOptions` in `script.js`) dovrebbe popolare dinamicamente le opzioni basandosi su `LocalizationManager.getAvailableLanguages()`.
+## Contribuire
 
-#### Aggiungere una Nuova Cutscene:
+Siamo aperti a contributi! Se desideri contribuire, per favore:
 
-1.  **Definire la Cutscene:**
-    *   Apri `data/cutscenes.js`.
-    *   Aggiungi un nuovo oggetto a `gameCutscenes` con un ID univoco.
-    *   Definisci l'array `screens`, ognuno con `imageId` (o `videoId`), `textKey`, e opzionalmente `soundtrackId` o `sfx`.
-    *   Crea le immagini/video necessari in `assets/images/cutscenes/` o `assets/videos/`.
-    *   Aggiungi le traduzioni per ogni `textKey` in `config/locales.js`.
-2.  **Attivare la Cutscene:**
-    *   Imposta `openingCutsceneId` o `closingCutsceneId` in un capitolo (`data/chapters.js`).
-    *   Oppure, da una scena, una scelta potrebbe avere un effetto che porta a una cutscene (logica da implementare in `script.js` o `NarrativeEngine`).
-    *   Specifica `nextSceneAfterEnd` o `nextCutsceneIdAfterEnd` per definire cosa succede dopo la cutscene.
+1.  Fai un Fork del repository.
+2.  Crea un nuovo branch per la tua feature o bugfix (`git checkout -b nome-feature`).
+3.  Effettua le tue modifiche.
+4.  Assicurati che il codice sia ben formattato e, se possibile, aggiungi test.
+5.  Fai un Commit delle tue modifiche (`git commit -am 'Aggiunta nuova feature'`).
+6.  Fai un Push al tuo branch (`git push origin nome-feature`).
+7.  Apri una Pull Request.
 
-### Flusso di Gioco (Panoramica MVP)
+Per favore, leggi `CONTRIBUTING.md` (da creare, se necessario) per linee guida più dettagliate.
 
-1.  **Pre-Opzioni:** Scelta lingua, audio ON/OFF, volume.
-2.  **Splash Screen:** Caricamento fittizio.
-3.  **Menu Principale:** Nuova Partita, Carica Partita, Hall of Fame, Opzioni, Crediti, Esci.
-4.  **Nuova Partita:** Scelta slot salvataggio -> Cutscene Introduttiva.
-5.  **Gioco:**
-    *   Visualizzazione scena (immagine, testo).
-    *   Scelta azioni (pulsanti).
-    *   Aggiornamento stato gioco (statistiche, inventario, flag).
-    *   Progressione alla scena successiva.
-    *   Accesso a Inventario, Stats Eroe, Opzioni (Menu Pausa).
-6.  **Fine Capitolo:** Cutscene -> Inizio nuovo capitolo (con cutscene).
-7.  **Fine Gioco:** Determinazione finale basato su metriche -> Cutscene Finale -> Hall of Fame.
+## Roadmap Futura
 
-Consultare i singoli file `README.md` nelle sottocartelle di `assets/` per convenzioni specifiche sugli asset.
-Consultare i commenti nei file `.js` per dettagli sull'implementazione di specifiche funzioni o strutture dati.
+*   [ ] Aggiungere più contenuti narrativi (capitoli, finali alternativi).
+*   [ ] Migliorare il sistema di animazioni per le cutscene.
+*   [ ] Implementare un sistema di inventario più complesso.
+*   [ ] Aggiungere effetti sonori e musica più ricchi.
+*   [ ] Sviluppare un editor di scene per facilitare la creazione di contenuti.
+*   [ ] Supporto per modding da parte della community.
+
+## Licenza
+
+Questo progetto è rilasciato sotto la Licenza MIT. Vedi il file `LICENSE` (da creare) per maggiori dettagli.
+
+---
+
+Grazie per aver scelto di giocare o contribuire al nostro Gioco di Avventura Interattiva!

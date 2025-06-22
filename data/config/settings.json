@@ -1,0 +1,40 @@
+{
+    "comment_structure": "This file defines the structure and default values for user-specific settings that are typically stored in localStorage. The actual values will be loaded from localStorage by Config.js, and these defaults will be used if no stored settings are found or if new settings are added to the game.",
+
+    "language": "en",
+    "masterVolume": 0.8,
+    "musicVolume": 0.6,
+    "sfxVolume": 0.8,
+    "ambientVolume": 0.5,
+    "isMuted": false,
+
+    "textSize": "medium",
+    "textSpeed": "normal",
+
+    "highContrast": false,
+    "reduceMotion": false,
+    "textToSpeech": false,
+
+    "skipReadTextMain": false,
+    "skipReadTextInGame": false,
+    "enableAutosave": true,
+
+    "brightness": 100,
+
+    "visitedBefore": false,
+    "lastSaveSlot": null,
+    "completedEndings": [],
+
+    "customKeybindings": {
+    },
+
+    "playerProfile": {
+        "avatarSeed": null,
+        "preferredName": null
+    },
+
+    "developerSettings": {
+        "showDebugInfo": false,
+        "forceLanguage": null
+    }
+}

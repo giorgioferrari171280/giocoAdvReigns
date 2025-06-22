@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiche Giocatore - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/stats.css">
+    <!-- Potrebbe essere una modale, quindi gli stili potrebbero essere parte di game.css o avere un overlay dedicato -->
+</head>
+<body>
+    <div class="modal-overlay hidden" id="stats-modal-overlay">
+        <div class="modal-content stats-panel" role="dialog" aria-labelledby="stats-title" aria-modal="true">
+            <header class="modal-header">
+                <h2 id="stats-title" data-i18n="stats_panel_title">Statistiche Giocatore</h2>
+                <button id="close-stats-btn" class="button close-button" data-i18n-aria-label="close_stats_aria_label">&times;</button>
+            </header>
+            <main class="modal-body">
+                <div id="player-avatar-container">
+                    <img src="../assets/images/characters/player-avatar-placeholder.png" alt="Avatar del Giocatore" id="player-avatar">
+                    <h3 id="player-name-stats" data-i18n-placeholder="player_name_placeholder">Nome Giocatore</h3>
+                </div>
+                <ul id="stats-list">
+                    <!-- Le statistiche verranno popolate dinamicamente da StatsSystem.js / UIManager.js -->
+                    <!-- Esempio di statistica:
+                    <li class="stat-item">
+                        <span class="stat-name" data-i18n="stat_health">Salute:</span>
+                        <span class="stat-value" id="stat-health-value">100</span> / <span id="stat-health-max">100</span>
+                        <div class="stat-bar health-bar"><div style="width: 100%;"></div></div>
+                    </li>
+                    <li class="stat-item">
+                        <span class="stat-name" data-i18n="stat_mana">Mana:</span>
+                        <span class="stat-value" id="stat-mana-value">50</span> / <span id="stat-mana-max">50</span>
+                        <div class="stat-bar mana-bar"><div style="width: 100%;"></div></div>
+                    </li>
+                    <li class="stat-item">
+                        <span class="stat-name" data-i18n="stat_strength">Forza:</span>
+                        <span class="stat-value" id="stat-strength-value">10</span>
+                    </li>
+                    -->
+                </ul>
+                <div id="active-effects">
+                    <h4 data-i18n="active_effects_title">Effetti Attivi:</h4>
+                    <ul id="effects-list">
+                        <!-- <li data-i18n="effect_blessed">Benedetto (+1 Carisma)</li> -->
+                    </ul>
+                </div>
+            </main>
+            <footer class="modal-footer">
+                <p data-i18n="stats_updated_info">Statistiche aggiornate al turno corrente.</p>
+            </footer>
+        </div>
+    </div>
+    <!-- La logica di questo pannello sarà gestita da StatsSystem.js e GameController/UIManager.js -->
+</body>
+</html>

@@ -1,0 +1,171 @@
+/* ============== DEBUG UTILITY CLASSES ============== */
+
+/*
+    ATTENZIONE: Queste classi sono SOLO per scopi di debug durante lo sviluppo.
+    Non dovrebbero MAI essere usate in produzione o committate nel codice finale
+    se non temporaneamente per risolvere problemi di layout.
+    È consigliabile rimuovere il link a questo file CSS prima del deployment.
+*/
+
+/* === Bordo per tutti gli elementi (per visualizzare il box model) === */
+/*
+   Da usare con cautela, può rendere la pagina molto confusionaria.
+   Attivare aggiungendo la classe .debug-borders al tag <body>.
+*/
+body.debug-borders * {
+    outline: 1px solid rgba(255, 0, 0, 0.3) !important; /* Rosso semi-trasparente */
+}
+
+body.debug-borders div {
+    outline: 1px solid rgba(0, 255, 0, 0.3) !important; /* Verde per i div */
+}
+
+body.debug-borders span {
+    outline: 1px solid rgba(0, 0, 255, 0.3) !important; /* Blu per gli span */
+}
+
+body.debug-borders img {
+    outline: 2px dashed rgba(255, 165, 0, 0.5) !important; /* Arancione per le immagini */
+}
+
+body.debug-borders button,
+body.debug-borders a {
+    outline: 2px dotted rgba(128, 0, 128, 0.5) !important; /* Viola per elementi interattivi */
+}
+
+
+/* === Sfondo colorato per aree specifiche === */
+.debug-bg-red {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    border: 1px dashed red !important;
+}
+.debug-bg-green {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    border: 1px dashed green !important;
+}
+.debug-bg-blue {
+    background-color: rgba(0, 0, 255, 0.1) !important;
+    border: 1px dashed blue !important;
+}
+.debug-bg-yellow {
+    background-color: rgba(255, 255, 0, 0.1) !important;
+    border: 1px dashed yellow !important;
+}
+.debug-bg-purple {
+    background-color: rgba(128, 0, 128, 0.1) !important;
+    border: 1px dashed purple !important;
+}
+
+/* === Mostra dimensioni dell'elemento (usando ::after) === */
+/* Attivare aggiungendo .debug-show-size all'elemento desiderato */
+.debug-show-size {
+    position: relative !important;
+}
+.debug-show-size::after {
+    content: "w: " attr(data-debug-width) " / h: " attr(data-debug-height); /* Richiede JS per popolare data-* */
+    /* Oppure, se non si usa JS, si può provare con CSS generato, ma è meno preciso */
+    /* content: "CSS calculated dimensions"; */
+    position: absolute !important;
+    top: -20px !important; /* Posiziona sopra l'elemento */
+    left: 0 !important;
+    background-color: rgba(0,0,0,0.7) !important;
+    color: white !important;
+    padding: 2px 5px !important;
+    font-size: 10px !important;
+    white-space: nowrap !important;
+    z-index: var(--z-index-debug, 9999) !important;
+    border-radius: 3px !important;
+    pointer-events: none !important; /* Non interferisce con il mouse */
+}
+/* JavaScript per popolare data-debug-width e data-debug-height:
+   (da eseguire al caricamento della pagina o al resize se necessario)
+   document.querySelectorAll('.debug-show-size').forEach(el => {
+       const rect = el.getBoundingClientRect();
+       el.dataset.debugWidth = Math.round(rect.width) + 'px';
+       el.dataset.debugHeight = Math.round(rect.height) + 'px';
+   });
+*/
+
+
+/* === Evidenzia overflow === */
+/* Aggiungere .debug-check-overflow all'elemento contenitore */
+.debug-check-overflow > * { /* Controlla i figli diretti */
+    /* Se un figlio è più grande del genitore, avrà un bordo rosso */
+    /* Questo è difficile da fare puramente con CSS senza conoscere le dimensioni esatte.
+       In genere, l'overflow è visibile o causa scrollbars.
+       Gli strumenti del browser sono migliori per questo.
+       Questa è una semplice evidenziazione se si sospetta qualcosa. */
+}
+.debug-check-overflow:has(> :where(:not(script):not(style))[style*="overflow"], > :where(:not(script):not(style))[style*="overflow-x"], > :where(:not(script):not(style))[style*="overflow-y"]) {
+    /* Evidenzia contenitori che hanno overflow gestito inline (non ideale) */
+    /* border: 3px dotted orange !important; */
+}
+.debug-check-overflow[style*="overflow"],
+.debug-check-overflow[style*="overflow-x"],
+.debug-check-overflow[style*="overflow-y"] {
+     /* border: 3px dotted orange !important; */
+}
+
+/* === Forza visibilità di elementi nascosti (per debug) === */
+/* Usare con estrema cautela, può rompere il layout */
+/*
+body.debug-force-visible .hidden,
+body.debug-force-visible [hidden],
+body.debug-force-visible [style*="display: none"],
+body.debug-force-visible [style*="visibility: hidden"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.5 !important; // Rendi semi-trasparente per indicare che era nascosto
+    outline: 2px dashed magenta !important;
+}
+*/
+
+/* === Log CSS (stampa messaggi nella console tramite ::before o ::after) === */
+/* Esempio: .debug-log-message::before { content: "DEBUG: Elemento X caricato"; display: none; } */
+/* Questo è più un trucco che una vera utilità di debug CSS robusta. */
+
+
+/* === Mostra breakpoint attivo (per testare responsive design) === */
+body::after {
+    content: "XS"; /* Default per mobile */
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: var(--z-index-debug, 9999);
+    opacity: 0.8;
+    pointer-events: none; /* Non interferisce con il mouse */
+}
+
+@media (min-width: 576px) { /* Small devices (sm) */
+    body::after { content: "SM (≥576px)"; background-color: rgba(0, 50, 150, 0.7); }
+}
+@media (min-width: 768px) { /* Medium devices (md) */
+    body::after { content: "MD (≥768px)"; background-color: rgba(0, 100, 100, 0.7); }
+}
+@media (min-width: 992px) { /* Large devices (lg) */
+    body::after { content: "LG (≥992px)"; background-color: rgba(100, 100, 0, 0.7); }
+}
+@media (min-width: 1200px) { /* Extra large devices (xl) */
+    body::after { content: "XL (≥1200px)"; background-color: rgba(150, 50, 0, 0.7); }
+}
+@media (min-width: 1400px) { /* Extra extra large devices (xxl) */
+    body::after { content: "XXL (≥1400px)"; background-color: rgba(100, 0, 100, 0.7); }
+}
+
+/* Nascondi il display del breakpoint se una classe .no-debug-breakpoint è sul body */
+body.no-debug-breakpoint::after {
+    display: none !important;
+}
+
+
+/*
+    Ricorda: questi strumenti sono un aiuto, ma gli strumenti di sviluppo
+    integrati nei browser (Inspector, Console, etc.) sono generalmente
+    più potenti e flessibili per il debug CSS e di layout.
+*/

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crediti - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/menu.css"> <!-- Potrebbe condividere stili con menu.css -->
+    <!-- <link rel="stylesheet" href="../css/pages/credits.css"> se servono stili specifici -->
+    <style>
+        .credits-container { text-align: center; padding-top: 20px; }
+        .credits-list { list-style: none; padding: 0; }
+        .credits-list li { margin-bottom: 10px; }
+        .credits-role { font-weight: bold; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="page-container credits-container">
+        <header>
+            <h1 data-i18n="credits_title">Crediti</h1>
+        </header>
+        <main>
+            <section id="development-team">
+                <h2 data-i18n="dev_team_heading">Team di Sviluppo</h2>
+                <ul class="credits-list">
+                    <li><span class="credits-role" data-i18n="role_lead_designer">Lead Designer & Scrittore:</span> [Nome Cognome / Pseudonimo]</li>
+                    <li><span class="credits-role" data-i18n="role_lead_programmer">Lead Programmer:</span> [Nome Cognome / Pseudonimo]</li>
+                    <li><span class="credits-role" data-i18n="role_artist">Artista Grafico:</span> [Nome Cognome / Pseudonimo]</li>
+                    <li><span class="credits-role" data-i18n="role_sound_designer">Sound Designer & Compositore:</span> [Nome Cognome / Pseudonimo]</li>
+                    <li><span class="credits-role" data-i18n="role_qa_tester">QA Tester:</span> [Nome Cognome / Pseudonimo]</li>
+                    <!-- Aggiungere altri ruoli e nomi secondo necessità -->
+                </ul>
+            </section>
+
+            <section id="special-thanks">
+                <h2 data-i18n="special_thanks_heading">Ringraziamenti Speciali</h2>
+                <ul class="credits-list">
+                    <li data-i18n="thanks_community">Alla community per il supporto e il feedback.</li>
+                    <li data-i18n="thanks_inspirations">Alle fonti di ispirazione (altri giochi, libri, film).</li>
+                    <li>[Nome specifico o gruppo da ringraziare]</li>
+                </ul>
+            </section>
+
+            <section id="asset-credits">
+                <h2 data-i18n="asset_credits_heading">Crediti per Asset Esterni</h2>
+                <p data-i18n="asset_credits_intro">Alcune risorse grafiche, audio o font potrebbero essere state utilizzate sotto licenza:</p>
+                <ul class="credits-list">
+                    <li><span class="credits-role">Nome Asset/Libreria:</span> [Fonte/Autore] - [Tipo Licenza]</li>
+                    <!-- Esempio: <li><span class="credits-role">Font "Open Sans":</span> Google Fonts - Apache License 2.0</li> -->
+                </ul>
+            </section>
+             <p data-i18n="copyright_notice_placeholder">&copy; <span id="current-year-credits"></span> Il Tuo Nome / Nome Compagnia. Tutti i diritti riservati.</p>
+        </main>
+        <footer>
+            <button id="back-to-menu-credits-btn" class="button secondary-button" data-i18n="back_to_main_menu">Torna al Menu</button>
+        </footer>
+    </div>
+    <script>
+        const currentYearSpanCredits = document.getElementById('current-year-credits');
+        if (currentYearSpanCredits) {
+            currentYearSpanCredits.textContent = new Date().getFullYear();
+        }
+    </script>
+</body>
+</html>

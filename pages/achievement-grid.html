@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/achievement-grid.css">
+</head>
+<body>
+    <div class="page-container achievement-grid-container">
+        <header>
+            <h1 data-i18n="achievements_title">Achievements</h1>
+            <p>
+                <span data-i18n="unlocked_status_label">Sbloccati:</span>
+                <span id="grid-unlocked-count">0</span>/<span id="grid-total-count">0</span>
+                (<span id="grid-percentage">0%</span>)
+            </p>
+        </header>
+        <main>
+            <div id="filters-and-sort">
+                <label for="achievement-filter" data-i18n="filter_label">Filtra:</label>
+                <select id="achievement-filter">
+                    <option value="all" data-i18n="filter_all">Tutti</option>
+                    <option value="unlocked" data-i18n="filter_unlocked">Sbloccati</option>
+                    <option value="locked" data-i18n="filter_locked">Bloccati</option>
+                </select>
+                <label for="achievement-sort" data-i18n="sort_label">Ordina per:</label>
+                <select id="achievement-sort">
+                    <option value="name" data-i18n="sort_name">Nome</option>
+                    <option value="rarity" data-i18n="sort_rarity">Rarità</option>
+                    <option value="unlocked_date" data-i18n="sort_unlocked_date">Data Sblocco</option>
+                </select>
+            </div>
+
+            <div id="achievements-listing" class="achievements-grid">
+                <!-- Gli achievement verranno popolati dinamicamente da AchievementSystem.js / HallOfFameController.js -->
+                <!-- Esempio di achievement (da replicare): -->
+                <!--
+                <div class="achievement-card locked" data-achievement-id="ach001">
+                    <div class="achievement-icon-container">
+                        <img src="../assets/images/ui/achievements/placeholder-ach.png" alt="Icona Achievement" class="achievement-icon">
+                        <span class="locked-overlay" data-i18n="locked_overlay_text">Bloccato</span>
+                    </div>
+                    <div class="achievement-details">
+                        <h3 class="achievement-name">[Nome Achievement]</h3>
+                        <p class="achievement-description">[Descrizione di come sbloccarlo o cosa rappresenta]</p>
+                        <p class="achievement-unlock-date">[Data di sblocco, se sbloccato]</p>
+                        <p class="achievement-rarity">[Rarità: Comune, Non Comune, Raro, Epico, Leggendario]</p>
+                    </div>
+                </div>
+                -->
+            </div>
+             <p id="no-achievements-message" class="hidden" data-i18n="no_achievements_to_display">Nessun achievement da visualizzare con i filtri correnti.</p>
+        </main>
+        <footer>
+            <button id="back-to-hof-btn" class="button secondary-button" data-i18n="back_to_hall_of_fame">Torna a Hall of Fame</button>
+            <button id="back-to-menu-achievements-btn" class="button secondary-button" data-i18n="back_to_main_menu">Torna al Menu</button>
+        </footer>
+    </div>
+    <!-- Script per questa pagina sarà gestito da HallOfFameController.js e AchievementSystem.js -->
+</body>
+</html>

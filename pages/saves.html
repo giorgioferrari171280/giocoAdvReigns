@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvataggi - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/menu.css"> <!-- Potrebbe condividere stili con menu.css -->
+    <!-- <link rel="stylesheet" href="../css/pages/saves.css"> se servono stili specifici -->
+</head>
+<body>
+    <div class="page-container saves-container">
+        <header>
+            <h1 id="saves-title" data-i18n="saves_title">Carica Partita / Salva Partita</h1>
+        </header>
+        <main>
+            <div id="save-slots-container">
+                <!-- Gli slot di salvataggio verranno generati dinamicamente da SaveSystem.js / UIManager.js -->
+                <!-- Esempio di slot (da replicare e popolare dinamicamente): -->
+                <div class="save-slot" data-slot-id="1">
+                    <span class="slot-name" data-i18n-aria-label="save_slot_label_empty">Slot 1: Vuoto</span>
+                    <span class="slot-timestamp">--/--/---- --:--</span>
+                    <div class="slot-actions">
+                        <button class="button action-button save-action" data-i18n="save_button" disabled>Salva</button>
+                        <button class="button action-button load-action" data-i18n="load_button" disabled>Carica</button>
+                        <button class="button action-button delete-action" data-i18n="delete_button" disabled>Elimina</button>
+                    </div>
+                </div>
+                <div class="save-slot" data-slot-id="2">
+                    <span class="slot-name" data-i18n-aria-label="save_slot_label_empty">Slot 2: Vuoto</span>
+                    <span class="slot-timestamp">--/--/---- --:--</span>
+                     <div class="slot-actions">
+                        <button class="button action-button save-action" data-i18n="save_button" disabled>Salva</button>
+                        <button class="button action-button load-action" data-i18n="load_button" disabled>Carica</button>
+                        <button class="button action-button delete-action" data-i18n="delete_button" disabled>Elimina</button>
+                    </div>
+                </div>
+                <!-- Aggiungi altri slot secondo necessità (es. fino a 5 o 10) -->
+            </div>
+            <p id="overwrite-warning" class="warning-text hidden" data-i18n="overwrite_save_warning">Attenzione: Salvare qui sovrascriverà i dati esistenti.</p>
+        </main>
+        <footer>
+            <button id="back-to-menu-btn" class="button secondary-button" data-i18n="back_to_main_menu">Torna al Menu</button>
+        </footer>
+    </div>
+</body>
+</html>

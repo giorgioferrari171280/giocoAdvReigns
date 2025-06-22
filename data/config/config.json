@@ -1,0 +1,48 @@
+{
+    "gameTitle": "The Whispering Shards",
+    "version": "0.1.0-alpha",
+    "defaultLanguage": "en",
+    "logLevel": "info",
+    "debugMode": false,
+
+    "savePrefix": "whisperingShards_",
+    "autosaveSlotId": "autosave_0",
+    "maxSaveSlots": 5,
+    "enableAutosave": true,
+    "enableAutosaveOnSceneChange": true,
+    "alwaysShowPreOptions": false,
+
+    "initialSceneId": "intro_cutscene_placeholder",
+    "firstPlayableSceneAfterIntro": "scene_001",
+
+    "analyticsTrackingId": null,
+    "enableAnalytics": false,
+
+    "audioSettings": {
+        "defaultMasterVolume": 0.8,
+        "defaultMusicVolume": 0.6,
+        "defaultSfxVolume": 0.8,
+        "defaultAmbientVolume": 0.5,
+        "defaultMuteState": false
+    },
+
+    "textSettings": {
+        "defaultTextSpeed": "normal",
+        "defaultFontSize": "medium"
+    },
+
+    "accessibilityDefaults": {
+        "highContrast": false,
+        "reduceMotion": false,
+        "textToSpeech": false
+    },
+
+    "developerInfo": {
+        "name": "Your Name/Studio",
+        "website": "https://example.com"
+    },
+
+    "featureFlags": {
+        "enableExperimentalFeatureX": false
+    }
+}

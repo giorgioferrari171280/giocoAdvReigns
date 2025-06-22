@@ -1,0 +1,218 @@
+/* ============== STYLES FOR INVENTORY.HTML (or Modal) ============== */
+
+/*
+    Questi stili sono per il pannello dell'inventario.
+    Assumiamo che sia una modale, quindi .modal-overlay e .modal-content
+    sono già definiti in global.css.
+*/
+
+.inventory-panel .modal-content { /* Specifica per la modale inventario */
+    max-width: var(--modal-max-width, 700px); /* Larghezza per l'inventario */
+    /* min-height: 400px; */ /* Altezza minima se necessario */
+}
+
+.inventory-panel .modal-header h2 { /* Titolo "Inventario" */
+    color: var(--accent-color, #f1c40f); /* Colore distintivo per il titolo dell'inventario */
+}
+
+.inventory-panel .modal-body {
+    display: flex;
+    flex-direction: column; /* Su mobile: griglia sopra, dettagli sotto */
+    gap: var(--spacing-medium, 1rem);
+}
+
+/* Griglia degli oggetti */
+#inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Colonne flessibili per oggetti */
+    gap: var(--spacing-small, 0.75rem);
+    padding: var(--spacing-small, 0.5rem);
+    background-color: var(--background-color, #1a1e24); /* Sfondo leggermente diverso per la griglia */
+    border: 1px solid var(--border-color-soft, #3a3f46);
+    border-radius: var(--border-radius-medium, 5px);
+    min-height: 150px; /* Altezza minima per la griglia */
+    overflow-y: auto; /* Scroll se ci sono molti oggetti */
+    max-height: 40vh; /* Limita altezza griglia */
+}
+
+.inventory-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* Mantiene gli slot quadrati */
+    background-color: var(--surface-color, #24282e);
+    border: 1px solid var(--border-color-strong, #50565e);
+    border-radius: var(--border-radius-small, 3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra l'immagine dell'oggetto */
+    padding: var(--spacing-xsmall, 0.25rem);
+    cursor: pointer;
+    transition: transform var(--transition-speed-fast, 0.15s) ease,
+                box-shadow var(--transition-speed-fast, 0.15s) ease,
+                border-color var(--transition-speed-fast, 0.15s) ease;
+    overflow: hidden; /* Nasconde parti dell'immagine se troppo grande */
+}
+
+.inventory-item:hover,
+.inventory-item:focus,
+.inventory-item.selected { /* Stile per l'oggetto selezionato */
+    transform: scale(1.05);
+    border-color: var(--primary-color, #4a90e2);
+    box-shadow: 0 0 10px var(--primary-color-light, rgba(74, 144, 226, 0.5));
+    outline: none; /* Usa box-shadow per il focus */
+}
+.inventory-item.selected {
+    border-width: 2px;
+}
+
+
+.inventory-item img {
+    max-width: 80%;
+    max-height: 70%;
+    object-fit: contain; /* Mostra l'intera immagine dell'oggetto */
+    pointer-events: none; /* Per non interferire con il click sull'item */
+}
+
+.inventory-item .item-name { /* Nome sotto l'immagine, potrebbe essere nascosto se c'è tooltip */
+    display: none; /* Nascosto di default, mostrato in #item-details */
+    /* font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    text-align: center;
+    margin-top: var(--spacing-xxsmall, 0.25rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%; */
+}
+
+.inventory-item .item-quantity {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    font-size: var(--font-size-small, 0.875rem);
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0px 4px;
+    border-radius: var(--border-radius-small, 3px);
+}
+
+/* Dettagli dell'oggetto selezionato */
+#item-details {
+    background-color: var(--surface-color, #24282e);
+    padding: var(--spacing-medium, 1rem);
+    border: 1px solid var(--border-color-soft, #3a3f46);
+    border-radius: var(--border-radius-medium, 5px);
+    /* min-height: 120px; // Altezza minima per i dettagli */
+}
+#item-details.hidden {
+    display: none;
+}
+
+#selected-item-name {
+    font-size: var(--font-size-large, 1.25rem);
+    color: var(--heading-color, #ffffff);
+    margin-top: 0;
+    margin-bottom: var(--spacing-small, 0.5rem);
+    text-align: center;
+}
+
+#selected-item-image {
+    display: block;
+    max-width: 100px; /* Immagine più grande nei dettagli */
+    max-height: 100px;
+    object-fit: contain;
+    margin: 0 auto var(--spacing-medium, 1rem);
+    background-color: var(--background-color-light, #2a2e34); /* Sfondo per l'immagine */
+    padding: var(--spacing-xsmall, 0.25rem);
+    border-radius: var(--border-radius-small, 3px);
+    border: 1px solid var(--border-color-strong, #50565e);
+}
+
+#selected-item-description {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-bottom: var(--spacing-medium, 1rem);
+    min-height: 40px; /* Spazio per la descrizione */
+    text-align: center;
+}
+
+#item-actions {
+    display: flex;
+    gap: var(--spacing-small, 0.5rem);
+    justify-content: center; /* Centra i bottoni di azione */
+}
+
+#item-actions .button {
+    padding: var(--spacing-xsmall, 0.5rem) var(--spacing-small, 0.75rem);
+    font-size: var(--font-size-base, 1rem);
+}
+/* Esempio: bottone "Usa" */
+#use-item-btn {
+    background-color: var(--success-color-bg, #27ae60);
+    color: #fff;
+}
+#use-item-btn:hover {
+    background-color: var(--success-color, #2ecc71);
+}
+
+
+/* Footer della modale inventario */
+.inventory-panel .modal-footer {
+    text-align: left; /* Allinea il testo della capacità a sinistra */
+}
+
+#inventory-capacity {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+}
+#inventory-capacity #current-items,
+#inventory-capacity #max-items {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+}
+
+
+/* Responsive per l'inventario */
+@media (min-width: 768px) { /* Tablet e schermi più grandi */
+    .inventory-panel .modal-body {
+        flex-direction: row; /* Griglia a sinistra, dettagli a destra */
+        align-items: flex-start; /* Allinea gli elementi all'inizio */
+        max-height: 70vh; /* Limita altezza corpo modale */
+    }
+
+    #inventory-grid {
+        flex: 2; /* La griglia occupa più spazio */
+        max-height: none; /* Rimuove limite altezza se affiancata */
+        /* Potrebbe avere più colonne qui se la larghezza lo permette */
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+
+    #item-details {
+        flex: 1; /* I dettagli occupano meno spazio */
+        min-width: 250px; /* Larghezza minima per i dettagli */
+        max-height: 65vh; /* Limita altezza e abilita scroll se necessario */
+        overflow-y: auto;
+    }
+
+    #selected-item-name { text-align: left; }
+    #selected-item-description { text-align: left; }
+    #item-actions { justify-content: flex-start; }
+}
+
+@media (max-width: 480px) { /* Cellulari molto piccoli */
+    #inventory-grid {
+        grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); /* Slot più piccoli */
+        gap: var(--spacing-xsmall, 0.25rem);
+    }
+    .inventory-item img {
+        max-width: 70%;
+        max-height: 60%;
+    }
+    #selected-item-name {
+        font-size: var(--font-size-base, 1rem);
+    }
+    #selected-item-description {
+        font-size: var(--font-size-small, 0.875rem);
+    }
+}

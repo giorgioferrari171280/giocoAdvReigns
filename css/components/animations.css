@@ -1,0 +1,206 @@
+/* ============== GLOBAL ANIMATIONS ============== */
+
+/* === Keyframes per animazioni comuni === */
+
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Slide In from Left */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide In from Right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide In from Top */
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Slide In from Bottom */
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Slide Out to Left */
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Slide Out to Right */
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Pulse (per evidenziare un elemento) */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 var(--primary-color-light, rgba(74,144,226,0.4)); }
+    70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(74,144,226,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74,144,226,0); }
+}
+
+/* Bounce (per un effetto giocoso) */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* Shake (per errore o avviso) */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Blink (per testo o cursori) - già definito in splash.css, qui per centralizzazione */
+@keyframes blink-caret-anim { /* Rinominato per evitare conflitti se splash.css è già caricato */
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+
+/* === Classi di Utilità per Animazioni === */
+/* Queste classi possono essere aggiunte agli elementi HTML per applicare le animazioni */
+
+.animate-fade-in {
+    animation: fadeIn var(--transition-speed-normal, 0.3s) var(--timing-function-ease, ease) forwards;
+}
+.animate-fade-in-slow {
+    animation: fadeIn var(--transition-speed-slow, 0.5s) var(--timing-function-ease, ease) forwards;
+}
+
+.animate-fade-out {
+    animation: fadeOut var(--transition-speed-normal, 0.3s) var(--timing-function-ease, ease) forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft var(--transition-speed-normal, 0.3s) var(--timing-function-ease-in-out, ease-in-out) forwards;
+}
+.animate-slide-in-right {
+    animation: slideInRight var(--transition-speed-normal, 0.3s) var(--timing-function-ease-in-out, ease-in-out) forwards;
+}
+.animate-slide-in-top {
+    animation: slideInTop var(--transition-speed-normal, 0.3s) var(--timing-function-ease-in-out, ease-in-out) forwards;
+}
+.animate-slide-in-bottom {
+    animation: slideInBottom var(--transition-speed-normal, 0.3s) var(--timing-function-ease-in-out, ease-in-out) forwards;
+}
+
+.animate-pulse {
+    animation: pulse 1.5s var(--timing-function-ease-in-out, ease-in-out) infinite;
+}
+
+.animate-bounce {
+    animation: bounce 1s var(--timing-function-ease-in-out, ease-in-out);
+}
+
+.animate-shake {
+    animation: shake 0.5s var(--timing-function-ease-in-out, ease-in-out);
+}
+
+.animate-blink {
+    animation: blink-caret-anim 1.5s step-end infinite;
+}
+
+
+/* Animazioni con ritardo (usate in splash.html, ad esempio) */
+.fade-in { /* Base, senza ritardo */
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0; /* Inizia nascosto */
+}
+.fade-in-delay-1 {
+    animation: fadeIn 0.8s 0.5s ease-out forwards; /* Ritardo di 0.5s */
+    opacity: 0;
+}
+.fade-in-delay-2 {
+    animation: fadeIn 0.8s 1s ease-out forwards; /* Ritardo di 1s */
+    opacity: 0;
+}
+.fade-in-delay-3 {
+    animation: fadeIn 0.8s 1.5s ease-out forwards; /* Ritardo di 1.5s */
+    opacity: 0;
+}
+
+
+/* Considerazioni per `prefers-reduced-motion` */
+/*
+    In accessibility.css, c'è una regola generale per disabilitare le animazioni
+    se l'utente ha `prefers-reduced-motion: reduce`.
+    Assicurati che le animazioni cruciali per la comprensione (se ce ne sono)
+    abbiano alternative o non siano completamente disabilitate.
+    La maggior parte di queste sono decorative e possono essere disabilitate.
+*/
+
+/* Esempio di come un'animazione potrebbe essere condizionale */
+/*
+.conditionally-animated-element {
+    // Stili base
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .conditionally-animated-element.animate {
+        animation: someAnimation 1s forwards;
+    }
+}
+*/
+
+/*
+    Ricorda che le animazioni dovrebbero essere usate con giudizio per non
+    appesantire l'esperienza utente o causare problemi di performance,
+    specialmente su dispositivi meno potenti.
+*/

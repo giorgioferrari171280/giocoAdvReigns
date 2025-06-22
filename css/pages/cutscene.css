@@ -1,0 +1,141 @@
+/* ============== STYLES FOR CUTSCENE.HTML (Intro & Generic) ============== */
+
+.cutscene-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Occupa l'intera altezza della viewport */
+    max-height: 100vh;
+    overflow: hidden; /* Previene lo scroll della pagina della cutscene */
+    background-color: #000000; /* Sfondo nero per le cutscene, immersivo */
+    color: var(--text-color, #e0e6f0);
+    position: relative; /* Per posizionare i controlli */
+}
+
+#cutscene-content {
+    flex-grow: 1; /* Occupa lo spazio principale */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra il contenuto principale della cutscene */
+    position: relative; /* Per testo sovrapposto all'immagine */
+    overflow: hidden; /* Se le immagini sono più grandi del contenitore */
+}
+
+.cutscene-image {
+    position: absolute; /* Immagine di sfondo che copre l'area */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Copre l'area mantenendo le proporzioni */
+    z-index: 1; /* Sotto il testo */
+    opacity: 0.7; /* Leggermente scura per far risaltare il testo, o usa un overlay */
+    transition: opacity var(--transition-speed-slow, 0.5s) ease-in-out,
+                transform var(--transition-speed-slow, 0.5s) ease-in-out; /* Per animazioni di cambio immagine */
+}
+/* Esempio: effetto Ken Burns (zoom lento) */
+/*
+.cutscene-image.ken-burns {
+    animation: kenBurnsEffect 20s infinite alternate ease-in-out;
+}
+@keyframes kenBurnsEffect {
+    0% { transform: scale(1) translate(0,0); }
+    100% { transform: scale(1.15) translate(5%, -5%); }
+}
+*/
+
+.cutscene-text-overlay { /* Contenitore per il testo se sovrapposto */
+    position: relative; /* O absolute se posizionato specificamente */
+    z-index: 2; /* Sopra l'immagine */
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente per leggibilità */
+    padding: var(--spacing-medium, 1rem) var(--spacing-large, 1.5rem);
+    border-radius: var(--border-radius-medium, 5px);
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.cutscene-text { /* Testo narrativo della cutscene */
+    font-family: var(--font-family-secondary, serif); /* Font più narrativo */
+    font-size: var(--font-size-large, 1.25rem); /* Testo grande e leggibile */
+    line-height: var(--line-height-loose, 1.8);
+    color: #f0f0f0; /* Testo chiaro su sfondo scuro */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    /* Animazioni di entrata/uscita per il testo possono essere aggiunte qui o da JS */
+}
+
+
+#cutscene-controls {
+    position: absolute; /* Controlli in basso sopra la cutscene */
+    bottom: var(--spacing-large, 1.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3; /* Sopra testo e immagine */
+    display: flex;
+    gap: var(--spacing-medium, 1rem);
+    background-color: rgba(0,0,0,0.3); /* Leggero sfondo per i controlli */
+    padding: var(--spacing-small, 0.5rem);
+    border-radius: var(--border-radius-medium, 5px);
+}
+
+#cutscene-controls .button {
+    font-size: var(--font-size-base, 1rem);
+    padding: var(--spacing-small, 0.5rem) var(--spacing-medium, 1rem);
+    background-color: var(--button-secondary-bg, rgba(50,50,50,0.8));
+    color: var(--button-secondary-text, #e0e0e0);
+    border: 1px solid var(--border-color-soft, rgba(100,100,100,0.5));
+}
+
+#cutscene-controls .button:hover,
+#cutscene-controls .button:focus {
+    background-color: var(--button-secondary-hover-bg, rgba(70,70,70,0.9));
+    border-color: var(--primary-color, #4a90e2);
+    color: var(--primary-color, #4a90e2);
+}
+
+#skip-cutscene-btn {
+    /* Stili specifici per il bottone "Salta" se necessario */
+}
+
+#next-cutscene-frame-btn {
+    /* Stili specifici per il bottone "Continua" */
+}
+
+
+/* Transizioni tra frame/elementi della cutscene (gestite da JS con classi) */
+.cutscene-element.fade-in { animation: fadeIn var(--transition-speed-normal, 0.5s) ease-out forwards; }
+.cutscene-element.fade-out { animation: fadeOut var(--transition-speed-normal, 0.5s) ease-in forwards; }
+.cutscene-element.slide-in-left { animation: slideInLeft var(--transition-speed-normal, 0.5s) ease-out forwards; }
+/* Altre animazioni da animations.css */
+
+
+/* Responsive per cutscene */
+@media (max-width: 767px) { /* Mobile */
+    .cutscene-text {
+        font-size: var(--font-size-base, 1rem); /* Testo leggermente più piccolo su mobile */
+        line-height: var(--line-height-normal, 1.6);
+    }
+    .cutscene-text-overlay {
+        max-width: 90%;
+        padding: var(--spacing-small, 0.5rem) var(--spacing-medium, 1rem);
+    }
+
+    #cutscene-controls {
+        bottom: var(--spacing-medium, 1rem);
+        padding: var(--spacing-xsmall, 0.25rem);
+        gap: var(--spacing-small, 0.5rem);
+    }
+    #cutscene-controls .button {
+        font-size: var(--font-size-small, 0.875rem);
+        padding: var(--spacing-xsmall, 0.25rem) var(--spacing-small, 0.5rem);
+    }
+}
+
+/* Specifico per intro-cutscene se necessario */
+.intro-cutscene #cutscene-text {
+    /* Esempio: font diverso per l'intro */
+    /* font-family: 'SpecialIntroFont', var(--font-family-secondary); */
+}
+
+/* Specifico per final-cutscene (in final-cutscene.css) */
+/* Potrebbe avere stili diversi per il titolo del finale, riepiloghi, ecc. */

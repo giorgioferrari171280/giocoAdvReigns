@@ -1,0 +1,95 @@
+{
+    "items": [
+        {
+            "id": "stick",
+            "nameKey": "item_stick_name",
+            "descriptionKey": "item_stick_description",
+            "type": "tool",
+            "image": "assets/images/items/tools/stick.png",
+            "stackable": false,
+            "usable": true,
+            "effects": {
+                "onUse": [
+                    {
+                        "type": "SHOW_NOTIFICATION",
+                        "messageKey": "item_stick_use_message",
+                        "replacements": { "itemName": "Stick" }
+                    }
+                ]
+            },
+            "initialProps": {}
+        },
+        {
+            "id": "healing_herb",
+            "nameKey": "item_healing_herb_name",
+            "descriptionKey": "item_healing_herb_description",
+            "type": "consumable",
+            "image": "assets/images/items/consumables/healing_herb.png",
+            "stackable": true,
+            "usable": true,
+            "consumable": true,
+            "effects": {
+                "onUse": [
+                    { "type": "MODIFY_STAT", "statId": "health", "amount": 25 },
+                    {
+                        "type": "SHOW_NOTIFICATION",
+                        "messageKey": "item_healing_herb_use_message",
+                        "messageType": "success",
+                        "replacements": { "itemName": "Healing Herb", "amount": 25 }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "gold_coin",
+            "nameKey": "item_gold_coin_name",
+            "descriptionKey": "item_gold_coin_description",
+            "type": "treasure",
+            "image": "assets/images/items/treasures/gold_coin.png",
+            "stackable": true,
+            "value": 1
+        },
+        {
+            "id": "map_fragment_1",
+            "nameKey": "item_map_fragment_1_name",
+            "descriptionKey": "item_map_fragment_1_description",
+            "type": "quest_item",
+            "image": "assets/images/items/quest_items/map_fragment.png",
+            "stackable": false,
+            "usable": false
+        },
+        {
+            "id": "rusty_sword",
+            "nameKey": "item_rusty_sword_name",
+            "descriptionKey": "item_rusty_sword_description",
+            "type": "weapon",
+            "image": "assets/images/items/weapons/rusty_sword.png",
+            "stackable": false,
+            "equipable": true,
+            "slot": "weapon",
+            "equipmentEffects": {
+                "strength": 2
+            },
+            "usable": false
+        },
+        {
+            "id": "ancient_tome",
+            "nameKey": "item_ancient_tome_name",
+            "descriptionKey": "item_ancient_tome_description",
+            "type": "collectible",
+            "image": "assets/images/items/collectibles/ancient_tome.png",
+            "stackable": false,
+            "usable": true,
+            "effects": {
+                "onUse": [
+                    {
+                        "type": "SHOW_NOTIFICATION",
+                        "messageKey": "item_ancient_tome_read",
+                        "replacements": { "loreSnippet": "The ancients spoke of a hidden power..." }
+                    },
+                    { "type": "SET_FLAG", "flag": "lore_tome_read", "value": true }
+                ]
+            }
+        }
+    ]
+}

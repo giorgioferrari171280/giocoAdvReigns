@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Non Trovata - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <!-- <link rel="stylesheet" href="../css/pages/404.css"> se servono stili specifici -->
+    <style>
+        .error-page-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* Non coprire l'eventuale footer di index.html */
+            text-align: center;
+            padding: 20px;
+        }
+        .error-code {
+            font-size: 5em;
+            font-weight: bold;
+            color: var(--warning-color, #ffcc00); /* Usa variabile CSS se definita */
+        }
+        .error-message {
+            font-size: 1.5em;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .error-image {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container error-page-container">
+        <!-- Immagine opzionale a tema con l'errore -->
+        <img src="../assets/images/ui/system/404-icon.svg" alt="Icona di errore 404" class="error-image">
+
+        <div class="error-code">404</div>
+        <h1 class="error-message" data-i18n="error_404_title">Oops! Pagina Non Trovata.</h1>
+        <p data-i18n="error_404_description">Sembra che tu abbia seguito un sentiero interrotto o che la pagina che cerchi non esista più nel nostro regno.</p>
+        <p data-i18n="error_404_suggestion">Forse una mappa magica ti ha ingannato?</p>
+
+        <div style="margin-top: 30px;">
+            <button id="back-to-main-menu-404" class="button primary-button" data-i18n="return_to_main_menu_button">Torna al Menu Principale</button>
+            <!-- <button id="report-issue-404" class="button secondary-button" data-i18n="report_issue_button">Segnala Problema</button> -->
+        </div>
+    </div>
+    <!-- La logica di navigazione sarà gestita da UIManager o dal router principale -->
+</body>
+</html>

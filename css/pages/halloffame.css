@@ -1,0 +1,143 @@
+/* ============== STYLES FOR HALLOFFAME.HTML ============== */
+
+.halloffame-container {
+    max-width: 900px; /* Larghezza massima per la pagina Hall of Fame */
+    margin: 0 auto; /* Centra */
+    padding: var(--spacing-large, 1.5rem);
+}
+
+.halloffame-container header h1 { /* Titolo "Hall of Fame" */
+    text-align: center;
+    color: var(--accent-color, #f1c40f); /* Colore oro/giallo per il titolo */
+    font-size: var(--font-size-h1, 2.5rem);
+    margin-bottom: var(--spacing-xlarge, 2rem);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.halloffame-container section {
+    margin-bottom: var(--spacing-xlarge, 2rem);
+    padding: var(--spacing-medium, 1rem);
+    background-color: var(--surface-color, #24282e);
+    border-radius: var(--border-radius-medium, 5px);
+    border: 1px solid var(--border-color-soft, #3a3f46);
+}
+.halloffame-container section:last-child {
+    margin-bottom: 0;
+}
+
+.halloffame-container h2 { /* Sottotitoli: "Punteggi Migliori", ecc. */
+    font-size: var(--font-size-h3, 1.75rem);
+    color: var(--primary-color-light, #7aaafb);
+    margin-top: 0;
+    margin-bottom: var(--spacing-medium, 1rem);
+    padding-bottom: var(--spacing-xsmall, 0.25rem);
+    border-bottom: 1px solid var(--border-color-strong, #50565e);
+}
+
+/* Sezione Punteggi Migliori */
+#high-scores-list {
+    list-style-type: decimal; /* Numeri per la classifica */
+    padding-left: var(--spacing-large, 1.5rem); /* Spazio per i numeri */
+    margin: 0;
+}
+
+#high-scores-list li {
+    padding: var(--spacing-small, 0.5rem) 0;
+    font-size: var(--font-size-base, 1rem);
+    border-bottom: 1px dashed var(--border-color-soft, #3a3f46); /* Linea tratteggiata tra i punteggi */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permette di andare a capo su schermi piccoli */
+}
+#high-scores-list li:last-child {
+    border-bottom: none;
+}
+
+#high-scores-list .player-name-hof {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+    margin-right: var(--spacing-small, 0.5rem);
+}
+
+#high-scores-list .score-hof {
+    color: var(--accent-color, #f1c40f); /* Punteggio evidenziato */
+    font-weight: var(--font-weight-medium, 500);
+    margin-right: var(--spacing-small, 0.5rem);
+}
+
+#high-scores-list .date-hof {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-left: auto; /* Spinge la data a destra se c'è spazio */
+}
+
+#high-scores-list li[data-i18n="no_scores_yet_placeholder"] { /* Messaggio se non ci sono punteggi */
+    font-style: italic;
+    color: var(--text-muted-color);
+    justify-content: center;
+    padding: var(--spacing-medium);
+}
+
+/* Sezione Riepilogo Achievements Notevoli */
+#notable-achievements-summary p {
+    font-size: var(--font-size-base, 1rem);
+    margin-bottom: var(--spacing-small, 0.5rem);
+    color: var(--text-muted-color);
+}
+#notable-achievements-summary span[id$="-count"],
+#notable-achievements-summary #completion-percentage-value {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+}
+
+#view-all-achievements-link { /* Bottone/Link per vedere tutti gli achievements */
+    display: inline-block; /* Comportamento da bottone */
+    margin-top: var(--spacing-medium, 1rem);
+    text-align: center;
+}
+
+/* Sezione Statistiche di Gioco Globali */
+#game-statistics-summary ul {
+    list-style: none;
+    padding: 0;
+}
+#game-statistics-summary li {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-muted-color);
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+}
+#game-statistics-summary li span:not([data-i18n]) { /* Valori delle statistiche */
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+    margin-left: var(--spacing-xsmall, 0.25rem);
+}
+
+
+.halloffame-container footer {
+    text-align: center;
+    margin-top: var(--spacing-xlarge, 2rem);
+}
+
+
+/* Responsive per Hall of Fame */
+@media (max-width: 600px) {
+    .halloffame-container {
+        padding: var(--spacing-medium, 1rem);
+    }
+    .halloffame-container header h1 {
+        font-size: var(--font-size-h2, 2rem); /* Titolo più piccolo */
+    }
+    .halloffame-container h2 {
+        font-size: var(--font-size-h4, 1.5rem); /* Sottotitoli più piccoli */
+    }
+
+    #high-scores-list li {
+        flex-direction: column; /* Elementi del punteggio impilati */
+        align-items: flex-start;
+    }
+    #high-scores-list .date-hof {
+        margin-left: 0; /* Data sotto, allineata a sinistra */
+        margin-top: var(--spacing-xxsmall, 0.25rem);
+    }
+}

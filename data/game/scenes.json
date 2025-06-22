@@ -1,0 +1,133 @@
+{
+    "scenes": [
+        {
+            "id": "intro_cutscene_placeholder",
+            "title": "The Beginning",
+            "locationKey": "location_start_area",
+            "textKey": "scene_intro_text",
+            "backgroundImage": "scenes/placeholder-intro.png",
+            "musicTrack": "mysterious_theme",
+            "choices": [
+                {
+                    "id": "start_adventure",
+                    "textKey": "choice_start_adventure",
+                    "targetSceneId": "scene_001",
+                    "effects": [
+                        { "type": "SET_FLAG", "flag": "game_started", "value": true }
+                    ]
+                }
+            ],
+            "onEnter": {
+                "effects": [
+                    { "type": "SHOW_NOTIFICATION", "messageKey": "notification_welcome_to_game", "messageType": "info" }
+                ]
+            }
+        },
+        {
+            "id": "scene_001",
+            "title": "Crossroads",
+            "locationKey": "location_crossroads",
+            "textKey": "scene_001_text",
+            "backgroundImage": "scenes/crossroads.png",
+            "characterImage": "characters/mysterious_figure.png",
+            "characterAltKey": "alt_mysterious_figure",
+            "musicTrack": "forest_theme",
+            "ambientSound": "forest_day_ambient.ogg",
+            "choices": [
+                {
+                    "id": "go_left",
+                    "textKey": "choice_go_left",
+                    "targetSceneId": "scene_002_forest",
+                    "effects": [
+                        { "type": "ADD_ITEM", "itemId": "stick", "quantity": 1 }
+                    ]
+                },
+                {
+                    "id": "go_right",
+                    "textKey": "choice_go_right",
+                    "targetSceneId": "scene_003_mountains",
+                    "conditions": [
+                        { "type": "HAS_ITEM", "itemId": "map_fragment_1" }
+                    ],
+                    "showIfConditionFalse": true,
+                    "disabledTextKey": "choice_go_right_locked_no_map"
+                },
+                {
+                    "id": "examine_sign",
+                    "textKey": "choice_examine_sign",
+                    "effects": [
+                        { "type": "SHOW_NOTIFICATION", "messageKey": "notification_sign_reads_danger", "messageType": "info" },
+                        { "type": "SET_FLAG", "flag": "sign_examined", "value": true }
+                    ]
+                    // This choice might refresh the scene or reveal new choices if implemented that way
+                }
+            ]
+        },
+        {
+            "id": "scene_002_forest",
+            "title": "Deep Forest",
+            "locationKey": "location_deep_forest",
+            "textKey": "scene_002_text",
+            "backgroundImage": "scenes/deep_forest.png",
+            "choices": [
+                {
+                    "id": "return_crossroads",
+                    "textKey": "choice_return_crossroads",
+                    "targetSceneId": "scene_001"
+                },
+                {
+                    "id": "collect_herbs",
+                    "textKey": "choice_collect_herbs",
+                    "effects": [
+                        { "type": "ADD_ITEM", "itemId": "healing_herb", "quantity": 3 },
+                        { "type": "MODIFY_STAT", "statId": "luck", "amount": 1 }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "scene_003_mountains",
+            "title": "Mountain Pass",
+            "locationKey": "location_mountain_pass",
+            "textKey": "scene_003_text",
+            "backgroundImage": "scenes/mountain_pass.png",
+            "musicTrack": "mountain_theme",
+            "choices": [
+                {
+                    "id": "climb_further",
+                    "textKey": "choice_climb_mountains",
+                    "targetSceneId": "scene_004_peak",
+                    "conditions": [
+                        { "type": "STAT_GREATER_THAN", "statId": "stamina", "value": 50 }
+                    ],
+                    "showIfConditionFalse": true,
+                    "disabledTextKey": "choice_climb_too_tired"
+                },
+                {
+                    "id": "find_shelter",
+                    "textKey": "choice_find_shelter_mountains",
+                    "effects": [
+                         { "type": "MODIFY_STAT", "statId": "stamina", "amount": 20 },
+                         { "type": "SHOW_NOTIFICATION", "messageKey": "notification_rested_in_cave", "messageType": "info" }
+                    ]
+                },
+                 {
+                    "id": "return_crossroads_mountains",
+                    "textKey": "choice_return_crossroads",
+                    "targetSceneId": "scene_001"
+                }
+            ]
+        },
+        {
+            "id": "scene_004_peak",
+            "title": "Mountain Peak",
+            "locationKey": "location_mountain_peak",
+            "textKey": "scene_004_text",
+            "backgroundImage": "scenes/mountain_peak_view.png",
+            "endsGame": true,
+            "finalCutsceneId": "ending_mountain_peak",
+            "choices": []
+        }
+
+    ]
+}

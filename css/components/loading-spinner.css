@@ -1,0 +1,116 @@
+/* ============== STYLES FOR LOADING SPINNER COMPONENT ============== */
+
+.loading-spinner {
+    display: inline-block; /* O block se usato da solo */
+    width: 50px;  /* Dimensione di default */
+    height: 50px; /* Dimensione di default */
+    border: 5px solid var(--surface-color, rgba(255, 255, 255, 0.3)); /* Colore base del cerchio */
+    border-radius: 50%;
+    border-top-color: var(--primary-color, #4a90e2); /* Colore della parte rotante */
+    animation: spin 1s linear infinite;
+    margin: var(--spacing-medium, 1rem) auto; /* Centra se è un block element */
+}
+
+/* Animazione di rotazione */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Varianti di dimensione per lo spinner */
+.loading-spinner.small {
+    width: 25px;
+    height: 25px;
+    border-width: 3px;
+}
+
+.loading-spinner.large {
+    width: 80px;
+    height: 80px;
+    border-width: 8px;
+}
+
+/* Stili per un contenitore che centra lo spinner (se necessario) */
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* min-height: 100px; // Altezza minima per dare spazio allo spinner */
+}
+
+/* Stili per la schermata di caricamento generica (usata in loading.html) */
+.loading-screen { /* Classe per una schermata di caricamento a schermo intero */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg, rgba(0, 0, 0, 0.8)); /* Sfondo scuro semi-trasparente */
+    z-index: var(--z-index-modal, 1000); /* Sopra il contenuto normale */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--transition-speed-normal, 0.3s) ease, visibility 0s linear 0s;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed-normal, 0.3s) ease, visibility 0s linear var(--transition-speed-normal, 0.3s);
+}
+
+.loading-screen .loading-message {
+    margin-top: var(--spacing-medium, 1rem);
+    font-size: var(--font-size-medium, 1.125rem);
+    color: var(--text-color, #e0e6f0);
+}
+
+/* Barra di progresso (usata in loading.html) */
+.loading-progress-bar-container {
+    width: 80%;
+    max-width: 400px;
+    height: 20px;
+    background-color: var(--surface-color, #24282e);
+    border-radius: var(--border-radius-pill, 10px);
+    border: 1px solid var(--border-color-strong, #50565e);
+    overflow: hidden;
+    margin-top: var(--spacing-small, 0.5rem);
+    margin-bottom: var(--spacing-small, 0.5rem); /* Spazio per il messaggio/tip sotto */
+}
+
+.loading-progress-bar-fill {
+    width: 0%; /* Aggiornato da JS */
+    height: 100%;
+    background-color: var(--primary-color, #4a90e2);
+    border-radius: var(--border-radius-pill, 10px); /* Arrotonda anche il riempimento */
+    transition: width var(--transition-speed-fast, 0.2s) ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--button-primary-text, #ffffff); /* Testo sulla barra di progresso */
+}
+.loading-progress-bar-fill::after { /* Per mostrare la percentuale sulla barra */
+    /* content: attr(data-progress) '%'; */ /* Se si usa un attributo data per la percentuale */
+}
+
+
+.loading-screen .loading-tip {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-top: var(--spacing-large, 1.5rem);
+    max-width: 80%;
+    text-align: center;
+}
+
+/*
+    Questo file si concentra sullo spinner e sugli elementi comuni
+    delle schermate di caricamento.
+    Stili specifici per `pages/loading.html` o `pages/index.html` (initial loading)
+    possono essere nei rispettivi file CSS in `css/pages/`.
+*/

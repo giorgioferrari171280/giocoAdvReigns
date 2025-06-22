@@ -1,0 +1,216 @@
+/* ============== RESPONSIVE STYLES ============== */
+
+/*
+    Questo file contiene media queries e stili per adattare
+    l'interfaccia utente a diverse dimensioni di schermo.
+    Si adotta un approccio mobile-first dove possibile, definendo
+    prima gli stili per schermi piccoli e poi sovrascrivendoli
+    per schermi più grandi.
+*/
+
+/* --- Breakpoint di base (es. per tablet e schermi più grandi) --- */
+@media (min-width: 768px) { /* Tablet e oltre */
+
+    /* Aumenta la dimensione del font di base leggermente per migliore leggibilità */
+    /* html {
+        font-size: 17px; // Se si vuole scalare tutto proporzionalmente
+    } */
+
+    #game-container {
+        padding: var(--spacing-large, 1.5rem) var(--spacing-xlarge, 2rem);
+    }
+
+    .page-container {
+        padding: var(--spacing-large, 1.5rem) var(--spacing-xlarge, 2rem);
+    }
+
+    /* Layout a più colonne per alcune sezioni se necessario */
+    /* Esempio:
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-medium, 1rem);
+    }
+    */
+
+    /* Modifiche specifiche per il menu su schermi più grandi */
+    /* .menu-container nav ul {
+        display: flex;
+        flex-direction: column; // Mantiene verticale o cambia in row
+    } */
+
+    /* Modali potrebbero avere una larghezza massima maggiore */
+    .modal-content {
+        max-width: var(--modal-max-width, 700px); /* Già in global, ma può essere specificato qui */
+    }
+
+    /* Dimensione dei titoli può essere leggermente più grande */
+    h1 { font-size: calc(var(--font-size-h1, 2.5rem) * 1.1); }
+    h2 { font-size: calc(var(--font-size-h2, 2rem) * 1.1); }
+
+    /* Layout specifico per la pagina di gioco */
+    #game-main-content {
+        /* Esempio: potrebbe diventare a due colonne con visuale e testo affiancati */
+        /* display: flex;
+        flex-direction: row;
+        gap: var(--spacing-large); */
+    }
+    #scene-visuals {
+        /* flex: 1; */
+    }
+    #scene-text-container {
+        /* flex: 1.5; */
+    }
+}
+
+/* --- Breakpoint per schermi desktop larghi --- */
+@media (min-width: 1024px) { /* Desktop e oltre */
+
+    /* Ulteriori aggiustamenti per schermi grandi */
+    /* html {
+        font-size: 18px;
+    } */
+
+    #game-container {
+         /* padding: var(--spacing-xlarge, 2rem) var(--spacing-xxlarge, 3rem); */
+    }
+
+    /* La pagina di gioco potrebbe avere un layout ancora più definito */
+    .game-screen-container #game-main-content {
+        /* Esempio: se si usa un layout complesso */
+        /* display: grid;
+        grid-template-columns: 2fr 1fr; // Visuale più grande, testo/scelte a lato
+        grid-template-areas:
+            "visuals choices"
+            "text choices";
+        gap: var(--spacing-large); */
+    }
+    /* #scene-visuals { grid-area: visuals; }
+    #scene-text-container { grid-area: text; }
+    #choices-container { grid-area: choices; } */
+
+
+    /* Aumentare la dimensione delle immagini delle scene se desiderato */
+    #scene-image {
+        /* max-height: 60vh; // Esempio di limite */
+    }
+
+    /* L'inventario o le statistiche potrebbero usare più colonne */
+    #inventory-grid {
+        /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+    }
+}
+
+/* --- Breakpoint per schermi molto larghi (opzionale) --- */
+@media (min-width: 1440px) {
+    /* Ulteriori ottimizzazioni per schermi molto ampi */
+    /* Ad esempio, margini più grandi ai lati del container principale */
+    /* body {
+        padding: 0 var(--spacing-xxlarge);
+    } */
+}
+
+
+/* --- Adattamenti specifici per schermi piccoli (Mobile) --- */
+/* (Questi sono solitamente gli stili di default se si adotta mobile-first,
+   ma si possono aggiungere qui sovrascritture specifiche se necessario
+   o se si parte da un approccio desktop-first) */
+
+@media (max-width: 767px) { /* Smartphone e dispositivi piccoli */
+
+    /* Riduci padding generale se necessario */
+    #game-container {
+        padding: var(--spacing-small, 0.75rem) var(--spacing-medium, 1rem);
+    }
+    .page-container {
+        padding: var(--spacing-small, 0.75rem) var(--spacing-medium, 1rem);
+    }
+
+    /* Font size più piccoli per i titoli per risparmiare spazio */
+    h1 { font-size: var(--font-size-h2, 2rem); } /* h1 diventa come h2 */
+    h2 { font-size: var(--font-size-h3, 1.75rem); } /* h2 diventa come h3 */
+    h3 { font-size: var(--font-size-h4, 1.5rem); } /* h3 diventa come h4 */
+
+    /* Bottoni potrebbero occupare tutta la larghezza per facilitare il tocco */
+    .menu-container nav ul li .button,
+    .choices-container .choice-button {
+        width: 100%;
+        margin-bottom: var(--spacing-small, 0.5rem);
+    }
+    .menu-container nav ul li:last-child .button {
+        margin-bottom: 0;
+    }
+
+    /* Modali potrebbero occupare quasi tutto lo schermo */
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+        padding: var(--spacing-medium, 1rem);
+    }
+    .modal-header {
+        padding-bottom: var(--spacing-small, 0.5rem);
+        margin-bottom: var(--spacing-small, 0.5rem);
+    }
+    .modal-footer {
+        padding-top: var(--spacing-small, 0.5rem);
+    }
+
+    /* Header di gioco potrebbe avere elementi impilati o ridotti */
+    #game-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #game-menu-buttons {
+        margin-top: var(--spacing-small, 0.5rem);
+        width: 100%;
+        display: flex;
+        justify-content: space-around; /* O space-between */
+    }
+    #game-menu-buttons .button span { /* Nasconde il testo dei bottoni icona */
+        /* display: none; // O usa .sr-only se vuoi mantenerlo per screen reader */
+    }
+    #game-menu-buttons .button img, #game-menu-buttons .button svg {
+        margin-right: 0; /* Rimuove margine se il testo è nascosto */
+    }
+
+
+    /* Nascondere elementi meno importanti su schermi piccoli se necessario */
+    /* .optional-info-on-desktop {
+        display: none;
+    } */
+
+    /* Specifico per la pagina di gioco */
+    .game-screen-container #game-main-content {
+        flex-direction: column; /* Assicura che sia verticale */
+    }
+    #scene-visuals {
+        margin-bottom: var(--spacing-medium, 1rem);
+    }
+    #scene-image {
+        max-height: 40vh; /* Limita altezza immagine su mobile */
+        object-fit: cover; /* o contain, a seconda dell'effetto desiderato */
+    }
+}
+
+/* --- Adattamenti per orientamento Landscape su mobile --- */
+@media (max-width: 767px) and (orientation: landscape) {
+    #scene-image {
+        max-height: 60vh; /* Permetti più altezza per l'immagine in landscape */
+    }
+
+    /* Potrebbe essere necessario ridurre ulteriormente i font o i padding */
+    html {
+        /* font-size: 14px; // Esempio estremo */
+    }
+
+    .modal-content {
+        max-height: 90vh; /* Assicura che la modale non sia troppo alta */
+    }
+}
+
+/*
+    Ricorda di testare su dispositivi reali o tramite gli strumenti
+    di sviluppo del browser per affinare questi stili.
+    Le variabili CSS definite in variables.css possono essere molto utili
+    per mantenere la coerenza anche negli stili responsivi.
+*/

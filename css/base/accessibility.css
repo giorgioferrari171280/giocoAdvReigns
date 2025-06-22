@@ -1,0 +1,185 @@
+/* ============== ACCESSIBILITY STYLES ============== */
+
+/*
+    Questo file contiene stili per migliorare l'accessibilità del gioco.
+    Alcuni di questi potrebbero essere attivati/disattivati dall'utente
+    tramite le opzioni di accessibilità del gioco.
+*/
+
+/* === Focus Visibile === */
+/*
+    Stile di default per il focus, per garantire che sia sempre visibile
+    e sufficientemente contrastato. global.css già include stili per :focus
+    su input, ma qui possiamo generalizzare o rafforzare.
+*/
+*:focus { /* Stile di focus generico più evidente */
+    outline: 3px solid var(--primary-color-light, #7aa descoberta); /* Usa un colore di accento chiaro */
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px var(--background-color, #1a1a1a), 0 0 0 6px var(--primary-color-light, #7aa descoberta); /* Effetto "doppio bordo" */
+}
+
+/* Rimuovi outline solo se si fornisce un'alternativa di focus visivamente robusta */
+/* *:focus:not(:focus-visible) {
+    outline: none; // Usare con cautela, :focus-visible è preferibile
+} */
+
+/* Assicurati che gli elementi cliccabili non interattivi (es. div con JS) abbiano un focus state */
+[tabindex="0"]:focus, [role="button"]:focus, [role="link"]:focus {
+    outline: 3px solid var(--primary-color-light, #7aa descoberta);
+    outline-offset: 2px;
+}
+
+/* === Modalità Alto Contrasto (attivabile tramite classe su body) === */
+/*
+    Questa è una versione base. Un tema ad alto contrasto più completo
+    potrebbe essere definito in theme.css e sovrascrivere più variabili.
+    Questo approccio usa filtri CSS come opzione rapida, ma può avere limitazioni.
+*/
+body.high-contrast-enabled {
+    /* Esempio con filtri - può non essere ideale per tutti i casi */
+    /* filter: contrast(175%) grayscale(50%); */
+
+    /* Approccio con variabili (preferibile se si ha un set di colori HC dedicato) */
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --heading-color: #ffff00; /* Giallo per alta visibilità */
+    --link-color: #00ffff; /* Ciano per alta visibilità */
+    --link-hover-color: #ffffff;
+    --button-primary-bg: #ffff00;
+    --button-primary-text: #000000;
+    --button-primary-hover-bg: #ffffff;
+    --border-color-strong: #ffffff;
+    --input-bg-color: #000000;
+    --input-text-color: #ffffff;
+    --input-border-color: #ffffff;
+    --input-focus-border-color: #ffff00;
+}
+
+body.high-contrast-enabled img:not([aria-hidden="true"]) { /* Rende le immagini più contrastate, escludendo quelle decorative */
+    /* filter: contrast(150%) saturate(120%); */ /* Potrebbe essere necessario affinarlo */
+}
+
+/* === Dimensione Testo Regolabile (attivabile tramite classe su body) === */
+/*
+    Il JavaScript dovrebbe aggiungere classi come 'text-size-large' o 'text-size-small'
+    al tag body per attivare questi stili.
+*/
+body.text-size-large {
+    --font-size-root: 18px; /* Aumenta la dimensione base del font */
+    /* Si possono anche sovrascrivere specifiche variabili di dimensione font se necessario */
+    /* --font-size-base: 1.125rem;
+       --font-size-h1: 2.75rem; */
+}
+
+body.text-size-xlarge { /* Opzione ancora più grande */
+    --font-size-root: 20px;
+}
+
+body.text-size-small {
+    --font-size-root: 14px; /* Riduci la dimensione base del font */
+}
+
+/* === Riduzione del Movimento (per utenti sensibili alle animazioni) === */
+/*
+    Questa media query rispetta le preferenze di sistema dell'utente.
+    Si può anche avere un'opzione nel gioco per attivarla.
+*/
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important; /* Disabilita lo scroll-smooth */
+    }
+}
+
+/* Classe attivabile da opzione di gioco per ridurre il movimento */
+body.reduce-motion-enabled *,
+body.reduce-motion-enabled *::before,
+body.reduce-motion-enabled *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+/* Nasconde animazioni puramente decorative */
+body.reduce-motion-enabled .decorative-animation {
+    display: none !important;
+}
+
+
+/* === Supporto per Text-to-Speech (TTS) === */
+/*
+    Non ci sono molti stili CSS diretti per TTS, ma possiamo assicurarci
+    che il contenuto sia ben strutturato e che gli elementi importanti
+    siano identificabili.
+    `aria-live` regions in HTML sono cruciali.
+*/
+/* Esempio: evidenziare il testo che sta per essere letto da un TTS custom */
+.tts-highlight {
+    background-color: var(--accent-color, #f1c40f); /* Un colore di evidenziazione */
+    color: #000000 !important; /* Assicura contrasto per il testo evidenziato */
+    padding: 0.1em 0.2em;
+    border-radius: var(--border-radius-small, 3px);
+    box-shadow: 0 0 5px var(--accent-color, #f1c40f);
+}
+
+
+/* === Miglioramenti per la leggibilità dei font === */
+/*
+    Se si usano font specifici, assicurarsi che abbiano buone caratteristiche
+    di leggibilità. Questo può essere gestito anche tramite la scelta dei font
+    in variables.css.
+*/
+body.dyslexia-friendly-font-enabled {
+    /* Esempio: se si volesse caricare un font specifico per la dislessia */
+    /* --font-family-primary: 'OpenDyslexic', var(--font-family-primary);
+       --font-family-secondary: 'OpenDyslexic', var(--font-family-secondary);
+       letter-spacing: 0.05em; // Aumenta leggermente la spaziatura tra le lettere
+       word-spacing: 0.1em;   // Aumenta leggermente la spaziatura tra le parole
+    */
+}
+/* Nota: l'uso di font specifici per la dislessia è dibattuto,
+   ma fornire opzioni di personalizzazione del font e della spaziatura è utile. */
+
+
+/* === Cursore più grande (Opzionale, se controllato via CSS) === */
+/* body.large-cursor-enabled {
+    cursor: url('../assets/images/ui/cursors/large_cursor.png'), auto;
+} */
+/* Richiederebbe la creazione di immagini cursore. Più complesso da gestire bene. */
+
+
+/* === Sottolineatura dei link === */
+/*
+    Per impostazione predefinita, i link sono sottolineati solo su hover/focus.
+    Alcuni utenti preferiscono che i link siano sempre sottolineati per identificarli meglio.
+*/
+body.always-underline-links-enabled a {
+    text-decoration: underline !important;
+}
+body.always-underline-links-enabled a:hover {
+    text-decoration-thickness: 2px; /* Ispessisci su hover */
+}
+
+/* === Stili per attributi ARIA === */
+/* Esempio: rendere visibile un `aria-describedby` per debug o per utenti specifici */
+/* [aria-describedby]:hover::after {
+    content: " ARIA: " attr(aria-describedby);
+    font-size: 0.7em;
+    color: blue;
+    position: absolute;
+    background: white;
+    padding: 3px;
+    border: 1px solid blue;
+    z-index: var(--z-index-tooltip);
+} */
+
+/*
+    Ricorda: l'accessibilità è un processo continuo e va oltre il CSS.
+    HTML semantico, attributi ARIA corretti, test con screen reader e
+    tastiera sono fondamentali.
+    Questi stili CSS sono un aiuto, ma non una soluzione completa.
+*/

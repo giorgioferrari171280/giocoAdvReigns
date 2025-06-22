@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurazione Iniziale - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/options.css"> <!-- Potrebbe condividere stili con options.css -->
+    <!-- <link rel="stylesheet" href="../css/pages/pre-options.css"> se servono stili specifici -->
+</head>
+<body>
+    <div class="page-container pre-options-container">
+        <header>
+            <h1 data-i18n="pre_options_title">Configurazione Iniziale</h1>
+        </header>
+        <main>
+            <section id="language-selection">
+                <h2 data-i18n="language_select_label">Seleziona Lingua / Select Language</h2>
+                <select id="language-selector">
+                    <option value="it" data-i18n="lang_italian">Italiano</option>
+                    <option value="en" data-i18n="lang_english">English</option>
+                    <option value="fr" data-i18n="lang_french">Français</option>
+                    <option value="de" data-i18n="lang_german">Deutsch</option>
+                    <option value="es" data-i18n="lang_spanish">Español</option>
+                    <!-- Altre lingue verranno popolate da JS se necessario -->
+                </select>
+            </section>
+
+            <section id="accessibility-options">
+                <h2 data-i18n="accessibility_settings">Impostazioni di Accessibilità</h2>
+                <div>
+                    <input type="checkbox" id="text-to-speech" name="text-to-speech">
+                    <label for="text-to-speech" data-i18n="enable_tts">Abilita Text-to-Speech</label>
+                </div>
+                <div>
+                    <label for="font-size" data-i18n="font_size">Dimensione Testo:</label>
+                    <select id="font-size" name="font-size">
+                        <option value="small" data-i18n="font_small">Piccolo</option>
+                        <option value="medium" selected data-i18n="font_medium">Medio</option>
+                        <option value="large" data-i18n="font_large">Grande</option>
+                    </select>
+                </div>
+                 <div>
+                    <input type="checkbox" id="high-contrast" name="high-contrast">
+                    <label for="high-contrast" data-i18n="enable_high_contrast">Modalità Alto Contrasto</label>
+                </div>
+            </section>
+
+            <button id="confirm-pre-options" class="button primary-button" data-i18n="confirm_button">Conferma e Continua</button>
+        </main>
+    </div>
+    <!-- Nota: gli script verranno gestiti centralmente da main.js e UIManager -->
+</body>
+</html>

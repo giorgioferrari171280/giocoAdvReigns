@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/inventory.css">
+    <!-- Potrebbe essere una modale, quindi gli stili potrebbero essere parte di game.css o avere un overlay dedicato -->
+</head>
+<body>
+    <div class="modal-overlay hidden" id="inventory-modal-overlay">
+        <div class="modal-content inventory-panel" role="dialog" aria-labelledby="inventory-title" aria-modal="true">
+            <header class="modal-header">
+                <h2 id="inventory-title" data-i18n="inventory_title">Inventario</h2>
+                <button id="close-inventory-btn" class="button close-button" data-i18n-aria-label="close_inventory_aria_label">&times;</button>
+            </header>
+            <main class="modal-body">
+                <div id="inventory-grid">
+                    <!-- Gli oggetti dell'inventario verranno popolati dinamicamente da InventorySystem.js / UIManager.js -->
+                    <!-- Esempio di oggetto nell'inventario:
+                    <div class="inventory-item" data-item-id="item_id_123" tabindex="0">
+                        <img src="../assets/images/items/placeholder-item.png" alt="Nome Oggetto">
+                        <span class="item-name">Nome Oggetto</span>
+                        <span class="item-quantity">x1</span>
+                    </div>
+                    -->
+                </div>
+                <div id="item-details" class="hidden">
+                    <h3 id="selected-item-name"></h3>
+                    <img src="#" alt="Immagine oggetto selezionato" id="selected-item-image">
+                    <p id="selected-item-description"></p>
+                    <div id="item-actions">
+                        <!-- Azioni come "Usa", "Esamina", "Scarta" verranno aggiunte qui se applicabile -->
+                        <!-- <button class="button action-button" id="use-item-btn" data-i18n="use_item_button">Usa</button> -->
+                    </div>
+                </div>
+            </main>
+            <footer class="modal-footer">
+                <p id="inventory-capacity" data-i18n-placeholder="inventory_capacity_placeholder">Capacità: <span id="current-items">0</span> / <span id="max-items">20</span></p>
+            </footer>
+        </div>
+    </div>
+    <!-- La logica di questo pannello sarà gestita da InventorySystem.js e GameController/UIManager.js -->
+</body>
+</html>

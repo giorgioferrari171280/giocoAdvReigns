@@ -1,0 +1,211 @@
+/* ============== STYLES FOR ACHIEVEMENT-GRID.HTML ============== */
+
+.achievement-grid-container {
+    max-width: 1000px; /* Larghezza massima per la griglia achievements */
+    margin: 0 auto; /* Centra */
+    padding: var(--spacing-large, 1.5rem);
+}
+
+.achievement-grid-container header {
+    text-align: center;
+    margin-bottom: var(--spacing-large, 1.5rem);
+}
+
+.achievement-grid-container header h1 { /* Titolo "Achievements" */
+    color: var(--accent-color, #f1c40f);
+    font-size: var(--font-size-h1, 2.5rem);
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+}
+
+.achievement-grid-container header p { /* Riepilogo sbloccati/totali */
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-bottom: 0;
+}
+.achievement-grid-container header p span[id*="-count"],
+.achievement-grid-container header p span#grid-percentage {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+}
+
+
+/* Filtri e Ordinamento */
+#filters-and-sort {
+    display: flex;
+    flex-wrap: wrap; /* Va a capo su schermi piccoli */
+    gap: var(--spacing-medium, 1rem);
+    align-items: center;
+    margin-bottom: var(--spacing-large, 1.5rem);
+    padding: var(--spacing-small, 0.5rem);
+    background-color: var(--surface-color, #24282e);
+    border-radius: var(--border-radius-medium, 5px);
+}
+
+#filters-and-sort label {
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 0; /* Allineato con il select */
+    color: var(--text-muted-color, #8a95a5);
+}
+
+#filters-and-sort select {
+    padding: var(--spacing-xsmall, 0.5rem) var(--spacing-small, 0.75rem);
+    font-size: var(--font-size-small, 0.875rem);
+    background-color: var(--input-bg-color, #2f333a);
+    color: var(--input-text-color, #e0e6f0);
+    border: 1px solid var(--input-border-color, #50565e);
+    border-radius: var(--border-radius-small, 3px);
+    min-width: 150px; /* Larghezza minima per i select */
+}
+
+
+/* Griglia degli Achievements */
+.achievements-grid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));  Su mobile, una colonna */
+    grid-template-columns: 1fr; /* Default a una colonna */
+    gap: var(--spacing-medium, 1rem);
+}
+
+.achievement-card {
+    background-color: var(--surface-color, #24282e);
+    border: 1px solid var(--border-color-soft, #3a3f46);
+    border-radius: var(--border-radius-medium, 5px);
+    padding: var(--spacing-medium, 1rem);
+    display: flex; /* Icona a sinistra, dettagli a destra */
+    gap: var(--spacing-medium, 1rem);
+    align-items: flex-start; /* Allinea all'inizio per descrizioni lunghe */
+    transition: box-shadow var(--transition-speed-fast, 0.2s) ease,
+                transform var(--transition-speed-fast, 0.2s) ease;
+}
+.achievement-card:hover {
+    box-shadow: var(--shadow-medium, 0 4px 8px rgba(0,0,0,0.3));
+    transform: translateY(-2px);
+}
+
+.achievement-icon-container {
+    flex-shrink: 0;
+    width: 64px; /* Dimensione fissa per l'icona */
+    height: 64px;
+    position: relative; /* Per overlay "Bloccato" */
+    background-color: var(--background-color-light, #2a2e34); /* Sfondo per l'icona */
+    border-radius: var(--border-radius-small, 3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.achievement-icon {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.achievement-card.locked .achievement-icon {
+    filter: grayscale(100%) opacity(0.5); /* Icona desaturata e semi-trasparente se bloccato */
+}
+
+.locked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-muted-color, #8a95a5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-small, 0.875rem);
+    font-weight: var(--font-weight-bold, bold);
+    text-align: center;
+    opacity: 0; /* Nascosto di default */
+    transition: opacity var(--transition-speed-fast, 0.2s) ease;
+}
+.achievement-card.locked .locked-overlay {
+    opacity: 1; /* Mostra solo se la card ha la classe .locked */
+}
+.achievement-card:not(.locked) .locked-overlay {
+    display: none; /* Assicura che non sia visibile se sbloccato */
+}
+
+
+.achievement-details {
+    flex-grow: 1; /* Occupa lo spazio rimanente */
+}
+
+.achievement-name {
+    font-size: var(--font-size-large, 1.25rem);
+    color: var(--heading-color, #ffffff);
+    margin-top: 0;
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+}
+.achievement-card.locked .achievement-name {
+    color: var(--text-muted-color, #8a95a5); /* Nome più scuro se bloccato */
+}
+
+.achievement-description {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--text-muted-color, #8a95a5);
+    margin-bottom: var(--spacing-small, 0.5rem);
+    line-height: var(--line-height-normal, 1.5);
+}
+.achievement-card.locked .achievement-description {
+    /* Potrebbe mostrare "????" o un indizio se bloccato */
+}
+
+.achievement-unlock-date,
+.achievement-rarity {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    display: block; /* Su righe separate */
+}
+.achievement-unlock-date { margin-bottom: 2px; }
+
+.achievement-rarity span { /* Per colorare la rarità */
+    font-weight: var(--font-weight-bold);
+}
+.rarity-common { color: var(--text-muted-color); }
+.rarity-uncommon { color: #2ecc71; } /* Verde */
+.rarity-rare { color: var(--primary-color); } /* Blu */
+.rarity-epic { color: #9b59b6; } /* Viola */
+.rarity-legendary { color: var(--secondary-color); } /* Arancione */
+
+
+/* Messaggio se non ci sono achievements da visualizzare */
+#no-achievements-message {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-muted-color, #8a95a5);
+    padding: var(--spacing-large, 1.5rem);
+}
+
+
+.achievement-grid-container footer {
+    display: flex;
+    justify-content: center; /* Centra i bottoni */
+    gap: var(--spacing-medium, 1rem);
+    margin-top: var(--spacing-xlarge, 2rem);
+}
+
+
+/* Responsive per la griglia achievements */
+@media (min-width: 600px) {
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Due o più colonne */
+    }
+    .achievement-icon-container {
+        width: 72px;
+        height: 72px;
+    }
+}
+
+@media (min-width: 900px) {
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+    .achievement-icon-container {
+        width: 80px;
+        height: 80px;
+    }
+}

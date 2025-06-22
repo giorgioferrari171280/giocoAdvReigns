@@ -1,0 +1,223 @@
+/* ============== PRINT STYLES ============== */
+
+/*
+    Questi stili vengono applicati solo quando la pagina viene stampata
+    o visualizzata in modalità anteprima di stampa.
+    L'obiettivo è ottimizzare il contenuto per la stampa, rimuovendo
+    elementi non necessari e migliorando la leggibilità.
+*/
+
+@media print {
+
+    /* === Reset di base per la stampa === */
+    body {
+        font-family: 'Times New Roman', Times, serif; /* Font serif classico per la stampa */
+        font-size: 12pt; /* Dimensione font leggibile per la stampa */
+        line-height: 1.4;
+        color: #000000 !important; /* Testo nero puro */
+        background-color: #ffffff !important; /* Sfondo bianco puro */
+        margin: 1in !important; /* Margini di pagina standard */
+        width: auto !important; /* Lascia che la stampante gestisca la larghezza */
+        height: auto !important;
+        overflow: visible !important; /* Mostra tutto il contenuto */
+    }
+
+    /* === Nascondi elementi non necessari === */
+    header,
+    footer,
+    nav,
+    aside,
+    form,
+    button,
+    .button,
+    input,
+    select,
+    textarea,
+    iframe,
+    video,
+    audio,
+    .modal-overlay, /* Nascondi overlay di modali */
+    #game-menu-buttons,
+    #cutscene-controls,
+    #notifications-area,
+    #filters-and-sort, /* Nascondi filtri nelle griglie */
+    .no-print { /* Classe di utilità per nascondere specifici elementi dalla stampa */
+        display: none !important;
+    }
+
+    /* === Stili per i link === */
+    a {
+        color: #000000 !important; /* Link neri */
+        text-decoration: underline !important; /* Sottolinea sempre i link */
+    }
+    /* Mostra URL dei link dopo il testo (opzionale, può essere invasivo) */
+    a[href^="http"]::after,
+    a[href^="https"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #333333;
+        word-break: break-all; /* Evita che URL lunghi rompano il layout */
+    }
+    /* Non mostrare URL per link interni alla pagina */
+    a[href^="#"]::after {
+        content: "" !important;
+    }
+
+
+    /* === Stili per titoli e testo === */
+    h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+        page-break-after: avoid !important; /* Evita interruzioni di pagina dopo un titolo */
+        font-family: 'Georgia', serif; /* Un altro font serif per i titoli */
+    }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 18pt; }
+    h3 { font-size: 16pt; }
+
+    p {
+        orphans: 3 !important; /* Minimo 3 righe all'inizio di una pagina */
+        widows: 3 !important;  /* Minimo 3 righe alla fine di una pagina */
+        page-break-inside: avoid !important; /* Evita interruzioni di pagina all'interno di un paragrafo se possibile */
+        margin-bottom: 0.5cm !important;
+    }
+
+    /* === Immagini === */
+    img {
+        max-width: 100% !important; /* Assicura che le immagini non superino la larghezza della pagina */
+        height: auto !important;
+        page-break-inside: avoid !important; /* Evita che le immagini vengano spezzate tra le pagine */
+        border: 1px solid #ccc !important; /* Bordo leggero per le immagini */
+    }
+    /* Nascondi immagini puramente decorative */
+    img[alt=""], img:not([alt]), img[role="presentation"] {
+        /* display: none !important; // Scommenta se vuoi nasconderle aggressivamente */
+    }
+    #scene-image { /* Immagine principale della scena di gioco */
+        border: 2px solid #000 !important;
+        margin-bottom: 0.5cm !important;
+    }
+
+
+    /* === Tabelle (se presenti) === */
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        page-break-inside: auto !important; /* Permetti interruzioni all'interno di tabelle lunghe */
+    }
+    th, td {
+        border: 1px solid #000000 !important;
+        padding: 0.2cm !important;
+        text-align: left !important;
+    }
+    thead {
+        display: table-header-group !important; /* Ripeti l'header della tabella su ogni pagina */
+    }
+
+
+    /* === Stili specifici per le pagine del gioco === */
+
+    /* Pagina di gioco (game.html) */
+    .game-screen-container {
+        height: auto !important; /* Rimuovi altezza fissa */
+        overflow: visible !important;
+    }
+    #game-header { /* Nascondi l'header di gioco */
+        display: none !important;
+    }
+    #scene-text-container {
+        max-height: none !important; /* Mostra tutto il testo */
+        background-color: transparent !important;
+        border: 1px solid #ccc !important;
+        padding: 0.5cm !important;
+        margin-top: 0.5cm !important;
+    }
+    #choices-container { /* Nascondi le scelte */
+        display: none !important;
+    }
+
+    /* Inventario (inventory.html o modale) */
+    .inventory-panel .modal-content, #inventory-grid {
+        display: block !important; /* Forza visualizzazione se era modale */
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+    #inventory-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* Layout a griglia per la stampa */
+        gap: 0.5cm !important;
+    }
+    .inventory-item {
+        border: 1px solid #666 !important;
+    }
+    .inventory-item img { border: none !important; }
+    #item-details { display: none !important; } /* Nascondi i dettagli dell'oggetto selezionato */
+
+    /* Statistiche (stats.html o modale) */
+    .stats-panel .modal-content {
+        display: block !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+    .stat-bar { display: none !important; } /* Nascondi le barre grafiche, mostra solo i valori */
+    .stat-value { color: #000 !important; }
+
+    /* Hall of Fame e Achievements */
+    .halloffame-container, .achievement-grid-container {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+    .halloffame-container section, .achievement-grid-container section {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-bottom: 1cm !important;
+    }
+    .achievement-card {
+        border: 1px solid #000 !important;
+        page-break-inside: avoid !important;
+    }
+    .achievement-icon-container { display: none !important; } /* Nascondi icone achievement */
+
+
+    /* Cutscenes */
+    .cutscene-container {
+        background-color: #fff !important; /* Sfondo bianco per il testo */
+        height: auto !important;
+    }
+    .cutscene-image {
+        position: static !important; /* Immagine nel flusso del documento */
+        max-width: 80% !important;
+        margin: 0 auto 0.5cm auto !important;
+        border: 1px solid #000 !important;
+        opacity: 1 !important; /* Immagine completamente visibile */
+    }
+    .cutscene-text-overlay, .cutscene-text {
+        position: static !important;
+        background-color: transparent !important;
+        color: #000 !important;
+        text-shadow: none !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    #ending-title { color: #000 !important; text-shadow: none !important; }
+
+
+    /* === Evita interruzioni di pagina indesiderate === */
+    blockquote, pre {
+        page-break-inside: avoid !important;
+    }
+
+    /* === Forza interruzioni di pagina (usare con parsimonia) === */
+    .page-break-before { page-break-before: always !important; }
+    .page-break-after { page-break-after: always !important; }
+
+} /* Fine di @media print */
+
+/* Classe di utilità per nascondere elementi specifici dalla stampa */
+/* (Definita anche all'interno di @media print per specificità, ma può essere globale) */
+.no-print {
+    /* Questa regola viene sovrascritta da quella dentro @media print se presente */
+}
+@media screen { /* Stili per lo schermo, per assicurarsi che .no-print non faccia nulla su schermo */
+    /* .no-print {} // Non serve nulla qui di solito */
+}

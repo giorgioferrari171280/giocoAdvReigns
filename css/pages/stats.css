@@ -1,0 +1,174 @@
+/* ============== STYLES FOR STATS.HTML (or Modal) ============== */
+
+/*
+    Stili per il pannello delle statistiche del giocatore.
+    Assumiamo che sia una modale.
+*/
+
+.stats-panel .modal-content {
+    max-width: var(--modal-max-width, 550px); /* Larghezza per il pannello statistiche */
+}
+
+.stats-panel .modal-header h2 { /* Titolo "Statistiche Giocatore" */
+    color: var(--primary-color, #4a90e2); /* Colore distintivo per il titolo delle statistiche */
+}
+
+.stats-panel .modal-body {
+    padding-top: 0; /* Rimuove padding extra se l'header ha già un bottom margin */
+}
+
+#player-avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--spacing-large, 1.5rem);
+    padding: var(--spacing-small, 0.5rem);
+    background-color: var(--background-color-light, #2a2e34);
+    border-radius: var(--border-radius-medium);
+}
+
+#player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--border-radius-circle, 50%); /* Avatar circolare */
+    border: 3px solid var(--primary-color, #4a90e2);
+    object-fit: cover;
+    margin-bottom: var(--spacing-small, 0.5rem);
+    background-color: var(--surface-color); /* Sfondo se l'immagine è trasparente */
+}
+
+#player-name-stats {
+    font-size: var(--font-size-large, 1.25rem);
+    color: var(--heading-color, #ffffff);
+    margin: 0;
+}
+
+#stats-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-large, 1.5rem) 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-wrap: wrap; /* Permette alle barre di andare a capo se necessario */
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-small, 0.5rem) 0;
+    border-bottom: 1px solid var(--border-color-soft, #3a3f46);
+}
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-name {
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--text-color, #e0e6f0);
+    flex-basis: 120px; /* Larghezza base per il nome della statistica */
+    flex-shrink: 0;
+}
+
+.stat-value {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--accent-color, #f1c40f); /* Evidenzia il valore della statistica */
+    font-weight: var(--font-weight-medium);
+    margin-left: auto; /* Spinge il valore a destra se c'è spazio */
+    padding-left: var(--spacing-small, 0.5rem); /* Spazio dal nome o dalla barra */
+}
+
+.stat-bar-container { /* Contenitore opzionale per la barra, se non è .stat-item */
+    flex-basis: 100%; /* Occupa tutta la larghezza sotto nome/valore */
+    margin-top: var(--spacing-xsmall, 0.25rem);
+}
+
+.stat-bar {
+    width: 100%; /* Default per quando è su una nuova riga */
+    height: 12px; /* Altezza della barra di statistica */
+    background-color: var(--background-color-light, #2a2e34); /* Sfondo della barra */
+    border-radius: var(--border-radius-pill, 6px);
+    overflow: hidden; /* Per contenere il riempimento */
+    border: 1px solid var(--border-color-strong);
+}
+.stat-item:not(:has(.stat-bar-container)) .stat-bar { /* Se la barra è direttamente in .stat-item */
+    flex-grow: 1;
+    margin-left: var(--spacing-medium);
+    max-width: 200px; /* Limita larghezza barra se affiancata al valore */
+}
+
+
+.stat-bar div { /* Riempimento della barra */
+    height: 100%;
+    background-color: var(--primary-color, #4a90e2); /* Colore di default per le barre */
+    border-radius: var(--border-radius-pill, 6px);
+    transition: width var(--transition-speed-normal, 0.3s) ease-in-out;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+    line-height: 12px; /* Allinea testo verticalmente nella barra */
+}
+
+/* Colori specifici per barre comuni */
+.stat-bar.health-bar div { background-color: var(--health-bar-color, #c0392b); }
+.stat-bar.mana-bar div   { background-color: var(--mana-bar-color, #2980b9); }
+.stat-bar.xp-bar div     { background-color: var(--xp-bar-color, #f1c40f); }
+
+
+#active-effects {
+    margin-top: var(--spacing-medium, 1rem);
+    padding: var(--spacing-small, 0.5rem);
+    background-color: var(--background-color-light, #2a2e34);
+    border-radius: var(--border-radius-medium);
+}
+
+#active-effects h4 {
+    font-size: var(--font-size-base, 1rem);
+    color: var(--heading-color, #ffffff);
+    margin-top: 0;
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+}
+
+#effects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+}
+
+#effects-list li {
+    padding: 2px 0;
+}
+#effects-list li::before {
+    content: "✨ "; /* Esempio di icona per effetto positivo */
+    /* content: "💀 "; // Esempio per effetto negativo */
+}
+
+
+.stats-panel .modal-footer p {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #8a95a5);
+    text-align: center; /* Centra il testo nel footer */
+    width: 100%;
+}
+
+/* Responsive per il pannello statistiche */
+@media (max-width: 480px) { /* Cellulari piccoli */
+    #player-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    .stat-name {
+        flex-basis: 100px; /* Riduci larghezza base nomi statistiche */
+        font-size: var(--font-size-small, 0.875rem);
+    }
+    .stat-value {
+        font-size: var(--font-size-small, 0.875rem);
+    }
+    .stat-bar {
+        height: 10px;
+    }
+    .stat-bar div {
+        font-size: 9px;
+        line-height: 10px;
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principale - Gioco di Avventura</title>
+    <link rel="stylesheet" href="../css/base/global.css">
+    <link rel="stylesheet" href="../css/pages/menu.css">
+</head>
+<body>
+    <div class="page-container menu-container">
+        <header>
+            <img src="../assets/images/ui/system/game-logo-small.png" alt="Logo Gioco" id="menu-logo">
+            <h1 data-i18n="main_menu_title">Menu Principale</h1>
+        </header>
+        <nav id="main-navigation">
+            <ul>
+                <li><button id="new-game-btn" class="button menu-button" data-i18n="menu_new_game">Nuova Partita</button></li>
+                <li><button id="load-game-btn" class="button menu-button" data-i18n="menu_load_game">Carica Partita</button></li>
+                <li><button id="options-btn" class="button menu-button" data-i18n="menu_options">Opzioni</button></li>
+                <li><button id="hall-of-fame-btn" class="button menu-button" data-i18n="menu_hall_of_fame">Hall of Fame</button></li>
+                <li><button id="credits-btn" class="button menu-button" data-i18n="menu_credits">Crediti</button></li>
+                <li><button id="exit-game-btn" class="button menu-button" data-i18n="menu_exit_game">Esci dal Gioco</button></li> <!-- Potrebbe non funzionare in tutti i browser -->
+            </ul>
+        </nav>
+        <footer>
+            <p id="game-version">Versione <span class="version-number">1.0.0</span></p>
+        </footer>
+    </div>
+    <!-- Script per questo menu sarà gestito da MenuController.js -->
+</body>
+</html>

@@ -1,0 +1,449 @@
+/* ============== GLOBAL STYLES ============== */
+
+/* Reset di base e box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base per rem units */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-primary, sans-serif);
+    line-height: var(--line-height-normal, 1.6);
+    background-color: var(--background-color, #1a1a1a);
+    color: var(--text-color, #e0e0e0);
+    display: flex; /* Per footer in fondo su pagine corte */
+    flex-direction: column; /* Per footer in fondo */
+    min-height: 100vh; /* Per footer in fondo */
+    overflow-x: hidden; /* Previene scroll orizzontale indesiderato */
+}
+
+#game-container {
+    flex-grow: 1; /* Permette al contenitore del gioco di espandersi */
+    width: 100%;
+    max-width: var(--max-width-container, 1200px); /* Limita la larghezza massima del contenuto */
+    margin: 0 auto; /* Centra il contenitore */
+    padding: var(--spacing-medium, 1rem);
+}
+
+/* Stili base per headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-secondary, serif);
+    color: var(--heading-color, #ffffff);
+    margin-top: var(--spacing-medium, 1rem);
+    margin-bottom: var(--spacing-small, 0.5rem);
+    line-height: var(--line-height-tight, 1.2);
+}
+
+h1 { font-size: var(--font-size-h1, 2.5rem); }
+h2 { font-size: var(--font-size-h2, 2rem); }
+h3 { font-size: var(--font-size-h3, 1.75rem); }
+h4 { font-size: var(--font-size-h4, 1.5rem); }
+
+p {
+    margin-bottom: var(--spacing-medium, 1rem);
+    font-size: var(--font-size-base, 1rem);
+}
+
+a {
+    color: var(--link-color, #61dafb);
+    text-decoration: none;
+    transition: color var(--transition-speed-fast, 0.2s) ease;
+}
+
+a:hover, a:focus {
+    color: var(--link-hover-color, #bbe1fa);
+    text-decoration: underline;
+}
+
+/* Stili base per bottoni */
+.button, button {
+    font-family: var(--font-family-primary, sans-serif);
+    font-size: var(--font-size-button, 1rem);
+    padding: var(--button-padding-y, 0.75em) var(--button-padding-x, 1.5em);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-medium, 4px);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color var(--transition-speed-fast, 0.2s) ease,
+                border-color var(--transition-speed-fast, 0.2s) ease,
+                color var(--transition-speed-fast, 0.2s) ease,
+                transform var(--transition-speed-fast, 0.1s) ease;
+    background-color: var(--button-primary-bg, #007bff);
+    color: var(--button-primary-text, #ffffff);
+}
+
+.button:hover, button:hover {
+    background-color: var(--button-primary-hover-bg, #0056b3);
+    border-color: var(--button-primary-hover-border, #0056b3);
+}
+
+.button:active, button:active {
+    transform: translateY(1px);
+}
+
+.button:disabled, button:disabled {
+    background-color: var(--button-disabled-bg, #cccccc);
+    color: var(--button-disabled-text, #666666);
+    cursor: not-allowed;
+    border-color: var(--button-disabled-border, #cccccc);
+}
+
+/* Bottoni secondari */
+.button.secondary-button, button.secondary-button {
+    background-color: var(--button-secondary-bg, #6c757d);
+    color: var(--button-secondary-text, #ffffff);
+}
+.button.secondary-button:hover, button.secondary-button:hover {
+    background-color: var(--button-secondary-hover-bg, #545b62);
+}
+
+/* Bottoni di avviso/warning */
+.button.warning-button, button.warning-button {
+    background-color: var(--button-warning-bg, #ffc107);
+    color: var(--button-warning-text, #212529);
+}
+.button.warning-button:hover, button.warning-button:hover {
+    background-color: var(--button-warning-hover-bg, #e0a800);
+}
+
+
+/* Stili base per input e select */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    font-family: var(--font-family-primary, sans-serif);
+    font-size: var(--font-size-input, 1rem);
+    padding: var(--input-padding-y, 0.5em) var(--input-padding-x, 0.75em);
+    border: 1px solid var(--input-border-color, #ccc);
+    border-radius: var(--border-radius-small, 2px);
+    background-color: var(--input-bg-color, #fff);
+    color: var(--input-text-color, #333);
+    margin-bottom: var(--spacing-small, 0.5rem);
+    width: 100%; /* Default a larghezza piena, può essere sovrascritto */
+    max-width: 400px; /* Limita larghezza massima */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color, #007bff);
+    box-shadow: 0 0 0 0.2rem var(--input-focus-shadow-color, rgba(0,123,255,.25));
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: var(--spacing-xsmall, 0.25rem);
+    vertical-align: middle;
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+    font-weight: var(--font-weight-bold, bold);
+    color: var(--label-color, var(--text-color));
+}
+
+/* Immagini responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Rimuove spazio extra sotto l'immagine */
+}
+
+/* Liste */
+ul, ol {
+    padding-left: var(--spacing-large, 1.5rem); /* Spazio per i bullet/numeri */
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+
+li {
+    margin-bottom: var(--spacing-xsmall, 0.25rem);
+}
+
+/* Classi di utilità generiche */
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden { /* Nasconde visivamente ma accessibile agli screen reader */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.warning-text {
+    color: var(--warning-text-color, #dc3545);
+    font-weight: var(--font-weight-bold, bold);
+}
+
+.note {
+    font-size: var(--font-size-small, 0.875rem);
+    color: var(--text-muted-color, #888);
+    font-style: italic;
+}
+
+/* Contenitore generico per pagine */
+.page-container {
+    padding: var(--spacing-medium, 1rem) var(--spacing-large, 1.5rem);
+    background-color: var(--page-bg-color, var(--background-color)); /* Default al bg del body */
+    /* border-radius: var(--border-radius-large, 8px); */ /* Opzionale */
+    /* box-shadow: var(--shadow-medium, 0 4px 8px rgba(0,0,0,0.1)); */ /* Opzionale */
+}
+
+/* Stili per modali (overlay e contenuto base) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg, rgba(0, 0, 0, 0.7));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-index-modal-overlay, 1000);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed-normal, 0.3s) ease, visibility 0s linear var(--transition-speed-normal, 0.3s);
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.modal-content {
+    background-color: var(--modal-content-bg, var(--background-color-light, #333333));
+    color: var(--modal-text-color, var(--text-color));
+    padding: var(--spacing-large, 1.5rem);
+    border-radius: var(--border-radius-large, 8px);
+    box-shadow: var(--shadow-large, 0 5px 15px rgba(0,0,0,0.3));
+    width: 90%;
+    max-width: var(--modal-max-width, 600px);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative; /* Per posizionare il bottone di chiusura */
+    transform: scale(0.9);
+    transition: transform var(--transition-speed-normal, 0.3s) ease;
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--modal-border-color, var(--border-color-soft, #444444));
+    padding-bottom: var(--spacing-medium, 1rem);
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+.modal-header h2, .modal-header h3 {
+    margin: 0;
+    color: var(--modal-heading-color, var(--heading-color));
+}
+
+.modal-body {
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--modal-border-color, var(--border-color-soft, #444444));
+    padding-top: var(--spacing-medium, 1rem);
+    text-align: right;
+}
+.modal-footer .button:not(:last-child) {
+    margin-right: var(--spacing-small, 0.5rem);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: var(--font-size-h2, 2rem); /* Più grande per facilitare il click */
+    color: var(--text-muted-color, #888);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+}
+.close-button:hover {
+    color: var(--text-color, #e0e0e0);
+}
+
+/* Icon button styling */
+.icon-button {
+    background: transparent;
+    border: none;
+    padding: var(--spacing-xsmall, 0.25rem);
+    display: inline-flex;
+    align-items: center;
+    color: var(--icon-button-color, var(--text-color));
+}
+.icon-button img, .icon-button svg {
+    width: var(--icon-size-medium, 24px);
+    height: var(--icon-size-medium, 24px);
+    margin-right: var(--spacing-xsmall, 0.25rem); /* Spazio tra icona e testo, se presente */
+}
+.icon-button:hover {
+    background-color: var(--icon-button-hover-bg, rgba(255,255,255,0.1));
+    color: var(--icon-button-hover-color, var(--link-hover-color));
+}
+.icon-button span { /* Testo opzionale accanto all'icona */
+    font-size: var(--font-size-small, 0.875rem);
+}
+
+/* Stili per le tabulazioni */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color-soft, #444);
+    margin-bottom: var(--spacing-medium, 1rem);
+}
+.tab-link {
+    padding: var(--spacing-small, 0.5rem) var(--spacing-medium, 1rem);
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--text-muted-color, #aaa);
+    border-bottom: 3px solid transparent; /* Bordo per tab attiva */
+    margin-bottom: -1px; /* Allinea con il bordo del contenitore .tabs */
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tab-link:hover {
+    color: var(--text-color, #e0e0e0);
+}
+.tab-link.active {
+    color: var(--primary-color, #007bff);
+    border-bottom-color: var(--primary-color, #007bff);
+    font-weight: var(--font-weight-bold, bold);
+}
+.tab-content {
+    display: none; /* Nascosto di default */
+    padding: var(--spacing-small, 0.5rem) 0; /* Spazio sopra e sotto il contenuto della tab */
+}
+.tab-content.active {
+    display: block; /* Mostra tab attiva */
+    animation: fadeIn var(--transition-speed-normal, 0.3s) ease; /* Animazione opzionale */
+}
+
+/* Aggiungere un'animazione di fadeIn base (usata anche in animations.css) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Stili per messaggi di notifica (potrebbero essere in components/notifications.css) */
+#notifications-area {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: var(--z-index-notifications, 1050);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small, 0.5rem);
+}
+
+.notification {
+    background-color: var(--notification-bg, var(--background-color-light, #333));
+    color: var(--notification-text-color, var(--text-color));
+    padding: var(--spacing-medium, 1rem);
+    border-radius: var(--border-radius-medium, 4px);
+    box-shadow: var(--shadow-medium, 0 2px 10px rgba(0,0,0,0.2));
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideInAndFadeOut 5s forwards; /* 0.5s in, 4s visible, 0.5s out */
+}
+
+.notification.success {
+    background-color: var(--success-color-bg, #28a745);
+    color: #fff;
+}
+.notification.error {
+    background-color: var(--error-color-bg, #dc3545);
+    color: #fff;
+}
+.notification.info {
+    background-color: var(--info-color-bg, #17a2b8);
+    color: #fff;
+}
+
+@keyframes slideInAndFadeOut {
+    0% { opacity: 0; transform: translateX(100%); }
+    10% { opacity: 1; transform: translateX(0); } /* Entra in 0.5s (10% di 5s) */
+    90% { opacity: 1; transform: translateX(0); } /* Rimane per 4s (80% di 5s) */
+    100% { opacity: 0; transform: translateX(100%); } /* Esce in 0.5s (10% di 5s) */
+}
+
+/* Utility per screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Footer di base (se usato in index.html) */
+body > footer {
+    text-align: center;
+    padding: var(--spacing-medium, 1rem);
+    background-color: var(--footer-bg-color, #111);
+    color: var(--footer-text-color, #aaa);
+    font-size: var(--font-size-small, 0.875rem);
+    margin-top: auto; /* Spinge il footer in fondo */
+}
+body > footer p {
+    margin: 0;
+}
+
+/* Stile per il contenitore del gioco quando JavaScript è disabilitato */
+noscript div {
+    background-color: var(--error-color-bg, #dc3545) !important;
+    color: #fff !important;
+    padding: var(--spacing-large, 1.5rem) !important;
+    text-align: center !important;
+    font-family: sans-serif !important;
+    border: 2px solid #fff !important;
+}
+noscript h1 {
+    color: #fff !important;
+    font-size: var(--font-size-h2, 2rem) !important;
+}
+noscript p {
+    font-size: var(--font-size-base, 1rem) !important;
+}
+
+/*
+    Considerazioni aggiuntive:
+    - Normalizzazione più estesa (es. normalize.css o reset.css) potrebbe essere inclusa o linkata prima di questo file.
+    - Stili per elementi specifici del gioco (inventario, mappa, dialoghi) andranno in file CSS dedicati.
+*/
